@@ -12,7 +12,7 @@ import oru.inf.InfException;
  *
  * @author lucasandersson
  */
-public class Databaskoplling {
+public class Databaskoppling {
       public static InfDB idb;
     
  
