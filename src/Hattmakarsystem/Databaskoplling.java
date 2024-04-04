@@ -21,7 +21,7 @@ public class Databaskoplling {
     //skapar uppkopplingen till databasen i variablen idb
     try 
         {
-              idb = new InfDB("mibdb", "3306", "mibdba","mibkey");
+              idb = new InfDB("scrumex", "3306", "scrumex","losen");
         }
         catch(InfException undatag)
                 {
