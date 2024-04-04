@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Hattmakarsystem;
-
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+//import java.lang.System.Logger;
+//import java.lang.System.Logger.Level;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import oru.inf.InfException;
@@ -22,15 +23,15 @@ public class Valideringsklass {
     public static Boolean finnsEpostenRedan(String Epost)
     {
         try {
-            ArrayList<String> EpostAgnt = Start.idb.fetchColumn("Select epost from agent");
-             ArrayList<String> EpostAlien = Start.idb.fetchColumn("Select epost from alien");
-             for (String x:EpostAlien) {
+            ArrayList<String> Namn = Databaskoppling.idb.fetchColumn("Select namn from kund");
+             ArrayList<String> EpostKund = Databaskoppling.idb.fetchColumn("Select epost from kund");
+             for (String x:EpostKund) {
             if (Epost.toLowerCase().equals(x)) {
                JOptionPane.showMessageDialog(null, "Eposten finns redan"); 
                 return true;
             }
         }
-        for (String x: EpostAgnt) {
+        for (String x: Namn) {
             if (Epost.toLowerCase().equals(x)) {
                 JOptionPane.showMessageDialog(null, "Eposten finns redan");
                 return true;

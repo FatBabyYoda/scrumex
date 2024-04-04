@@ -149,11 +149,11 @@ if (Valideringsklass.emptyTextFields(jTextNamn) && Valideringsklass.emptyTextFie
         String Adress = jTextAdress.getText();
        
 
-        // Omvandlar String till int - ÄNDRA EVENTUELLT ALIENID TILL KUNDID
+        
         int KundID = Integer.parseInt(nextID);
        
         ArrayList<String> NamnPaKund;
-        NamnPaKund = idb.fetchColumn("select namn from alien");
+        NamnPaKund = Databaskoppling.idb.fetchColumn("select namn from kund");
         boolean finns = false;
         for (String enKund : NamnPaKund) {
             if (namn.equals(enKund)) {
@@ -167,10 +167,10 @@ if (Valideringsklass.emptyTextFields(jTextNamn) && Valideringsklass.emptyTextFie
             String SQLFRAGA = (Epost + "Insert into kund (kundid, namn, telf, email)"
                     + " VALUES ('" + KundID + "','" + namn + "','" + telefon + "','" + Adress 
                     );
-            idb.insert(SQLFRAGA);
+            Databaskoppling.idb.insert(SQLFRAGA);
         } else {
             // Talar om att det sökta namnet redan finns och inte går att använda
-            JOptionPane.showMessageDialog(null, "Namnet existerar redan, försök igen!");
+            JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
         }
          JOptionPane.showMessageDialog(null, "Registrering slutförd!");
 
@@ -182,7 +182,7 @@ if (Valideringsklass.emptyTextFields(jTextNamn) && Valideringsklass.emptyTextFie
     }
 
 } else {
-    JOptionPane.showMessageDialog(null, "Samtliga fält måste fyllas i!");
+    JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
 }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
