@@ -75,7 +75,7 @@ public class LaggaTillKund extends javax.swing.JFrame {
 
         jLabel4.setText("Adress");
 
-        jLabel5.setText("Här kan du lägga in information om en kund!");
+        jLabel5.setText("Här kan du lägga till information om en kund!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +100,7 @@ public class LaggaTillKund extends javax.swing.JFrame {
                             .addComponent(jTextAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 107, Short.MAX_VALUE)
+                .addGap(0, 104, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(73, 73, 73))
         );

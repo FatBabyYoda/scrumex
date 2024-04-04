@@ -48,7 +48,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="104" max="32767" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
           </Group>
@@ -127,7 +127,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="H&#xe4;r kan du l&#xe4;gga in information om en kund!"/>
+        <Property name="text" type="java.lang.String" value="H&#xe4;r kan du l&#xe4;gga till information om en kund!"/>
       </Properties>
     </Component>
   </SubComponents>
