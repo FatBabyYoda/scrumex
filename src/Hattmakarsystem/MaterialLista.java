@@ -4,9 +4,13 @@
  */
 package Hattmakarsystem;
 
+import java.awt.Color;
+
 /**
  *
  * @author Rikard Söderek
+ * @author Gustav Alvesvärd
+ * @version 0.1, 2024-04-04
  */
 public class MaterialLista extends javax.swing.JFrame {
 
@@ -17,6 +21,12 @@ public class MaterialLista extends javax.swing.JFrame {
         initComponents();
         autoTextUpdate();
         jTextArea1.setEditable(false);
+        jTextArea1.setHighlighter(null);
+        jTextArea1.setCaretColor(Color.white);
+        
+        //Alt kan man bara deinstalla skiten ur jTextArea1 om inte
+        //vi ska interagera med den (slipper importa java.awt.Color)
+        //jTextArea1.getCaret().deinstall(jTextArea1);
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -24,7 +34,7 @@ public class MaterialLista extends javax.swing.JFrame {
 
     public void autoTextUpdate(){
         //Lägg in fetchrow-koden här
-        jTextArea1.setText("kul");
+        jTextArea1.setText("NICE \nBOX");
     }
     
     /**
