@@ -4,6 +4,7 @@
  */
 package Hattmakarsystem;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -14,19 +15,29 @@ import oru.inf.InfException;
  */
 public class Databaskoppling {
       public static InfDB idb;
-    
- 
-    public static void main(String args[])
-  {
-    //skapar uppkopplingen till databasen i variablen idb
-    try 
+   
+      public static void koppling()
+      {
+          try 
         {
               idb = new InfDB("scrumex", "3306", "scrumex","losen");
+              try {
+            // TODO add your handling code here:
+            ArrayList<String> hej = Databaskoppling.idb.fetchColumn("Select matid from material");
+        } catch (InfException ex) {
+            System.out.println(ex);
+        }
         }
         catch(InfException undatag)
                 {
                     JOptionPane.showMessageDialog(null, "nåt gick fel");
                     System.out.println(undatag);
                 }
+      }
+ 
+    public static void main(String args[])
+  {
+    //skapar uppkopplingen till databasen i variablen idb
+   
 }
 }
