@@ -15,13 +15,13 @@ import oru.inf.InfException;
  * @author filip
  */
 public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
-    public static InfDB idb;
 
     /**
      * Creates new form RegistreraBestallningLagerforda
      */
     public RegistreraBestallningLagerforda() {
         initComponents();
+        Databaskoppling.koppling();
         fyllCbValjKund();
     }
    
