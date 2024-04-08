@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
+import static Hattmakarsystem.Databaskoppling.koppling;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 /**
  *
@@ -20,7 +23,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
      */
     public SkrivUtFraktsedel() {
         initComponents();
-        kundMeny();
+        koppling();
     }
 
     /**
@@ -32,70 +35,121 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jSokKundBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jVisa = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jKundTabell = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jSokKundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jSokKundBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jSokKundBoxActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         jLabel1.setText("Välj kund");
+
+        jVisa.setText("Visa");
+        jVisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVisaActionPerformed(evt);
+            }
+        });
+
+        jKundTabell.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Namn", "Address", "Email", "Telefonnummer", "Typ", "Orderdatum", "Pris", "Totalpris"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jKundTabell);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jVisa)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(184, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jVisa))
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kundMeny(){
-        try {
+    
+    
+    private void jSokKundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSokKundBoxActionPerformed
+      try {
             ArrayList<String> kundNamn = Databaskoppling.idb.fetchColumn("SELECT namn FROM kund");
+            DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
             for (String n :kundNamn ) {
-                jComboBox1.addItem(n);
+                comboBoxModell.addElement(n);
             }
+            
+            jSokKundBox.setModel(comboBoxModell);
+            jSokKundBox.setEnabled(true);
         } catch (InfException ex) {
             ex.printStackTrace();
         }
-    }
-    
-    
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String valdKund = jComboBox1.getSelectedItem().toString();
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+       
+    }//GEN-LAST:event_jSokKundBoxActionPerformed
+
+    private void jVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisaActionPerformed
+        HashMap <String, String> kund;
+        
+        try {
+            String valdKund = jSokKundBox.getSelectedItem().toString();
+      
+        String hamtaKund = "SELECT address, email, namn, telf FROM kund where Kund_namn='" + valdKund + "'";
+        String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
+        
+        kund = Databaskoppling.idb.fetchRow(hamtaKund);
+        
+               
+        jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2
+        jKundTabell.setValueAt(kund.get("Address"), 0, 1);                  // Kolumn 3
+        jKundTabell.setValueAt(kund.get("Email"), 0, 2);               // Kolumn 4
+        jKundTabell.setValueAt(kund.get("Telf"), 0, 3);                // Kolumn 5
+               
+        
+        } catch (InfException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jVisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,9 +187,10 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> jSokKundBox;
+    private javax.swing.JButton jVisa;
     // End of variables declaration//GEN-END:variables
 }
