@@ -4,17 +4,44 @@
  */
 package Hattmakarsystem;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author filip
  */
 public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
+    public static InfDB idb;
 
     /**
      * Creates new form RegistreraBestallningLagerforda
      */
     public RegistreraBestallningLagerforda() {
         initComponents();
+        fyllCbValjKund();
+    }
+   
+    
+    private void fyllCbValjKund(){
+        String fraga = "SELECT kundid from kund";
+        ArrayList<String> allaKunder ;
+        
+        try{ 
+            allaKunder = Databaskoppling.idb.fetchColumn(fraga);
+            
+           for(String kundID:allaKunder){
+               cbValjKund.addItem(kundID); 
+           }
+               
+           
+        } catch(InfException undantag){
+            JOptionPane.showMessageDialog(null, "fel i databasen");
+            System.out.println("Fel i databasen" + undantag.getMessage());
+        }
+                
     }
 
     /**
@@ -26,21 +53,177 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cbValjKund = new javax.swing.JComboBox<>();
+        lblTitel = new javax.swing.JLabel();
+        lblModell = new javax.swing.JLabel();
+        lblKund = new javax.swing.JLabel();
+        btnRegistrera = new javax.swing.JButton();
+        cbxModell1 = new javax.swing.JCheckBox();
+        spModell1 = new javax.swing.JSpinner();
+        cbxModell2 = new javax.swing.JCheckBox();
+        spModell2 = new javax.swing.JSpinner();
+        cbxModell3 = new javax.swing.JCheckBox();
+        spModell3 = new javax.swing.JSpinner();
+        tfDatum = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cbValjKund.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblTitel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitel.setText("Registrera en beställning på lagerförda modeller");
+
+        lblModell.setText("Välj modell");
+
+        lblKund.setText("Välj kund");
+
+        btnRegistrera.setText("Registrera");
+        btnRegistrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistreraActionPerformed(evt);
+            }
+        });
+
+        cbxModell1.setText("1");
+        cbxModell1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxModell1ActionPerformed(evt);
+            }
+        });
+
+        cbxModell2.setText("2");
+
+        cbxModell3.setText("3");
+
+        tfDatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDatumActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Välj datum");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(cbxModell2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cbxModell1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cbxModell3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(spModell1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(spModell2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(spModell3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(lblModell))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(122, 122, 122)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cbValjKund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblKund)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(123, 123, 123)
+                                                .addComponent(jLabel1)))))))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegistrera)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblKund)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbValjKund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblModell)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spModell1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxModell1))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxModell2)
+                            .addComponent(spModell2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(4, 4, 4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxModell3)
+                    .addComponent(spModell3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(btnRegistrera)
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraActionPerformed
+        // TODO add your handling code here:
+String valdKund = cbValjKund.getSelectedItem().toString();
+
+try{
+String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM order";
+String senasteOrderIdStr = Databaskoppling.idb.fetchSingle(senastOrderFraga);
+
+int senasteOrderId = Integer.parseInt(senasteOrderIdStr);
+int nyttOrderId = senasteOrderId + 1;
+String laggTillOrder = "INSERT INTO Order (orderid, status, typ, orderdate, anvandare, kund)" 
+ + "VALUES ('" + nyttOrderId + "', '" + "Ej påbörjad" + "', '" + "Lagerförd" + "', '" + tfDatum.getText() + "', '" + 0 + "', '" + valdKund + "')";
+ Databaskoppling.idb.insert(laggTillOrder);
+        
+if(cbxModell1.isSelected()){
+String laggTillModell1 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
+ + "VALUES ('" + cbxModell1.getText() + "', '" + nyttOrderId + "', '" + spModell1.getValue() + "')";
+ Databaskoppling.idb.insert(laggTillModell1);}
+if(cbxModell2.isSelected()){
+String laggTillModell2 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
+ + "VALUES ('" + cbxModell2.getText() + "', '" + nyttOrderId + "', '" + spModell2.getValue() + "')";
+ Databaskoppling.idb.insert(laggTillModell2);}
+if(cbxModell3.isSelected()){
+String laggTillModell3 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
+ + "VALUES ('" + cbxModell3.getText() + "', '" + nyttOrderId + "', '" + spModell3.getValue() + "')";
+ Databaskoppling.idb.insert(laggTillModell3);}
+                       
+}catch(InfException undantag){
+JOptionPane.showMessageDialog(null, "fel i databasen");
+System.out.println("Fel i databasen" + undantag.getMessage());}
+    }//GEN-LAST:event_btnRegistreraActionPerformed
+
+    private void cbxModell1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxModell1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxModell1ActionPerformed
+
+    private void tfDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDatumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDatumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +261,18 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrera;
+    private javax.swing.JComboBox<String> cbValjKund;
+    private javax.swing.JCheckBox cbxModell1;
+    private javax.swing.JCheckBox cbxModell2;
+    private javax.swing.JCheckBox cbxModell3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblKund;
+    private javax.swing.JLabel lblModell;
+    private javax.swing.JLabel lblTitel;
+    private javax.swing.JSpinner spModell1;
+    private javax.swing.JSpinner spModell2;
+    private javax.swing.JSpinner spModell3;
+    private javax.swing.JTextField tfDatum;
     // End of variables declaration//GEN-END:variables
 }
