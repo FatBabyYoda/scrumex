@@ -193,7 +193,7 @@ if (!Valideringsklass.emptyTextFields(jTextNamn) && !Valideringsklass.emptyTextF
        
 
         
-        int KundID = Integer.parseInt(nextID);
+       // int KundID = Integer.parseInt(nextID);
        
         ArrayList<String> NamnPaKund;
         NamnPaKund = Databaskoppling.idb.fetchColumn("select namn from kund");
@@ -206,10 +206,8 @@ if (!Valideringsklass.emptyTextFields(jTextNamn) && !Valideringsklass.emptyTextF
         }
 
         if (!finns) {
-            
-            String SQLFRAGA = (Epost + "Insert into kund (kundid, namn, telf, email)"
-                    + " VALUES ('" + KundID + "','" + namn + "','" + telefon + "','" + Adress 
-                    );
+            String SQLFRAGA = "Insert into kund VALUES ('" + nextID + "','" + Adress  + "','"+ Epost + "','" + namn + "','" +  telefon+           
+"')";
             Databaskoppling.idb.insert(SQLFRAGA);
         } else {
             // Talar om att det sökta namnet redan finns och inte går att använda
