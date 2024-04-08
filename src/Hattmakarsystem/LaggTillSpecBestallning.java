@@ -298,7 +298,7 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
                 orderid = Databaskoppling.idb.getAutoIncrement("ordrar", "orderid");
                 String kundid = Databaskoppling.idb.fetchSingle("select kundid from kund where email = '"+EmailTB.getText().toLowerCase()+"';");
                 
-                FileOutputStream outputdir = new FileOutputStream("./src/Hattmakarsystem/bilder/output"+specid+".jpg");
+                FileOutputStream outputdir = new FileOutputStream(".\\src\\Hattmakarsystem\\bilder\\output"+specid+".jpg");
                 FileInputStream inputdir = new FileInputStream(filename);
             
             
