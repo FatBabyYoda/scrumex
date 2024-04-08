@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMultipart;
 
 /**
  *
- * @author Lucas
+ * @author Lucas Andersson
  */
 public class eSender {
     Session newSession = null;
