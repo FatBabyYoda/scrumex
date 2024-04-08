@@ -5,6 +5,8 @@
 package Hattmakarsystem;
 
 import static Hattmakarsystem.Databaskoppling.koppling;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
@@ -13,16 +15,20 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Rikard Söderek
+ * @author Rikard Söderek; Gustav Alvesvärd
+ * @version 0.2 (Rev. 1)
  */
 public class MaterialLista extends javax.swing.JFrame {
 
+            
     /**
      * Creates new form TestMaterialLista
      */
+    //anropar ComboBox vid start för att ladda rätt alternativ i drop-down listan
     public MaterialLista() {
         initComponents();
         koppling();
+        jComboBox1ActionPerformed(null);
     }
 
     /**
@@ -72,11 +78,31 @@ public class MaterialLista extends javax.swing.JFrame {
 
         jLabel2.setText("Material");
 
-        jRadioButton1.setText("Lagförda");
+        jRadioButton1.setText("Lagerförda");
+        jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jRadioButton1StateChanged(evt);
+            }
+        });
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setText("Anpassade");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jRadioButton3.setText("Special");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Visa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -155,9 +181,15 @@ public class MaterialLista extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 //        //ComboBox val av hattyp (ex. Stråhatt, Filthatt osv)  
-        
+ 
+//        if (!comboBoxInitialized) {
+//            return;
+//        }
+
         try{
         ArrayList<String> lista2 = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp");
+        
+        //gör en ny ComboBox modell
         DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
         for(String namn : lista2){
             comboBoxModell.addElement(namn);
@@ -169,32 +201,33 @@ public class MaterialLista extends javax.swing.JFrame {
         
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
-            System.out.println("Internet felmeddelande: " + e.getMessage());
+            System.out.println("Internt felmeddelande: " + e.getMessage());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Visa-knappen
+  //      Visa-knappen
         
-//        ArrayList<HashMap<String, String>> Lista;
-//
-//    try { 
-//            String TypVal = jComboBox1.getSelectedItem().toString();
-//    
-//     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
-//     // Namn på aliens visas i resultatområdet
-//    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
-//    
-//    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
-//    
-//    for (HashMap<String, String> lista : Lista) {
-//        jNameArea.append(lista.get("namn") + "\n");
-//    }
-//    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
-//} catch (InfException ettUndantag) {
-//    JOptionPane.showMessageDialog(null, "Databasfel!");
-//    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());   
-//}
+        ArrayList<HashMap<String, String>> Lista;
+
+    try { 
+            String TypVal = jComboBox1.getSelectedItem().toString();
+    
+     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
+     // Namn på aliens visas i resultatområdet
+    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
+    
+    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
+    
+    for (HashMap<String, String> lista : Lista) {
+        jNameArea.append(lista.get("namn") + "\n");
+    }
+    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
+} catch (InfException ettUndantag) {
+    JOptionPane.showMessageDialog(null, "Databasfel!");
+    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());   
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTillbakaKnappActionPerformed
@@ -202,6 +235,50 @@ public class MaterialLista extends javax.swing.JFrame {
         tillbakaMeny.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jTillbakaKnappActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    //Lagerförda ticked
+    jRadioButton1.addItemListener(new ItemListener() {
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+    if (e.getStateChange() == ItemEvent.SELECTED) {    
+        try {
+            //Hämta namnen från hattyp
+            ArrayList<String> names = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp");
+            
+            //en liten StringBuilder för att lagra skit B)
+            StringBuilder namesText = new StringBuilder();
+            
+            //loopa genom alla namn o adda i strängen
+            for (String name : names) {
+                namesText.append(name).append("\n");
+            }
+            
+            jNameArea.setText(namesText.toString());
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+            System.err.println("Internt felmeddelande: " + ex.getMessage());
+        }
+    } else {
+           //ghetto clear så länge XD
+           jNameArea.setText("");
+       }
+    }
+});
+       
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+       //Anpassade ticked:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+       //Special ticked:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioButton1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1StateChanged
 
    
     
