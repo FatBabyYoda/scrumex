@@ -4,6 +4,8 @@
  */
 package Hattmakarsystem;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -269,7 +271,11 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
         
         filename = f.getAbsolutePath();
         
-        RitningIcon.setIcon(new ImageIcon(filename));
+        
+        RitningIcon.setIcon(new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(215, 130, Image.SCALE_DEFAULT)));
+        
+        
+        
         
         
         
