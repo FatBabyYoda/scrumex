@@ -4,6 +4,7 @@
  */
 package Hattmakarsystem;
 
+import static Hattmakarsystem.Databaskoppling.koppling;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +22,7 @@ public class MaterialLista extends javax.swing.JFrame {
      */
     public MaterialLista() {
         initComponents();
-        
+        koppling();
     }
 
     /**
@@ -47,12 +48,16 @@ public class MaterialLista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jNameArea.setEditable(false);
         jNameArea.setColumns(20);
         jNameArea.setRows(5);
+        jNameArea.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(jNameArea);
 
+        jMatArea.setEditable(false);
         jMatArea.setColumns(20);
         jMatArea.setRows(5);
+        jMatArea.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(jMatArea);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -132,27 +137,10 @@ public class MaterialLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-//        //ComboBox val av hattyp (ex. Stråhatt, Filthatt osv)
-//        
-//        //String allaHattar = jComboBox1.getSelectedItem().toString();
-//        //String allaHattyp = "SELECT * FROM Hattyp WHERE '" + allaHattar + "'";
-//        
-//        try{
-//            ArrayList<String> Lista = Databaskoppling.idb.fetchColumn("SELECT Namn FROM hattyp");
-//            for(String i : Lista){
-//              // jComboBox1.addItem(i.get("Namn"));
-//            }
-//            
-//        } catch(Exception e){
-//            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick inte helt rätt där");
-//            System.out.println("Internt felmeddelande: " + e.getMessage());
-//        }
-        
-        
-       String typVal = jComboBox1.getSelectedItem().toString();
+//        //ComboBox val av hattyp (ex. Stråhatt, Filthatt osv)  
         
         try{
-        ArrayList<String> lista2 = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp WHERE namn = '" + typVal + "'");
+        ArrayList<String> lista2 = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp");
         DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
         for(String namn : lista2){
             comboBoxModell.addElement(namn);
@@ -161,38 +149,35 @@ public class MaterialLista extends javax.swing.JFrame {
         jComboBox1.setModel(comboBoxModell);
         jComboBox1.setEnabled(true);     
         }
-        // Databasoperationer som har eventuella fel hanteras och skrivs ut
-        catch(InfException undantag){
-            System.out.println("Fel med databas!" + undantag);
+        
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
+            System.out.println("Internet felmeddelande: " + e.getMessage());
         }
-        
-        
-        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //Visa-knappen
         
-        ArrayList<HashMap<String, String>> Lista;
-
-    try { 
-            String TypVal = jComboBox1.getSelectedItem().toString();
-    
-     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
-     // Namn på aliens visas i resultatområdet
-    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
-    
-    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
-    
-    for (HashMap<String, String> lista : Lista) {
-        jNameArea.append(lista.get("namn") + "\n");
-    }
-    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
-} catch (InfException ettUndantag) {
-    JOptionPane.showMessageDialog(null, "Databasfel!");
-    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());
-        
-}
+//        ArrayList<HashMap<String, String>> Lista;
+//
+//    try { 
+//            String TypVal = jComboBox1.getSelectedItem().toString();
+//    
+//     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
+//     // Namn på aliens visas i resultatområdet
+//    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
+//    
+//    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
+//    
+//    for (HashMap<String, String> lista : Lista) {
+//        jNameArea.append(lista.get("namn") + "\n");
+//    }
+//    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
+//} catch (InfException ettUndantag) {
+//    JOptionPane.showMessageDialog(null, "Databasfel!");
+//    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());   
+//}
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
