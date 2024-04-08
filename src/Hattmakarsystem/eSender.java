@@ -21,14 +21,17 @@ import javax.mail.internet.MimeMultipart;
  */
 public class eSender {
     Session newSession = null;
-   public static void main(String args[]) throws MessagingException {
-       eSender mail = new eSender();
-       mail.setupProperties();
-       mail.draftEmail();
-       mail.send();
-   }
+  
     private MimeMessage mimeMessage;
 
+    private static void sendComfirmation(String epostKonto) throws MessagingException
+    {
+         eSender mail = new eSender();
+         mail.setupProperties();
+         mail.draftEmail(epostKonto.toLowerCase());
+         mail.send();
+    }
+    
     private void setupProperties() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.port", "587");
@@ -48,8 +51,8 @@ public class eSender {
       transport.close();
     }
 
-    private MimeMessage draftEmail() throws AddressException, MessagingException {
-        String epostKonto = "gttgeded@gmail.com";
+    private MimeMessage draftEmail(String epostKonto ) throws AddressException, MessagingException {
+        
        String eSubject = "Bekräftelse på order";
        String eBody = "Tack för din beställning";
        mimeMessage = new MimeMessage(newSession);
@@ -65,10 +68,4 @@ public class eSender {
        
     }
 
-   
-    
-    
-    
-    
-    
 }
