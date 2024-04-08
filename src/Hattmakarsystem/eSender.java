@@ -24,7 +24,7 @@ public class eSender {
   
     private MimeMessage mimeMessage;
 
-    private static void sendComfirmation(String epostKonto) throws MessagingException
+    public static void sendComfirmation(String epostKonto) throws MessagingException
     {
          eSender mail = new eSender();
          mail.setupProperties();
