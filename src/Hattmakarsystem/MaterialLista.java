@@ -4,39 +4,26 @@
  */
 package Hattmakarsystem;
 
-import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import oru.inf.InfException;
 
 /**
  *
  * @author Rikard Söderek
- * @author Gustav Alvesvärd
- * @version 0.1, 2024-04-04
  */
 public class MaterialLista extends javax.swing.JFrame {
 
     /**
-     * Creates new form MaterialLista
+     * Creates new form TestMaterialLista
      */
     public MaterialLista() {
         initComponents();
-        autoTextUpdate();
-        jTextArea1.setEditable(false);
-        jTextArea1.setHighlighter(null);
-        jTextArea1.setCaretColor(Color.white);
         
-        //Alt kan man bara deinstalla skiten ur jTextArea1 om inte
-        //vi ska interagera med den (slipper importa java.awt.Color)
-        //jTextArea1.getCaret().deinstall(jTextArea1);
-        
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
     }
 
-    public void autoTextUpdate(){
-        //Lägg in fetchrow-koden här
-        jTextArea1.setText("NICE \nBOX");
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,53 +34,170 @@ public class MaterialLista extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jNameArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jMatArea = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jNameArea.setColumns(20);
+        jNameArea.setRows(5);
+        jScrollPane1.setViewportView(jNameArea);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jMatArea.setColumns(20);
+        jMatArea.setRows(5);
+        jScrollPane2.setViewportView(jMatArea);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        });
+
+        jLabel1.setText("Namn");
+
+        jLabel2.setText("Material");
+
+        jRadioButton1.setText("Lagförda");
+
+        jRadioButton2.setText("Anpassade");
+
+        jRadioButton3.setText("Special");
+
+        jButton1.setText("Visa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+//        //ComboBox val av hattyp (ex. Stråhatt, Filthatt osv)
+//        
+//        //String allaHattar = jComboBox1.getSelectedItem().toString();
+//        //String allaHattyp = "SELECT * FROM Hattyp WHERE '" + allaHattar + "'";
+//        
+//        try{
+//            ArrayList<String> Lista = Databaskoppling.idb.fetchColumn("SELECT Namn FROM hattyp");
+//            for(String i : Lista){
+//              // jComboBox1.addItem(i.get("Namn"));
+//            }
+//            
+//        } catch(Exception e){
+//            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick inte helt rätt där");
+//            System.out.println("Internt felmeddelande: " + e.getMessage());
+//        }
+        
+        
+       String typVal = jComboBox1.getSelectedItem().toString();
+        
+        try{
+        ArrayList<String> lista2 = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp WHERE namn = '" + typVal + "'");
+        DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
+        for(String namn : lista2){
+            comboBoxModell.addElement(namn);
+        }
+
+        jComboBox1.setModel(comboBoxModell);
+        jComboBox1.setEnabled(true);     
+        }
+        // Databasoperationer som har eventuella fel hanteras och skrivs ut
+        catch(InfException undantag){
+            System.out.println("Fel med databas!" + undantag);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        ArrayList<HashMap<String, String>> Lista;
+
+    try { 
+            String TypVal = jComboBox1.getSelectedItem().toString();
+    
+     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
+     // Namn på aliens visas i resultatområdet
+    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
+    
+    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
+    
+    for (HashMap<String, String> lista : Lista) {
+        jNameArea.append(lista.get("namn") + "\n");
+    }
+    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
+} catch (InfException ettUndantag) {
+    JOptionPane.showMessageDialog(null, "Databasfel!");
+    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());
+        
+}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+   
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -120,6 +224,7 @@ public class MaterialLista extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MaterialLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -130,9 +235,16 @@ public class MaterialLista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextArea jMatArea;
+    private javax.swing.JTextArea jNameArea;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
