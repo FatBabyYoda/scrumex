@@ -158,25 +158,28 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
 
             String hamtaKund = "SELECT address, email, namn, telf FROM kund WHERE namn = '" + valdKund + "'";
             String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
+            String hamtaSpec = "SELECT pris FROM specialbestallning";
 
             HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
-            
+            HashMap<String, String> ordrar = Databaskoppling.idb.fetchRow(hamtaOrder);
+            HashMap<String, String> spec = Databaskoppling.idb.fetchRow(hamtaSpec);
+
             DefaultTableModel model = (DefaultTableModel) jKundTabell.getModel();
-            
+
             model.setRowCount(0);
-            
-            model.addRow(new Object []{
+
+            model.addRow(new Object[]{
                 kund.get("namn"),
                 kund.get("address"),
                 kund.get("email"),
-                kund.get("telf")
+                kund.get("telf"),
+                ordrar.get("typ"),
+                ordrar.get("orderdate"),
+                ordrar.get("totpris"),
+                spec.get("pris")
+                
             });
 
-            /*jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2
-            jKundTabell.setValueAt(kund.get("Address"), 0, 1);                  // Kolumn 3
-            jKundTabell.setValueAt(kund.get("Email"), 0, 2);               // Kolumn 4
-            jKundTabell.setValueAt(kund.get("Telf"), 0, 3);                // Kolumn 5
-*/
         } catch (InfException ex) {
             ex.printStackTrace();
         }
