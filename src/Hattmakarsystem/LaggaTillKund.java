@@ -21,7 +21,6 @@ public class LaggaTillKund extends javax.swing.JFrame {
      */
     public LaggaTillKund() {
         koppling();
-         
         initComponents();
     }
 

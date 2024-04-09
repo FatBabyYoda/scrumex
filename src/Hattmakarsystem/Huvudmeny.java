@@ -5,7 +5,9 @@
 package Hattmakarsystem;
 
 import static Hattmakarsystem.Databaskoppling.koppling;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -35,7 +37,7 @@ public class Huvudmeny extends javax.swing.JFrame {
         jSeOrdrar = new javax.swing.JButton();
         jSeMateriallista = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jAvregistrera = new javax.swing.JButton();
         jAvbryt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,10 +73,10 @@ public class Huvudmeny extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("jButton5");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jAvregistrera.setText("Avregistrera kund");
+        jAvregistrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jAvregistreraActionPerformed(evt);
             }
         });
 
@@ -96,7 +98,7 @@ public class Huvudmeny extends javax.swing.JFrame {
                     .addComponent(jSeOrdrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeMateriallista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jAvregistrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
@@ -122,13 +124,13 @@ public class Huvudmeny extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jSeOrdrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(jAvregistrera)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jAvbryt)
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton4, jButton5, jRegistreraKund, jSeMateriallista, jSeOrdrar});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jAvregistrera, jButton4, jRegistreraKund, jSeMateriallista, jSeOrdrar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,9 +159,11 @@ public class Huvudmeny extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jAvregistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAvregistreraActionPerformed
+         AvregistreraKund Avregistrera = new AvregistreraKund();
+        Avregistrera.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jAvregistreraActionPerformed
 
     private void jAvbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAvbrytActionPerformed
 dispose();        // TODO add your handling code here:
@@ -202,8 +206,8 @@ dispose();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAvbryt;
+    private javax.swing.JButton jAvregistrera;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jRegistreraKund;
     private javax.swing.JButton jSeMateriallista;

@@ -4,6 +4,7 @@
  */
 package Hattmakarsystem;
 
+import static Hattmakarsystem.Databaskoppling.koppling;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -14,7 +15,7 @@ import oru.inf.InfException;
  * @author filip
  */
 public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
-    public static InfDB idb;
+    
 
     /**
      * Creates new form RegistreraBestallningLagerforda
@@ -22,18 +23,20 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
     public RegistreraBestallningLagerforda() {
         initComponents();
         fyllCbValjKund();
+        koppling();
+        
     }
    
     
     private void fyllCbValjKund(){
-        String fraga = "SELECT kundid from kund";
+        String fraga = "SELECT namn from kund";
         ArrayList<String> allaKunder ;
         
         try{ 
             allaKunder = Databaskoppling.idb.fetchColumn(fraga);
             
-           for(String kundID:allaKunder){
-               cbValjKund.addItem(kundID); 
+           for(String kundNamn:allaKunder){
+               cbValjKund.addItem(kundNamn); 
            }
                
            
@@ -70,7 +73,11 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbValjKund.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbValjKund.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValjKundActionPerformed(evt);
+            }
+        });
 
         lblTitel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitel.setText("Registrera en beställning på lagerförda modeller");
@@ -244,6 +251,10 @@ System.out.println("Fel i databasen" + undantag.getMessage());}
         tillbakaMeny.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbValjKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValjKundActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbValjKundActionPerformed
 
     /**
      * @param args the command line arguments
