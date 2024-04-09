@@ -61,8 +61,8 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         jVisa = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jKundTabell = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTillbaka = new javax.swing.JButton();
+        jSkrivUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,17 +104,17 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         jKundTabell.setRowMargin(10);
         jScrollPane2.setViewportView(jKundTabell);
 
-        jButton1.setText("Tillbaka");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTillbaka.setText("Tillbaka");
+        jTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jTillbakaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Skriv ut");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jSkrivUt.setText("Skriv ut");
+        jSkrivUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jSkrivUtActionPerformed(evt);
             }
         });
 
@@ -132,14 +132,14 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jVisa)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jTillbaka))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
+                        .addComponent(jSkrivUt)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jVisa});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTillbaka, jVisa});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,16 +149,16 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jVisa)
-                        .addComponent(jButton1))
+                        .addComponent(jTillbaka))
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jSkrivUt)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jVisa});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTillbaka, jVisa});
 
         pack();
         setLocationRelativeTo(null);
@@ -203,17 +203,14 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jVisaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTillbakaActionPerformed
         Huvudmeny tillbakaMeny = new Huvudmeny();
         tillbakaMeny.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTillbakaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        int valdRad = jKundTabell.getSelectedRow();
-//        
-//        if (valdRad < 0) {
-//            JOptionPane.showMessageDialog(this, "Ingen kund vald");
+    private void jSkrivUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSkrivUtActionPerformed
+
 //        }
           try {
         // Hämta vald rad från jTable
@@ -249,16 +246,20 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                           "Totalpris: " + totpris + "\n" +
                           "Specialbeställningspris: " + pris;
 
-        Object[] alternativ = {"Bekfräfta", "Avbryt"};
-        
+        Object[] alternativ = {"Bekfräfta", "Avbryt"};       
         int val = JOptionPane.showOptionDialog(this, infoText, "Kund", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, alternativ, alternativ[0]);
         // Visa informationen i en JOptionPane
+        if(val == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this,"Utskrift bekräftat.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Utskrift avbruten.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+        }
     } catch (Exception ex) {
         // Vid fel, visa felmeddelande
         JOptionPane.showMessageDialog(null,"Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
         ex.printStackTrace();
     }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jSkrivUtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,12 +297,12 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jSkrivUt;
     private javax.swing.JComboBox<String> jSokKundBox;
+    private javax.swing.JButton jTillbaka;
     private javax.swing.JButton jVisa;
     // End of variables declaration//GEN-END:variables
 }
