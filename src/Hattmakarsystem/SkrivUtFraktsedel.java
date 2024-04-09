@@ -44,7 +44,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSokKundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jSokKundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1", "item 2", " " }));
         jSokKundBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSokKundBoxActionPerformed(evt);
@@ -131,13 +131,13 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     private void jSokKundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSokKundBoxActionPerformed
       try {
             ArrayList<String> kundNamn = Databaskoppling.idb.fetchColumn("SELECT namn FROM kund");
-            DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
+            //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
             for (String n :kundNamn ) {
-                comboBoxModell.addElement(n);
+                jSokKundBox.addItem(n);
             }
             
-            jSokKundBox.setModel(comboBoxModell);
-            jSokKundBox.setEnabled(true);
+            //jSokKundBox.setModel(comboBoxModell);
+            //jSokKundBox.setEnabled(true);
         } catch (InfException ex) {
             ex.printStackTrace();
         }
@@ -145,7 +145,6 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     }//GEN-LAST:event_jSokKundBoxActionPerformed
 
     private void jVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisaActionPerformed
-        HashMap <String, String> kund;
         
         try {
             String valdKund = jSokKundBox.getSelectedItem().toString();
@@ -153,7 +152,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         String hamtaKund = "SELECT address, email, namn, telf FROM kund where Kund_namn='" + valdKund + "'";
         String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
         
-        kund = Databaskoppling.idb.fetchRow(hamtaKund);
+        HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
         
                
         jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2

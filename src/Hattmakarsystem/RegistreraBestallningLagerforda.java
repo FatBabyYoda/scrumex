@@ -72,6 +72,11 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cbValjKund.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbValjKund.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValjKundActionPerformed(evt);
+            }
+        });
 
         lblTitel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitel.setText("Registrera en beställning på lagerförda modeller");
@@ -253,6 +258,10 @@ System.out.println("Fel i databasen" + e.getMessage());
         tillbakaMeny.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbValjKundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValjKundActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbValjKundActionPerformed
 
     /**
      * @param args the command line arguments
