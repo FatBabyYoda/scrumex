@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
+
 import static Hattmakarsystem.Databaskoppling.koppling;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -10,13 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author osman
  */
 public class SkrivUtFraktsedel extends javax.swing.JFrame {
-    
-    
 
     /**
      * Creates new form SkrivUtFraktsedel
@@ -25,29 +26,27 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         initComponents();
         koppling();
         fyllcbBox();
-        
-        
-        
-        
+
     }
-    public void fyllcbBox(){
-        String fraga="SELECT namn FROM kund";
-                 ArrayList<String> kundNamn;
-    
- try {
-           kundNamn = Databaskoppling.idb.fetchColumn(fraga);
+
+    public void fyllcbBox() {
+        String fraga = "SELECT namn FROM kund";
+        ArrayList<String> kundNamn;
+
+        try {
+            kundNamn = Databaskoppling.idb.fetchColumn(fraga);
             //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
-            for (String n :kundNamn ) {
+            for (String n : kundNamn) {
                 jSokKundBox.addItem(n);
             }
-            
+
             //jSokKundBox.setModel(comboBoxModell);
             //jSokKundBox.setEnabled(true);
         } catch (InfException ex) {
             ex.printStackTrace();
         }
-}
-       
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +61,8 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         jVisa = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jKundTabell = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jTillbaka = new javax.swing.JButton();
+        jSkrivUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,12 +100,21 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jKundTabell.setRowHeight(30);
+        jKundTabell.setRowMargin(10);
         jScrollPane2.setViewportView(jKundTabell);
 
-        jButton1.setText("Tillbaka");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTillbaka.setText("Tillbaka");
+        jTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jTillbakaActionPerformed(evt);
+            }
+        });
+
+        jSkrivUt.setText("Skriv ut");
+        jSkrivUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSkrivUtActionPerformed(evt);
             }
         });
 
@@ -113,19 +122,24 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jVisa)
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jVisa)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTillbaka))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSkrivUt)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jVisa});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTillbaka, jVisa});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,51 +149,117 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jSokKundBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jVisa)
-                        .addComponent(jButton1))
+                        .addComponent(jTillbaka))
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSkrivUt)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jVisa});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTillbaka, jVisa});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void jSokKundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSokKundBoxActionPerformed
-     
+
     }//GEN-LAST:event_jSokKundBoxActionPerformed
 
     private void jVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisaActionPerformed
-        
+
         try {
             String valdKund = jSokKundBox.getSelectedItem().toString();
-      
-        String hamtaKund = "SELECT address, email, namn, telf FROM kund where Kund_namn='" + valdKund + "'";
-        String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
-        
-        HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
-        
-               
-        jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2
-        jKundTabell.setValueAt(kund.get("Address"), 0, 1);                  // Kolumn 3
-        jKundTabell.setValueAt(kund.get("Email"), 0, 2);               // Kolumn 4
-        jKundTabell.setValueAt(kund.get("Telf"), 0, 3);                // Kolumn 5
-               
-        
+
+            String hamtaKund = "SELECT address, email, namn, telf FROM kund WHERE namn = '" + valdKund + "'";
+            String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
+            String hamtaSpec = "SELECT pris FROM specialbestallning";
+
+            HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
+            HashMap<String, String> ordrar = Databaskoppling.idb.fetchRow(hamtaOrder);
+            HashMap<String, String> spec = Databaskoppling.idb.fetchRow(hamtaSpec);
+
+            DefaultTableModel model = (DefaultTableModel) jKundTabell.getModel();
+
+            model.setRowCount(0);
+
+            model.addRow(new Object[]{
+                kund.get("namn"),
+                kund.get("address"),
+                kund.get("email"),
+                kund.get("telf"),
+                ordrar.get("typ"),
+                ordrar.get("orderdate"),
+                ordrar.get("totpris"),
+                spec.get("pris")
+                
+            });
+
         } catch (InfException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jVisaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Huvudmeny tillbakaMeny = new Huvudmeny();
+    private void jTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTillbakaActionPerformed
+        Huvudmeny tillbakaMeny = new Huvudmeny();
         tillbakaMeny.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jTillbakaActionPerformed
+
+    private void jSkrivUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSkrivUtActionPerformed
+
+//        }
+          try {
+        // Hämta vald rad från jTable
+        int valdRad = jKundTabell.getSelectedRow();
+
+        // Kontrollera om en rad är vald
+        if (valdRad == -1) {
+            JOptionPane.showMessageDialog(this, "Ingen rad är vald.");
+            return;
+        }
+
+        // Hämta kundinformation från jTable
+        String namn = jKundTabell.getValueAt(valdRad, 0).toString(); 
+        String address = jKundTabell.getValueAt(valdRad, 1).toString(); 
+        String email = jKundTabell.getValueAt(valdRad, 2).toString(); 
+        String telf = jKundTabell.getValueAt(valdRad, 3).toString(); 
+
+        // Hämta orderinformation från jTable
+        String typ = jKundTabell.getValueAt(valdRad, 4).toString();
+        String orderdate = jKundTabell.getValueAt(valdRad, 5).toString(); 
+        String totpris = jKundTabell.getValueAt(valdRad, 6).toString(); 
+
+        // Hämta specialbeställningspris från jTable
+        String pris = jKundTabell.getValueAt(valdRad, 7).toString(); 
+
+        // Skapa en sträng med informationen
+        String infoText = "Namn: " + namn + "\n" +
+                          "Address: " + address + "\n" +
+                          "Email: " + email + "\n" +
+                          "Telefonnummer: " + telf + "\n" +
+                          "Ordertyp: " + typ + "\n" +
+                          "Orderdatum: " + orderdate + "\n" +
+                          "Totalpris: " + totpris + "\n" +
+                          "Specialbeställningspris: " + pris;
+
+        Object[] alternativ = {"Bekfräfta", "Avbryt"};       
+        int val = JOptionPane.showOptionDialog(this, infoText, "Kund", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, alternativ, alternativ[0]);
+        // Visa informationen i en JOptionPane
+        if(val == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this,"Utskrift bekräftat.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Utskrift avbruten.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } catch (Exception ex) {
+        // Vid fel, visa felmeddelande
+        JOptionPane.showMessageDialog(null,"Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    }
+    }//GEN-LAST:event_jSkrivUtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,11 +297,12 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jSkrivUt;
     private javax.swing.JComboBox<String> jSokKundBox;
+    private javax.swing.JButton jTillbaka;
     private javax.swing.JButton jVisa;
     // End of variables declaration//GEN-END:variables
 }
