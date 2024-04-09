@@ -210,17 +210,17 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
 String valdKund = cbValjKund.getSelectedItem().toString();
 
 try{
-String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM order";
+String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM ordrar";
 String senasteOrderIdStr = Databaskoppling.idb.fetchSingle(senastOrderFraga);
+String kundIdFraga = "SELECT kundid from kund where email = '" + valdKund + "'";
+String kundIdStr = Databaskoppling.idb.fetchSingle(kundIdFraga);
 
+int kundId = Integer.parseInt(kundIdStr);
 int senasteOrderId = Integer.parseInt(senasteOrderIdStr);
 int nyttOrderId = senasteOrderId + 1;
-String laggTillOrder = "INSERT INTO Order (orderid, status, typ, orderdate, anvandare, kund)" 
- + "VALUES ('" + nyttOrderId + "', '" + "Ej påbörjad" + "', '" + "Lagerförd" + "', '" + tfDatum.getText() + "', '" + 0 + "', '" + valdKund + "')";
+String laggTillOrder = "INSERT INTO ordrar (orderid, status, typ, orderdate, anvandare, kund)" 
+ + "VALUES ('" + nyttOrderId + "', 0, 'Lagerförd', '" + tfDatum.getText() + "', '" + 1 + "', '" + kundId + "')";
  Databaskoppling.idb.insert(laggTillOrder);
- 
- // Skicka epostbekräftelse till den kund som ordern tillhör
- eSender.sendComfirmation(valdKund);
  
 // Lägg till ordern och respektive modeller samt antal i harprodukt tabellen 
 if(cbxModell1.isSelected()){
@@ -238,11 +238,7 @@ String laggTillModell3 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
                        
 }catch(InfException undantag){
 JOptionPane.showMessageDialog(null, "Fel i databasen");
-System.out.println("Fel i databasen" + undantag.getMessage());
-}catch(MessagingException e){
-JOptionPane.showMessageDialog(null, "Något gick snett!");
-System.out.println("Fel i databasen" + e.getMessage());
-}
+System.out.println("Fel i databasen" + undantag.getMessage());}
     }//GEN-LAST:event_btnRegistreraActionPerformed
 
     private void cbxModell1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxModell1ActionPerformed
