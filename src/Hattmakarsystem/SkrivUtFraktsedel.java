@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
+
 import static Hattmakarsystem.Databaskoppling.koppling;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -10,13 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author osman
  */
 public class SkrivUtFraktsedel extends javax.swing.JFrame {
-    
-    
 
     /**
      * Creates new form SkrivUtFraktsedel
@@ -25,29 +26,27 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         initComponents();
         koppling();
         fyllcbBox();
-        
-        
-        
-        
+
     }
-    public void fyllcbBox(){
-        String fraga="SELECT namn FROM kund";
-                 ArrayList<String> kundNamn;
-    
- try {
-           kundNamn = Databaskoppling.idb.fetchColumn(fraga);
+
+    public void fyllcbBox() {
+        String fraga = "SELECT namn FROM kund";
+        ArrayList<String> kundNamn;
+
+        try {
+            kundNamn = Databaskoppling.idb.fetchColumn(fraga);
             //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
-            for (String n :kundNamn ) {
+            for (String n : kundNamn) {
                 jSokKundBox.addItem(n);
             }
-            
+
             //jSokKundBox.setModel(comboBoxModell);
             //jSokKundBox.setEnabled(true);
         } catch (InfException ex) {
             ex.printStackTrace();
         }
-}
-       
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,36 +146,44 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void jSokKundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSokKundBoxActionPerformed
-     
+
     }//GEN-LAST:event_jSokKundBoxActionPerformed
 
     private void jVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisaActionPerformed
-        
+
         try {
             String valdKund = jSokKundBox.getSelectedItem().toString();
-      
-        String hamtaKund = "SELECT address, email, namn, telf FROM kund where Kund_namn='" + valdKund + "'";
-        String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
-        
-        HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
-        
-               
-        jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2
-        jKundTabell.setValueAt(kund.get("Address"), 0, 1);                  // Kolumn 3
-        jKundTabell.setValueAt(kund.get("Email"), 0, 2);               // Kolumn 4
-        jKundTabell.setValueAt(kund.get("Telf"), 0, 3);                // Kolumn 5
-               
-        
+
+            String hamtaKund = "SELECT address, email, namn, telf FROM kund WHERE namn = '" + valdKund + "'";
+            String hamtaOrder = "SELECT typ, orderdate, totpris FROM ordrar";
+
+            HashMap<String, String> kund = Databaskoppling.idb.fetchRow(hamtaKund);
+            
+            DefaultTableModel model = (DefaultTableModel) jKundTabell.getModel();
+            
+            model.setRowCount(0);
+            
+            model.addRow(new Object []{
+                kund.get("namn"),
+                kund.get("address"),
+                kund.get("email"),
+                kund.get("telf")
+            });
+
+            /*jKundTabell.setValueAt(kund.get("Namn"), 0, 0);                   // Kolumn 2
+            jKundTabell.setValueAt(kund.get("Address"), 0, 1);                  // Kolumn 3
+            jKundTabell.setValueAt(kund.get("Email"), 0, 2);               // Kolumn 4
+            jKundTabell.setValueAt(kund.get("Telf"), 0, 3);                // Kolumn 5
+*/
         } catch (InfException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jVisaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Huvudmeny tillbakaMeny = new Huvudmeny();
+        Huvudmeny tillbakaMeny = new Huvudmeny();
         tillbakaMeny.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
