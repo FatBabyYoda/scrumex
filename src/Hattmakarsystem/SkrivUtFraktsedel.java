@@ -210,12 +210,52 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+//        int valdRad = jKundTabell.getSelectedRow();
+//        
+//        if (valdRad < 0) {
+//            JOptionPane.showMessageDialog(this, "Ingen kund vald");
+//        }
+          try {
+        // Hämta vald rad från jTable
         int valdRad = jKundTabell.getSelectedRow();
-        
-        if (valdRad < 0) {
-            JOptionPane.showMessageDialog(this, "Ingen kund vald");
+
+        // Kontrollera om en rad är vald
+        if (valdRad == -1) {
+            JOptionPane.showMessageDialog(this, "Ingen rad är vald.");
+            return;
         }
-        
+
+        // Hämta kundinformation från jTable
+        String namn = jKundTabell.getValueAt(valdRad, 0).toString(); // Anta att namn är i första kolumnen
+        String address = jKundTabell.getValueAt(valdRad, 1).toString(); // Anta att address är i andra kolumnen
+        String email = jKundTabell.getValueAt(valdRad, 2).toString(); // Anta att email är i tredje kolumnen
+        String telf = jKundTabell.getValueAt(valdRad, 3).toString(); // Anta att telefonnummer är i fjärde kolumnen
+
+        // Hämta orderinformation från jTable
+        String typ = jKundTabell.getValueAt(valdRad, 4).toString(); // Anta att typ är i femte kolumnen
+        String orderdate = jKundTabell.getValueAt(valdRad, 5).toString(); // Anta att orderdate är i sjätte kolumnen
+        String totpris = jKundTabell.getValueAt(valdRad, 6).toString(); // Anta att totpris är i sjunde kolumnen
+
+        // Hämta specialbeställningspris från jTable
+        String pris = jKundTabell.getValueAt(valdRad, 7).toString(); // Anta att pris är i åttonde kolumnen
+
+        // Skapa en sträng med informationen
+        String infoText = "Namn: " + namn + "\n" +
+                          "Address: " + address + "\n" +
+                          "Email: " + email + "\n" +
+                          "Telefonnummer: " + telf + "\n" +
+                          "Ordertyp: " + typ + "\n" +
+                          "Orderdatum: " + orderdate + "\n" +
+                          "Totalpris: " + totpris + "\n" +
+                          "Specialbeställningspris: " + pris;
+
+        // Visa informationen i en JOptionPane
+        JOptionPane.showMessageDialog(this, infoText, "Kund", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception ex) {
+        // Vid fel, visa felmeddelande
+        JOptionPane.showMessageDialog(null,"Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
