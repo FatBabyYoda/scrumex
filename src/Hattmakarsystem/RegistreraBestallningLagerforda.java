@@ -11,7 +11,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
+ * Deez
  * @author filip
  */
 public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
