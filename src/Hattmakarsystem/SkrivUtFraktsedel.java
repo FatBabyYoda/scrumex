@@ -226,18 +226,18 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         }
 
         // Hämta kundinformation från jTable
-        String namn = jKundTabell.getValueAt(valdRad, 0).toString(); // Anta att namn är i första kolumnen
-        String address = jKundTabell.getValueAt(valdRad, 1).toString(); // Anta att address är i andra kolumnen
-        String email = jKundTabell.getValueAt(valdRad, 2).toString(); // Anta att email är i tredje kolumnen
-        String telf = jKundTabell.getValueAt(valdRad, 3).toString(); // Anta att telefonnummer är i fjärde kolumnen
+        String namn = jKundTabell.getValueAt(valdRad, 0).toString(); 
+        String address = jKundTabell.getValueAt(valdRad, 1).toString(); 
+        String email = jKundTabell.getValueAt(valdRad, 2).toString(); 
+        String telf = jKundTabell.getValueAt(valdRad, 3).toString(); 
 
         // Hämta orderinformation från jTable
-        String typ = jKundTabell.getValueAt(valdRad, 4).toString(); // Anta att typ är i femte kolumnen
-        String orderdate = jKundTabell.getValueAt(valdRad, 5).toString(); // Anta att orderdate är i sjätte kolumnen
-        String totpris = jKundTabell.getValueAt(valdRad, 6).toString(); // Anta att totpris är i sjunde kolumnen
+        String typ = jKundTabell.getValueAt(valdRad, 4).toString();
+        String orderdate = jKundTabell.getValueAt(valdRad, 5).toString(); 
+        String totpris = jKundTabell.getValueAt(valdRad, 6).toString(); 
 
         // Hämta specialbeställningspris från jTable
-        String pris = jKundTabell.getValueAt(valdRad, 7).toString(); // Anta att pris är i åttonde kolumnen
+        String pris = jKundTabell.getValueAt(valdRad, 7).toString(); 
 
         // Skapa en sträng med informationen
         String infoText = "Namn: " + namn + "\n" +
@@ -249,8 +249,10 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                           "Totalpris: " + totpris + "\n" +
                           "Specialbeställningspris: " + pris;
 
+        Object[] alternativ = {"Bekfräfta", "Avbryt"};
+        
+        int val = JOptionPane.showOptionDialog(this, infoText, "Kund", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, alternativ, alternativ[0]);
         // Visa informationen i en JOptionPane
-        JOptionPane.showMessageDialog(this, infoText, "Kund", JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception ex) {
         // Vid fel, visa felmeddelande
         JOptionPane.showMessageDialog(null,"Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
