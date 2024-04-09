@@ -37,6 +37,7 @@ public class eSender {
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable","true");
+        
         newSession = Session.getDefaultInstance(properties,null);
                 
     }
@@ -54,7 +55,7 @@ public class eSender {
     private MimeMessage draftEmail(String epostKonto ) throws AddressException, MessagingException {
         
        String eSubject = "Bekräftelse på order";
-       String eBody = "Tack för din beställning";
+       String eBody = "Tack för din beställningtesttttt";
        mimeMessage = new MimeMessage(newSession);
        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(epostKonto));
        mimeMessage.setSubject(eSubject);
@@ -67,5 +68,7 @@ public class eSender {
        
        
     }
-
+public static void main(String[] args) throws MessagingException{
+        sendComfirmation("gttgeded@gmail.com");
+    }
 }
