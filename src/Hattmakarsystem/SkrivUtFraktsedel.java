@@ -35,13 +35,12 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
 
         try {
             kundNamn = Databaskoppling.idb.fetchColumn(fraga);
-            //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
+            
             for (String n : kundNamn) {
                 jSokKundBox.addItem(n);
             }
 
-            //jSokKundBox.setModel(comboBoxModell);
-            //jSokKundBox.setEnabled(true);
+            
         } catch (InfException ex) {
             ex.printStackTrace();
         }
