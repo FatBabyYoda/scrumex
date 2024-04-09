@@ -4,37 +4,39 @@
  */
 package Hattmakarsystem;
 
+import static Hattmakarsystem.Databaskoppling.koppling;
 import java.util.ArrayList;
-import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
+ * Deez
  * @author filip
  */
 public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form RegistreraBestallningLagerforda
      */
     public RegistreraBestallningLagerforda() {
         initComponents();
-        Databaskoppling.koppling();
         fyllCbValjKund();
+        koppling();
+        
     }
    
     
     private void fyllCbValjKund(){
-        String fraga = "SELECT email from kund";
+        String fraga = "SELECT namn from kund";
         ArrayList<String> allaKunder ;
         
         try{ 
             allaKunder = Databaskoppling.idb.fetchColumn(fraga);
             
-           for(String email:allaKunder){
-               cbValjKund.addItem(email); 
+           for(String kundNamn:allaKunder){
+               cbValjKund.addItem(kundNamn); 
            }
                
            
@@ -71,7 +73,6 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbValjKund.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbValjKund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValjKundActionPerformed(evt);
@@ -218,11 +219,7 @@ int nyttOrderId = senasteOrderId + 1;
 String laggTillOrder = "INSERT INTO Order (orderid, status, typ, orderdate, anvandare, kund)" 
  + "VALUES ('" + nyttOrderId + "', '" + "Ej påbörjad" + "', '" + "Lagerförd" + "', '" + tfDatum.getText() + "', '" + 0 + "', '" + valdKund + "')";
  Databaskoppling.idb.insert(laggTillOrder);
- 
- // Skicka epostbekräftelse till den kund som ordern tillhör
- eSender.sendComfirmation(valdKund);
- 
-// Lägg till ordern och respektive modeller samt antal i harprodukt tabellen 
+        
 if(cbxModell1.isSelected()){
 String laggTillModell1 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
  + "VALUES ('" + cbxModell1.getText() + "', '" + nyttOrderId + "', '" + spModell1.getValue() + "')";
@@ -237,12 +234,8 @@ String laggTillModell3 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
  Databaskoppling.idb.insert(laggTillModell3);}
                        
 }catch(InfException undantag){
-JOptionPane.showMessageDialog(null, "Fel i databasen");
-System.out.println("Fel i databasen" + undantag.getMessage());
-}catch(MessagingException e){
-JOptionPane.showMessageDialog(null, "Något gick snett!");
-System.out.println("Fel i databasen" + e.getMessage());
-}
+JOptionPane.showMessageDialog(null, "fel i databasen");
+System.out.println("Fel i databasen" + undantag.getMessage());}
     }//GEN-LAST:event_btnRegistreraActionPerformed
 
     private void cbxModell1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxModell1ActionPerformed

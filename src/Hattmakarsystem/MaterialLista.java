@@ -28,7 +28,7 @@ public class MaterialLista extends javax.swing.JFrame {
     public MaterialLista() {
         initComponents();
         koppling();
-        jComboBox1ActionPerformed(null);
+        typVal();
     }
 
     /**
@@ -44,7 +44,6 @@ public class MaterialLista extends javax.swing.JFrame {
         jNameArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jMatArea = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -52,6 +51,7 @@ public class MaterialLista extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jTillbakaKnapp = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,13 +66,6 @@ public class MaterialLista extends javax.swing.JFrame {
         jMatArea.setRows(5);
         jMatArea.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(jMatArea);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Namn");
 
@@ -125,7 +118,7 @@ public class MaterialLista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,10 +148,10 @@ public class MaterialLista extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRadioButton3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,32 +172,21 @@ public class MaterialLista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-//        //ComboBox val av hattyp (ex. Stråhatt, Filthatt osv)  
- 
-//        if (!comboBoxInitialized) {
-//            return;
-//        }
-
+    public void typVal(){
+        String sql = "SELECT namn FROM hattyp";
+        ArrayList<String> lista2;
+        
         try{
-        ArrayList<String> lista2 = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp");
-        
-        //gör en ny ComboBox modell
-        DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
-        for(String namn : lista2){
-            comboBoxModell.addElement(namn);
-        }
-
-        jComboBox1.setModel(comboBoxModell);
-        jComboBox1.setEnabled(true);     
-        }
-        
-        catch(InfException e){
+            lista2 = Databaskoppling.idb.fetchColumn(sql);
+            for(String namn : lista2){
+                jComboBox1.addItem(namn);
+            }
+        }catch(InfException e){
             JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
             System.out.println("Internt felmeddelande: " + e.getMessage());
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    }
+    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   //      Visa-knappen
