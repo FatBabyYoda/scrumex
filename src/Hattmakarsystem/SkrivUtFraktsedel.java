@@ -26,7 +26,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
         initComponents();
         koppling();
         fyllcbBox();
-
+        
     }
 
     public void fyllcbBox() {
@@ -195,7 +195,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
                 ordrar.get("orderdate"),
                 ordrar.get("totpris"),
                 spec.get("pris")
-                
+
             });
 
         } catch (InfException ex) {
@@ -212,53 +212,53 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     private void jSkrivUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSkrivUtActionPerformed
 
 //        }
-          try {
-        // Hämta vald rad från jTable
-        int valdRad = jKundTabell.getSelectedRow();
+        try {
+            // Hämta vald rad från jTable
+            int valdRad = jKundTabell.getSelectedRow();
 
-        // Kontrollera om en rad är vald
-        if (valdRad == -1) {
-            JOptionPane.showMessageDialog(this, "Ingen rad är vald.");
-            return;
+            // Kontrollera om en rad är vald
+            if (valdRad == -1) {
+                JOptionPane.showMessageDialog(this, "Ingen rad är vald.");
+                return;
+            }
+
+            // Hämta kundinformation från jTable
+            String namn = jKundTabell.getValueAt(valdRad, 0).toString();
+            String address = jKundTabell.getValueAt(valdRad, 1).toString();
+            String email = jKundTabell.getValueAt(valdRad, 2).toString();
+            String telf = jKundTabell.getValueAt(valdRad, 3).toString();
+
+            // Hämta orderinformation från jTable
+            String typ = jKundTabell.getValueAt(valdRad, 4).toString();
+            String orderdate = jKundTabell.getValueAt(valdRad, 5).toString();
+            String totpris = jKundTabell.getValueAt(valdRad, 6).toString();
+
+            // Hämta specialbeställningspris från jTable
+            String pris = jKundTabell.getValueAt(valdRad, 7).toString();
+
+            // Skapa en sträng med informationen
+            String infoText = "Namn: " + namn + "\n"
+                    + "Address: " + address + "\n"
+                    + "Email: " + email + "\n"
+                    + "Telefonnummer: " + telf + "\n"
+                    + "Ordertyp: " + typ + "\n"
+                    + "Orderdatum: " + orderdate + "\n"
+                    + "Totalpris: " + totpris + "\n"
+                    + "Specialbeställningspris: " + pris;
+
+            Object[] alternativ = {"Bekfräfta", "Avbryt"};
+            int val = JOptionPane.showOptionDialog(this, infoText, "Kund", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, alternativ, alternativ[0]);
+            // Visa informationen i en JOptionPane
+            if (val == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, "Utskrift bekräftat.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Utskrift avbruten.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            // Vid fel, visa felmeddelande
+            JOptionPane.showMessageDialog(null, "Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
-
-        // Hämta kundinformation från jTable
-        String namn = jKundTabell.getValueAt(valdRad, 0).toString(); 
-        String address = jKundTabell.getValueAt(valdRad, 1).toString(); 
-        String email = jKundTabell.getValueAt(valdRad, 2).toString(); 
-        String telf = jKundTabell.getValueAt(valdRad, 3).toString(); 
-
-        // Hämta orderinformation från jTable
-        String typ = jKundTabell.getValueAt(valdRad, 4).toString();
-        String orderdate = jKundTabell.getValueAt(valdRad, 5).toString(); 
-        String totpris = jKundTabell.getValueAt(valdRad, 6).toString(); 
-
-        // Hämta specialbeställningspris från jTable
-        String pris = jKundTabell.getValueAt(valdRad, 7).toString(); 
-
-        // Skapa en sträng med informationen
-        String infoText = "Namn: " + namn + "\n" +
-                          "Address: " + address + "\n" +
-                          "Email: " + email + "\n" +
-                          "Telefonnummer: " + telf + "\n" +
-                          "Ordertyp: " + typ + "\n" +
-                          "Orderdatum: " + orderdate + "\n" +
-                          "Totalpris: " + totpris + "\n" +
-                          "Specialbeställningspris: " + pris;
-
-        Object[] alternativ = {"Bekfräfta", "Avbryt"};       
-        int val = JOptionPane.showOptionDialog(this, infoText, "Kund", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, alternativ, alternativ[0]);
-        // Visa informationen i en JOptionPane
-        if(val == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(this,"Utskrift bekräftat.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Utskrift avbruten.", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
-        }
-    } catch (Exception ex) {
-        // Vid fel, visa felmeddelande
-        JOptionPane.showMessageDialog(null,"Error", "Ett fel uppstod.", JOptionPane.ERROR_MESSAGE);
-        ex.printStackTrace();
-    }
     }//GEN-LAST:event_jSkrivUtActionPerformed
 
     /**
