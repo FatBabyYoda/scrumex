@@ -24,8 +24,30 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     public SkrivUtFraktsedel() {
         initComponents();
         koppling();
+        fyllcbBox();
+        
+        
+        
+        
     }
-
+    public void fyllcbBox(){
+        String fraga="SELECT namn FROM kund";
+                 ArrayList<String> kundNamn;
+    
+ try {
+           kundNamn = Databaskoppling.idb.fetchColumn(fraga);
+            //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
+            for (String n :kundNamn ) {
+                jSokKundBox.addItem(n);
+            }
+            
+            //jSokKundBox.setModel(comboBoxModell);
+            //jSokKundBox.setEnabled(true);
+        } catch (InfException ex) {
+            ex.printStackTrace();
+        }
+}
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +66,6 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSokKundBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1", "item 2", " " }));
         jSokKundBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSokKundBoxActionPerformed(evt);
@@ -129,19 +150,7 @@ public class SkrivUtFraktsedel extends javax.swing.JFrame {
     
     
     private void jSokKundBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSokKundBoxActionPerformed
-      try {
-            ArrayList<String> kundNamn = Databaskoppling.idb.fetchColumn("SELECT namn FROM kund");
-            //DefaultComboBoxModel<String> comboBoxModell = new DefaultComboBoxModel<>();
-            for (String n :kundNamn ) {
-                jSokKundBox.addItem(n);
-            }
-            
-            //jSokKundBox.setModel(comboBoxModell);
-            //jSokKundBox.setEnabled(true);
-        } catch (InfException ex) {
-            ex.printStackTrace();
-        }
-       
+     
     }//GEN-LAST:event_jSokKundBoxActionPerformed
 
     private void jVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVisaActionPerformed
