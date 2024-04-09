@@ -205,8 +205,10 @@ if (!Valideringsklass.emptyTextFields(jTextNamn) && !Valideringsklass.emptyTextF
         }
 
         if (!finns) {
-            String SQLFRAGA = "Insert into kund VALUES ('" + nextID + "','" + Adress  + "','"+ Epost + "','" + namn + "','" +  telefon+           
-"')";
+            String SQLFRAGA = "INSERT INTO kund (kundid, address, email, namn, telf) VALUES ('" + nextID + "', '" + Adress + "','" + Epost + "','" + namn + "','" + telefon + "')";
+
+
+
             Databaskoppling.idb.insert(SQLFRAGA);
         } else {
             // Talar om att det sökta namnet redan finns och inte går att använda

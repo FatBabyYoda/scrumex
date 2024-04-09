@@ -7,7 +7,6 @@ package Hattmakarsystem;
 import static Hattmakarsystem.Databaskoppling.koppling;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
@@ -22,8 +21,8 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
      */
     public RegistreraBestallningLagerforda() {
         initComponents();
-        fyllCbValjKund();
         koppling();
+        fyllCbValjKund();
         
     }
    
@@ -207,11 +206,11 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraActionPerformed
-        // TODO add your handling code here:
+        
 String valdKund = cbValjKund.getSelectedItem().toString();
 
 try{
-String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM order";
+String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM `order`";
 String senasteOrderIdStr = Databaskoppling.idb.fetchSingle(senastOrderFraga);
 
 int senasteOrderId = Integer.parseInt(senasteOrderIdStr);
