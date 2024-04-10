@@ -95,7 +95,10 @@
                   <Component id="jScrollPane1" min="-2" pref="145" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="LaggTillMaterial" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="LaggTillMaterial" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -171,12 +174,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Mangdtextbox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="LaggTillMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LaggTillMaterial" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Enhet" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -303,6 +307,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Antal hattar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tillbaka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

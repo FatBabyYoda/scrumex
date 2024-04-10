@@ -69,6 +69,7 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
         tfDatum = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +119,13 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Välj specialbeställning");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,7 +135,7 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(143, 143, 143)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -151,15 +159,17 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
                                             .addComponent(lblKund)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(123, 123, 123)
-                                        .addComponent(jLabel1))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrera)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)))))
+                                        .addComponent(jLabel1))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addGap(19, 19, 19))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRegistrera, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnRegistrera, jButton1, jButton2});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,11 +206,12 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(btnRegistrera))
+                    .addComponent(btnRegistrera)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnRegistrera, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnRegistrera, jButton1, jButton2});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -255,6 +266,12 @@ System.out.println("Fel i databasen" + undantag.getMessage());}
         // TODO add your handling code here:
     }//GEN-LAST:event_cbValjKundActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+LaggTillSpecBestallning Specialare = new LaggTillSpecBestallning();
+        Specialare.setVisible(true);
+        this.dispose();       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +314,7 @@ System.out.println("Fel i databasen" + undantag.getMessage());}
     private javax.swing.JCheckBox cbxModell2;
     private javax.swing.JCheckBox cbxModell3;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblKund;
     private javax.swing.JLabel lblModell;
