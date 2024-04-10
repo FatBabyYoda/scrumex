@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 /**
@@ -57,11 +55,26 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         OrderjP = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         HanteraKontojP = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         FraktsedeljP = new javax.swing.JPanel();
-        OrdertF = new javax.swing.JTextField();
-        OrderNummerLabel = new javax.swing.JLabel();
-        OrderSokBtn = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jKundTabell = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +106,7 @@ public class GUI extends javax.swing.JFrame {
 
         HuvudPanel.setBackground(new java.awt.Color(255, 255, 255));
         HuvudPanel.setName(""); // NOI18N
+        HuvudPanel.setOpaque(true);
 
         KundjP.setBackground(new java.awt.Color(255, 255, 255));
         KundjP.setEnabled(false);
@@ -121,10 +135,10 @@ public class GUI extends javax.swing.JFrame {
 
         jButton3.setText("Ändra kunduppgifter och gå vidare");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -132,15 +146,6 @@ public class GUI extends javax.swing.JFrame {
         KundjP.setLayout(KundjPLayout);
         KundjPLayout.setHorizontalGroup(
             KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(KundjPLayout.createSequentialGroup()
-                .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(KundjPLayout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jButton3))
-                    .addGroup(KundjPLayout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, KundjPLayout.createSequentialGroup()
                 .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(KundjPLayout.createSequentialGroup()
@@ -163,19 +168,29 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(jTextEmail)))
                             .addGroup(KundjPLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                                .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jTextAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(67, 67, 67)
+                                .addComponent(jTextAdress)))
                         .addGap(17, 17, 17))
                     .addGroup(KundjPLayout.createSequentialGroup()
                         .addGap(313, 313, 313)
                         .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(52, 52, 52))
+            .addGroup(KundjPLayout.createSequentialGroup()
+                .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(KundjPLayout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(jLabel1))
+                    .addGroup(KundjPLayout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jButton2))
+                    .addGroup(KundjPLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         KundjPLayout.setVerticalGroup(
             KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +224,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29))
         );
@@ -218,71 +233,193 @@ public class GUI extends javax.swing.JFrame {
 
         OrderjP.setEnabled(false);
 
+        jScrollPane3.setViewportView(jList2);
+
+        jButton8.setText("Reg order");
+
+        jButton9.setText("Spechatt");
+
+        jButton10.setText("Lagerhatt");
+
         javax.swing.GroupLayout OrderjPLayout = new javax.swing.GroupLayout(OrderjP);
         OrderjP.setLayout(OrderjPLayout);
         OrderjPLayout.setHorizontalGroup(
             OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderjPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addGap(35, 35, 35))
+            .addGroup(OrderjPLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addGroup(OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(OrderjPLayout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton10))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         OrderjPLayout.setVerticalGroup(
             OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(OrderjPLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jButton8)
+                .addGap(84, 84, 84)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addGroup(OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         HuvudPanel.addTab("Lägg Order", OrderjP);
 
         HanteraKontojP.setEnabled(false);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ny Användare" }));
+
+        jButton5.setText("Spara");
+
+        jLabel6.setText("Användarnamn");
+
+        jLabel7.setText("Lösenord");
+
+        jButton6.setText("Lägg till konto");
+
+        jButton7.setBackground(new java.awt.Color(255, 51, 51));
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setText("Ta bort konto");
+
         javax.swing.GroupLayout HanteraKontojPLayout = new javax.swing.GroupLayout(HanteraKontojP);
         HanteraKontojP.setLayout(HanteraKontojPLayout);
         HanteraKontojPLayout.setHorizontalGroup(
             HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(38, 38, 38)
+                        .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(jTextField3)))
+                    .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jButton5)
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton6))
+                    .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(jButton7)))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         HanteraKontojPLayout.setVerticalGroup(
             HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(HanteraKontojPLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(28, 28, 28)
+                .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(41, 41, 41)
+                .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(168, 168, 168))
         );
 
         HuvudPanel.addTab("Hantera Konton", HanteraKontojP);
 
         FraktsedeljP.setEnabled(false);
 
-        OrderNummerLabel.setText("Order nummer");
+        jButton4.setText("Skriv ut");
 
-        OrderSokBtn.setText("Sök");
+        jKundTabell.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Namn", "Address", "Email", "Telefonnummer", "Typ", "Orderdatum", "Pris", "Totalpris"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jKundTabell.setRowHeight(30);
+        jKundTabell.setRowMargin(10);
+        jScrollPane2.setViewportView(jKundTabell);
 
         javax.swing.GroupLayout FraktsedeljPLayout = new javax.swing.GroupLayout(FraktsedeljP);
         FraktsedeljP.setLayout(FraktsedeljPLayout);
         FraktsedeljPLayout.setHorizontalGroup(
             FraktsedeljPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FraktsedeljPLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(34, 34, 34))
             .addGroup(FraktsedeljPLayout.createSequentialGroup()
-                .addGroup(FraktsedeljPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FraktsedeljPLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(OrderNummerLabel))
-                    .addGroup(FraktsedeljPLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(FraktsedeljPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(FraktsedeljPLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(OrderSokBtn))
-                            .addComponent(OrdertF, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(582, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addContainerGap())
         );
         FraktsedeljPLayout.setVerticalGroup(
             FraktsedeljPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FraktsedeljPLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(OrderNummerLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OrdertF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OrderSokBtn)
-                .addContainerGap(564, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(25, 25, 25))
         );
 
         HuvudPanel.addTab("fraktsedel", FraktsedeljP);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 703, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+
+        HuvudPanel.addTab("tab5", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 703, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+
+        HuvudPanel.addTab("tab6", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,13 +456,17 @@ public class GUI extends javax.swing.JFrame {
         jList1.setModel(listModel);
     }//GEN-LAST:event_jTextField1KeyReleased
 
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        
+    }//GEN-LAST:event_jList1MouseClicked
+
     /**
      * @param args the command line arguments
      */
     private void knappGenerering()
     {
         
-        int numberoftabs = HuvudPanel.getTabCount();
+        int numberoftabs = HuvudPanel.getTabCount()-3;
         knappar = new JButton[numberoftabs];
         for (int i = 0; i < numberoftabs; i++) {  
         final int index = i;
@@ -410,25 +551,40 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane HuvudPanel;
     private javax.swing.JPanel KundjP;
     private javax.swing.JPanel MenyValjP;
-    private javax.swing.JLabel OrderNummerLabel;
-    private javax.swing.JButton OrderSokBtn;
     private javax.swing.JPanel OrderValjP;
     private javax.swing.JPanel OrderjP;
-    private javax.swing.JTextField OrdertF;
     private java.awt.Button button1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextAdress;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextNamn;
     private javax.swing.JTextField jTextTelefon;
     // End of variables declaration//GEN-END:variables
