@@ -6,6 +6,7 @@ package Hattmakarsystem;
 
 import static Hattmakarsystem.Databaskoppling.koppling;
 import java.util.ArrayList;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
@@ -221,13 +222,17 @@ public class RegistreraBestallningLagerforda extends javax.swing.JFrame {
 String valdKund = cbValjKund.getSelectedItem().toString();
 
 try{
-String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM `order`";
+String senastOrderFraga = "SELECT MAX(orderid) AS senaste_order_id FROM ordrar";
 String senasteOrderIdStr = Databaskoppling.idb.fetchSingle(senastOrderFraga);
+String kundIdFraga = "SELECT kundid from kund where namn = '" + valdKund + "'";
+String kundIdStr = Databaskoppling.idb.fetchSingle(kundIdFraga);
 
+
+int kundId = Integer.parseInt(kundIdStr);
 int senasteOrderId = Integer.parseInt(senasteOrderIdStr);
 int nyttOrderId = senasteOrderId + 1;
-String laggTillOrder = "INSERT INTO Order (orderid, status, typ, orderdate, anvandare, kund)" 
- + "VALUES ('" + nyttOrderId + "', '" + "Ej påbörjad" + "', '" + "Lagerförd" + "', '" + tfDatum.getText() + "', '" + 0 + "', '" + valdKund + "')";
+String laggTillOrder = "INSERT INTO ordrar (orderid, status, typ, orderdate, anvandare, kund)" 
+ + "VALUES ('" + nyttOrderId + "', 0, 'Lagerförd', '" + tfDatum.getText() + "', '" + 1 + "', '" + kundId + "')";
  Databaskoppling.idb.insert(laggTillOrder);
         
 if(cbxModell1.isSelected()){
@@ -242,6 +247,7 @@ if(cbxModell3.isSelected()){
 String laggTillModell3 = "INSERT INTO harprodukt (lagerprodukt, ordrar, antal)"
  + "VALUES ('" + cbxModell3.getText() + "', '" + nyttOrderId + "', '" + spModell3.getValue() + "')";
  Databaskoppling.idb.insert(laggTillModell3);}
+
                        
 }catch(InfException undantag){
 JOptionPane.showMessageDialog(null, "fel i databasen");
