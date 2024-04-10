@@ -36,6 +36,9 @@ public class GUI extends javax.swing.JFrame {
 
         MenyValjP = new javax.swing.JPanel();
         OrderValjP = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         HuvudPanel = new javax.swing.JTabbedPane();
         KundjP = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -120,15 +123,36 @@ public class GUI extends javax.swing.JFrame {
 
         OrderValjP.setBackground(new java.awt.Color(51, 51, 51));
 
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "344202 - Otoo", "346564 judith", "458324 ej tagen" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jList3);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla ordrar", "Mina påbörjade ordrar", "Ej påbörjade ordrar" }));
+
         javax.swing.GroupLayout OrderValjPLayout = new javax.swing.GroupLayout(OrderValjP);
         OrderValjP.setLayout(OrderValjPLayout);
         OrderValjPLayout.setHorizontalGroup(
             OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
+            .addGroup(OrderValjPLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderValjPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         OrderValjPLayout.setVerticalGroup(
             OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(OrderValjPLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         HuvudPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -286,12 +310,6 @@ public class GUI extends javax.swing.JFrame {
         MaterialLabel.setForeground(new java.awt.Color(0, 0, 0));
         MaterialLabel.setText("Material");
 
-        Mangdtextbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MangdtextboxActionPerformed(evt);
-            }
-        });
-
         Mangdlabel.setForeground(new java.awt.Color(0, 0, 0));
         Mangdlabel.setText("Mängd");
 
@@ -329,7 +347,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(EmailLabel)
                             .addComponent(EmailTB)
                             .addComponent(StorlekTB, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +374,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(253, Short.MAX_VALUE)
+                    .addContainerGap(219, Short.MAX_VALUE)
                     .addComponent(RitningIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(257, 257, 257)))
         );
@@ -463,7 +481,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(348, 348, 348)
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(bild, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
@@ -582,7 +600,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(HanteraKontojPLayout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(jButton7)))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         HanteraKontojPLayout.setVerticalGroup(
             HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -645,7 +663,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
             .addGroup(FraktsedeljPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                 .addContainerGap())
         );
         FraktsedeljPLayout.setVerticalGroup(
@@ -701,19 +719,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void RitningButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RitningButtonActionPerformed
 
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
 
-        filename = f.getAbsolutePath();
-
-        RitningIcon.setIcon(new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(215, 130, Image.SCALE_DEFAULT)));
 
     }//GEN-LAST:event_RitningButtonActionPerformed
-
-    private void MangdtextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MangdtextboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MangdtextboxActionPerformed
 
     private void EnhetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnhetActionPerformed
         // TODO add your handling code here:
@@ -841,6 +849,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -853,11 +862,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextAdress;
