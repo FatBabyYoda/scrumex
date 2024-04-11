@@ -134,6 +134,11 @@ public class GUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jList3MouseReleased(evt);
+            }
+        });
         jScrollPane4.setViewportView(jList3);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla ordrar", "Mina påbörjade ordrar", "Ej påbörjade ordrar" }));
@@ -685,6 +690,11 @@ public class GUI extends javax.swing.JFrame {
         HuvudPanel.addTab("fraktsedel", FraktsedeljP);
 
         jButton9.setLabel("Fraktsedel");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jList4.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "hatt1-storlek-3-material-tygg", "hatt2-", "hatt3" };
@@ -783,6 +793,19 @@ public class GUI extends javax.swing.JFrame {
     private void EnhetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnhetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EnhetActionPerformed
+
+    private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
+               // TODO add your handling code here:
+                   HuvudPanel.setSelectedIndex(4);
+
+    }//GEN-LAST:event_jList3MouseReleased
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+      HuvudPanel.setSelectedIndex(3); 
+      String[] hej1 = getSelectedGUIOrder();
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
