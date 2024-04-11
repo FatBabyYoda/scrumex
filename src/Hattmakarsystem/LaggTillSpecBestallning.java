@@ -70,6 +70,7 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         AntalTB = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -128,6 +129,13 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
 
         jLabel2.setText("Antal hattar");
 
+        jButton1.setText("Tillbaka");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,7 +186,9 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(LaggTillMaterial)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(LaggTillMaterial))))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,6 +202,9 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(308, 308, 308))))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {LaggTillMaterial, jButton1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -241,8 +254,11 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
                             .addComponent(Mangdtextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LaggTillMaterial)
                             .addComponent(Enhet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28))
+                .addGap(5, 5, 5)
+                .addComponent(jButton1))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {LaggTillMaterial, jButton1});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -350,6 +366,12 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EnhetActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ RegistreraBestallningLagerforda RGLMeny = new RegistreraBestallningLagerforda();
+        RGLMeny.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +426,7 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
     private javax.swing.JButton SkapaBestallningButton;
     private javax.swing.JLabel StorlekLabel;
     private javax.swing.JTextField StorlekTB;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
