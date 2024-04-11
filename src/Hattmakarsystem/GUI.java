@@ -353,7 +353,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(EmailLabel)
                             .addComponent(EmailTB)
                             .addComponent(StorlekTB, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,7 +487,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(348, 348, 348)
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(bild, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
@@ -606,7 +606,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(HanteraKontojPLayout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(jButton7)))
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         HanteraKontojPLayout.setVerticalGroup(
             HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -625,7 +625,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(HanteraKontojPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(jButton7)
                 .addGap(168, 168, 168))
         );
@@ -814,7 +814,15 @@ public class GUI extends javax.swing.JFrame {
             
     }
     }
-   
+    
+   public String[] getSelectedGUIOrder()
+           {
+               
+               return jList3.getSelectedValue().trim().split("-");
+           }
+    
+    
+    
  private void knappVisning1()
     {
         int height = MenyValjP.getHeight();

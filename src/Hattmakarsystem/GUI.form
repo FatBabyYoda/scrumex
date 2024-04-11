@@ -499,7 +499,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="128" max="32767" attributes="0"/>
+                              <EmptySpace pref="121" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -764,7 +764,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
                               <Component id="jTextField9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
+                              <EmptySpace pref="61" max="32767" attributes="0"/>
                               <Component id="bild" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
@@ -927,7 +927,7 @@
                               <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="278" max="32767" attributes="0"/>
+                      <EmptySpace pref="273" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -951,7 +951,7 @@
                           <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace pref="185" max="32767" attributes="0"/>
                       <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                   </Group>
