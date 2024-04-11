@@ -758,6 +758,19 @@ public class GUI extends javax.swing.JFrame {
     }
     }
     
+    private void jList3MouseReleased(java.awt.event.MouseEvent evt) {
+               // TODO add your handling code here:
+                   HuvudPanel.setSelectedIndex(4);
+
+    }
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
+      HuvudPanel.setSelectedIndex(3); 
+
+
+// TODO add your handling code here:
+    }
+    
    public String[] getSelectedGUIOrder()
            {
                

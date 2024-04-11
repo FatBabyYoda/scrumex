@@ -605,9 +605,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel10">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Antal hattar"/>
                       </Properties>
                     </Component>
@@ -617,17 +614,11 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="StorlekLabel">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Storlek"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="EmailLabel">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Kund Email"/>
                       </Properties>
                     </Component>
@@ -635,9 +626,6 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="PrisLabel">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Pris"/>
                       </Properties>
                     </Component>
@@ -645,9 +633,6 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="F&#xe4;rg"/>
                       </Properties>
                     </Component>
@@ -657,9 +642,6 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="MaterialLabel">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Material"/>
                       </Properties>
                     </Component>
@@ -667,9 +649,6 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="Mangdlabel">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="M&#xe4;ngd"/>
                       </Properties>
                     </Component>
@@ -818,9 +797,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="anpassa"/>
                       </Properties>
                     </Component>
@@ -999,9 +975,6 @@
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ta bort konto"/>
               </Properties>
