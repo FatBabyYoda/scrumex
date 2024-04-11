@@ -187,7 +187,6 @@ public class MaterialLista extends javax.swing.JFrame {
         }
     }
     
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
   //      Visa-knappen
         
@@ -198,7 +197,7 @@ public class MaterialLista extends javax.swing.JFrame {
     
      // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
      // Namn på aliens visas i resultatområdet
-    String sqlFraga = "SELECT namn FROM hattyp WHERE hattyp.namn = '" + TypVal + "'";
+    String sqlFraga = "SELECT id FROM hattyp WHERE namn = '" + TypVal + "'";
     
     Lista = Databaskoppling.idb.fetchRows(sqlFraga);
     
@@ -207,7 +206,7 @@ public class MaterialLista extends javax.swing.JFrame {
     }
     // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
 } catch (InfException ettUndantag) {
-    JOptionPane.showMessageDialog(null, "Databasfel!");
+    JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
     System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());   
 }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -238,7 +237,7 @@ public class MaterialLista extends javax.swing.JFrame {
             
             jNameArea.setText(namesText.toString());
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
             System.err.println("Internt felmeddelande: " + ex.getMessage());
         }
     } else {
