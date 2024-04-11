@@ -23,6 +23,7 @@ public class GUI extends javax.swing.JFrame {
         knappVisning1();
         DisableTabs();
         gomtabs();
+        
     }
 
     /**
@@ -142,6 +143,11 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jList3);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla ordrar", "Mina påbörjade ordrar", "Ej påbörjade ordrar" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout OrderValjPLayout = new javax.swing.GroupLayout(OrderValjP);
         OrderValjP.setLayout(OrderValjPLayout);
@@ -303,25 +309,18 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Antal hattar");
 
-        StorlekLabel.setForeground(new java.awt.Color(0, 0, 0));
         StorlekLabel.setText("Storlek");
 
-        EmailLabel.setForeground(new java.awt.Color(0, 0, 0));
         EmailLabel.setText("Kund Email");
 
-        PrisLabel.setForeground(new java.awt.Color(0, 0, 0));
         PrisLabel.setText("Pris");
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Färg");
 
-        MaterialLabel.setForeground(new java.awt.Color(0, 0, 0));
         MaterialLabel.setText("Material");
 
-        Mangdlabel.setForeground(new java.awt.Color(0, 0, 0));
         Mangdlabel.setText("Mängd");
 
         Enhet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cm²", "cm", "m", "m²" }));
@@ -441,7 +440,6 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox1.setText("anpassa");
 
         jTextField4.setText("jTextField4");
@@ -582,7 +580,6 @@ public class GUI extends javax.swing.JFrame {
         jButton6.setText("Lägg till konto");
 
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
         jButton7.setText("Ta bort konto");
 
         javax.swing.GroupLayout HanteraKontojPLayout = new javax.swing.GroupLayout(HanteraKontojP);
@@ -806,6 +803,10 @@ public class GUI extends javax.swing.JFrame {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        LaddaOrdrar.Allaordrar(jList3, jComboBox2.getSelectedIndex(),1);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments

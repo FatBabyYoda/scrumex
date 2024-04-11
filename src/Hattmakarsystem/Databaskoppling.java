@@ -21,12 +21,6 @@ public class Databaskoppling {
           try 
         {
               idb = new InfDB("scrumex", "3306", "scrumex","losen");
-              try {
-            // TODO add your handling code here:
-            ArrayList<String> hej = Databaskoppling.idb.fetchColumn("Select matid from material");
-        } catch (InfException ex) {
-            System.out.println(ex);
-        }
         }
         catch(InfException undatag)
                 {
