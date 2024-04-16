@@ -24,7 +24,7 @@ public class GUI extends javax.swing.JFrame {
         knappVisning1();
         DisableTabs();
         gomtabs();
-        
+        LaddaOrdrar.Allaordrar(jList3, jComboBox2.getSelectedIndex(),1);
     }
 
     /**
@@ -837,6 +837,7 @@ public class GUI extends javax.swing.JFrame {
                // TODO add your handling code here:
                    HuvudPanel.setSelectedIndex(4);
                    jLabel9.setText(jList3.getSelectedValue().trim().split("-")[0]);
+                   OrdrarHattar.fyllOrderLista(jList4,jLabel9);
 
     }//GEN-LAST:event_jList3MouseReleased
 
