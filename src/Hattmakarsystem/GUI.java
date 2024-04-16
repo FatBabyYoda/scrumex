@@ -120,6 +120,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         MenyValjP.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -483,8 +484,6 @@ public class GUI extends javax.swing.JFrame {
         jTextField6.setEditable(false);
 
         jTextField8.setEditable(false);
-
-        jTextField7.setEditable(false);
 
         jTextField9.setEditable(false);
 
@@ -881,7 +880,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         LaggaLagerHatIBestallning.fyllComboBox(jComboBox3);
-        LaggaLagerHatIBestallning.fyllText(jComboBox3,jTextField6,jTextField7,jTextField8,jTextField9);
+        LaggaLagerHatIBestallning.fyllText(jComboBox3,jTextField6,jTextField8,jTextField9);
         
         
     }//GEN-LAST:event_jTabbedPane2StateChanged
@@ -894,7 +893,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         LaggaLagerHatIBestallning.fyllComboBox(jComboBox3);
-        LaggaLagerHatIBestallning.fyllText(jComboBox3,jTextField6,jTextField7,jTextField8,jTextField9);  
+        LaggaLagerHatIBestallning.fyllText(jComboBox3,jTextField6,jTextField8,jTextField9);  
       // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
 

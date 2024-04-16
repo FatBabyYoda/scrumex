@@ -159,5 +159,23 @@ public class Valideringsklass {
         return check;
 
     }
+    public static boolean isDouble(JTextField textField)
+    {
+       try {
+            Double.parseDouble(textField.getText());
+            return true; // Text is a double
+        } catch (NumberFormatException e) {
+            return false; // Text is not a double
+        }
+    }
+    public static boolean isInt(JTextField textField)
+    {
+       try {
+            Integer.parseInt(textField.getText());
+            return true; // Text is an integer
+        } catch (NumberFormatException e) {
+            return false; // Text is not an integer
+        }
+    }
 }
 

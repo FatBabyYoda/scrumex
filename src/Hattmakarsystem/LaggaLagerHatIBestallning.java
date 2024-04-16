@@ -54,14 +54,14 @@ public class LaggaLagerHatIBestallning {
         }
     }
     
-    public static void fyllText(JComboBox combo,JTextField pris,JTextField storlek,JTextField dekoration,JTextField beskrivning)
+    public static void fyllText(JComboBox combo,JTextField pris,JTextField dekoration,JTextField beskrivning)
     {
         Databaskoppling.koppling(); 
         
         try {
             HashMap<String, String> hat = Databaskoppling.idb.fetchRow("select * from lagerforda where namn = '"+combo.getSelectedItem().toString()+"'");
             pris.setText(hat.get("pris"));
-            storlek.setText(hat.get("storlek"));
+
             dekoration.setText(hat.get("dekoration"));
             beskrivning.setText(hat.get("beskrivning"));
             
