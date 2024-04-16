@@ -163,18 +163,18 @@ public class Valideringsklass {
     {
        try {
             Double.parseDouble(textField.getText());
-            return true; // Text is a double
+            return true; 
         } catch (NumberFormatException e) {
-            return false; // Text is not a double
+            return false; 
         }
     }
     public static boolean isInt(JTextField textField)
     {
        try {
             Integer.parseInt(textField.getText());
-            return true; // Text is an integer
+            return true; 
         } catch (NumberFormatException e) {
-            return false; // Text is not an integer
+            return false; 
         }
     }
 }
