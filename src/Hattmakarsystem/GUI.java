@@ -299,7 +299,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29))
         );
@@ -751,7 +751,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(FraktsedeljPLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 498, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(25, 25, 25))
         );
@@ -860,8 +860,7 @@ public class GUI extends javax.swing.JFrame {
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
                    HuvudPanel.setSelectedIndex(4);
-                   String[] ordernummer = jList3.getSelectedValue().trim().split("-");
-                   jLabel9.setText(ordernummer[0]);
+                   jLabel9.setText(jList3.getSelectedValue().trim().split("-")[0]);
 
     }//GEN-LAST:event_jList3MouseReleased
 
