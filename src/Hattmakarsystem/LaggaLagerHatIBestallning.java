@@ -73,6 +73,7 @@ public class LaggaLagerHatIBestallning {
     {
         orderlista.addElement(combo.getSelectedItem().toString());
         HashMap<String, String> varden = new HashMap<>();
+        varden.put("namn", combo.getSelectedItem().toString());
         varden.put("pris",pris.getText());
         varden.put("storlek",storlek.getText());
         varden.put("dekoration",dekoration.getText());
