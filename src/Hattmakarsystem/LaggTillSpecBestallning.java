@@ -303,22 +303,15 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
         String specid;
         String matid;
         String orderid;
+            
         
-        Date dagensDatum = new Date();
-         //skapar fromat för datumet
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        //fromaterar datumet
-        String datum = format.format(dagensDatum);
-        
-        if(!Valideringsklass.emptyTextFields(PrisTB,StorlekTB,EmailTB) && Valideringsklass.finnsEpostenRedan(EmailTB.getText())== true){
+        if(!Valideringsklass.emptyTextFields(PrisTB,StorlekTB)){
             
             
             
             try {
                 specid = Databaskoppling.idb.getAutoIncrement("Specialbestallning", "specialbestallningid");
                 matid = Databaskoppling.idb.getAutoIncrement("Material", "matid");
-                orderid = Databaskoppling.idb.getAutoIncrement("ordrar", "orderid");
-                String kundid = Databaskoppling.idb.fetchSingle("select kundid from kund where email = '"+EmailTB.getText().toLowerCase()+"';");
                 
                 FileOutputStream outputdir = new FileOutputStream(".\\src\\Hattmakarsystem\\bilder\\output"+specid+".jpg");
                 FileInputStream inputdir = new FileInputStream(filename);
@@ -328,14 +321,11 @@ public class LaggTillSpecBestallning extends javax.swing.JFrame {
                 outputdir.write(c);
             }
             
-                Databaskoppling.idb.insert("INSERT INTO Specialbestallning VALUES("
-                        +specid+", 'output"+specid+"',"+StorlekTB.getText()+", "+PrisTB.getText()+");");
+
                 
-                Databaskoppling.idb.insert("insert into ordrar values ("
-                            +orderid+", " + "FALSE" +", "+ "'Specialbestallning'"+", '"+datum+"', "+Integer.parseInt(PrisTB.getText())*Integer.parseInt(AntalTB.getText())+ ",NULL," + kundid+");");
+              
                 
-                Databaskoppling.idb.insert("INSERT INTO harspec VALUES("
-                        +specid+","+orderid+","+AntalTB.getText()+");");
+
                 
                 for(int i = 0; i < materialNamn.size(); i++){
                    
