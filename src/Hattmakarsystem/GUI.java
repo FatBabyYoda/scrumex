@@ -860,6 +860,8 @@ public class GUI extends javax.swing.JFrame {
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
                    HuvudPanel.setSelectedIndex(4);
+                   String[] ordernummer = jList3.getSelectedValue().trim().split("-");
+                   jLabel9.setText(ordernummer[0]);
 
     }//GEN-LAST:event_jList3MouseReleased
 
