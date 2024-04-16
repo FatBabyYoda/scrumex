@@ -24,6 +24,8 @@ public class Specbestallning {
     static ArrayList<String> materialMangd = new ArrayList<>();
     static ArrayList<String> materialFarg = new ArrayList<>();
     static ArrayList<ArrayList<String>> material = new ArrayList<>(); 
+    static ArrayList<HashMap<String,String>> spechattar = new ArrayList();
+    static int specindex = 0;
     
     
     
@@ -33,14 +35,21 @@ public class Specbestallning {
             materialNamn.add(MaterialTB.getText());
             materialMangd.add(Mangdtextbox.getText());
             materialFarg.add(FargTB.getText());
-            
+            material.add(new ArrayList<String>());
            
             
-            listModel.addElement(MaterialTB.getText() +" "+Mangdtextbox.getText() +Enhet.getSelectedItem().toString() +" "+ FargTB.getText());
+            listModel.addElement(MaterialTB.getText() +" "+FargTB.getText() +" "+ Mangdtextbox.getText() +Enhet.getSelectedItem().toString());
+            
+            
+                
+            
+            
             MaterialList.setModel(listModel);
         }
         
     }
+    
+ 
     
     public static void valjritning(JLabel RitningIcon){
          JFileChooser chooser = new JFileChooser();
@@ -53,7 +62,19 @@ public class Specbestallning {
         RitningIcon.setIcon(new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(215, 130, Image.SCALE_DEFAULT)));
     }
     
-    public static void laggtillspecorder(JList lista){
+    public static void laggtillspecorder(JList lista,JTextField Mangdtextbox, JTextField MaterialTB, JTextField FargTB, JList MaterialList, JComboBox<String> Enhet, DefaultListModel<String> orderlista,JTextField Antal,JTextField Storlek,JTextField Pris){
+        
+        for (int j = 0; j < listModel.getSize(); j++) {
+                material.get(specindex).add(j, listModel.getElementAt(j));
+            }
+        orderlista.addElement("Specbeställning");
+        HashMap<String, String> varden = new HashMap<>();
+        varden.put("pris",Pris.getText());
+        varden.put("storlek",Storlek.getText());
+        varden.put("antal",Antal.getText());
+        spechattar.add(varden);
+        lista.setModel(orderlista);
+        specindex++;
         
     }
 }
