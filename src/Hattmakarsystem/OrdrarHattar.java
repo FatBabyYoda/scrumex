@@ -38,7 +38,7 @@ public class OrdrarHattar {
             }*/
             //förbättrings kod som jag inte implementeraat än tar bort null värden och mer lätt läslig
             String value = "";
-            listModel.addElement("Special Orderar:");
+            listModel.addElement("lager Orderar:");
             for (HashMap<String, String> stockedOrder : hattarlagger) {
                 for (String key : stockedOrder.keySet()) {
                     if (stockedOrder.get(key) != null && !key.equals("orderID")) {
@@ -50,7 +50,8 @@ public class OrdrarHattar {
                 listModel.addElement(value);
             }
             value = "";
-            listModel.addElement("lager Orderar:");
+            
+            listModel.addElement("Special Orderar:");
             for (HashMap<String, String> stockedOrder : hattarspec) {
                 for (String key : stockedOrder.keySet()) {
                     if (stockedOrder.get(key) != null && !key.equals("orderID")&& !key.equals("ritning")) {
