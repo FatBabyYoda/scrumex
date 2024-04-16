@@ -41,7 +41,7 @@ public class OrdrarHattar {
             listModel.addElement("Special Orderar:");
             for (HashMap<String, String> stockedOrder : hattarlagger) {
                 for (String key : stockedOrder.keySet()) {
-                    if (stockedOrder.get(key) != null && !key.equals("lagfordID")) {
+                    if (stockedOrder.get(key) != null && !key.equals("orderID")) {
                        value += key + ": " + stockedOrder.get(key) + " | ";
                        
                     }
@@ -53,7 +53,7 @@ public class OrdrarHattar {
             listModel.addElement("lager Orderar:");
             for (HashMap<String, String> stockedOrder : hattarspec) {
                 for (String key : stockedOrder.keySet()) {
-                    if (stockedOrder.get(key) != null && !key.equals("lagfordID")) {
+                    if (stockedOrder.get(key) != null && !key.equals("orderID")&& !key.equals("ritning")) {
                        value += key + ": " + stockedOrder.get(key)+ " | ";
                        
                     }
