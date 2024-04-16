@@ -118,6 +118,10 @@ public class GUI extends javax.swing.JFrame {
         jList4 = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        DatumJL = new javax.swing.JLabel();
+        PrisJL = new javax.swing.JLabel();
+        prisJL = new javax.swing.JLabel();
+        datumJL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -762,6 +766,14 @@ public class GUI extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("1111111");
 
+        DatumJL.setText("1000-10-10");
+
+        PrisJL.setText("1kr");
+
+        prisJL.setText("Tot pris");
+
+        datumJL.setText("Datum");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -779,7 +791,20 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(datumJL)
+                                    .addComponent(DatumJL))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(226, 226, 226)
+                                        .addComponent(PrisJL))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addGap(230, 230, 230)
+                                        .addComponent(prisJL)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -791,9 +816,20 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jButton9)
-                .addGap(74, 74, 74))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jButton9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(datumJL)
+                            .addComponent(prisJL))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DatumJL)
+                            .addComponent(PrisJL))))
+                .addGap(67, 67, 67))
         );
 
         HuvudPanel.addTab("Ordrar", jPanel3);
@@ -837,7 +873,7 @@ public class GUI extends javax.swing.JFrame {
                // TODO add your handling code here:
                    HuvudPanel.setSelectedIndex(4);
                    jLabel9.setText(jList3.getSelectedValue().trim().split("-")[0]);
-                   OrdrarHattar.fyllOrderLista(jList4,jLabel9);
+                   OrdrarHattar.fyllOrderLista(jList4,jLabel9,PrisJL,DatumJL);
 
     }//GEN-LAST:event_jList3MouseReleased
 
@@ -987,6 +1023,7 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox AnpassadCB;
     private javax.swing.JTextField AntalTB;
+    private javax.swing.JLabel DatumJL;
     private javax.swing.JLabel EmailLabel;
     private javax.swing.JComboBox<String> Enhet;
     private javax.swing.JTextField FargTB;
@@ -1002,6 +1039,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel MenyValjP;
     private javax.swing.JPanel OrderValjP;
     private javax.swing.JPanel OrderjP;
+    private javax.swing.JLabel PrisJL;
     private javax.swing.JLabel PrisLabel;
     private javax.swing.JTextField PrisTB;
     private javax.swing.JLabel RitningIcon;
@@ -1009,6 +1047,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel StorlekLabel;
     private javax.swing.JTextField StorlekTB;
     private java.awt.Button button1;
+    private javax.swing.JLabel datumJL;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1067,5 +1106,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextNamn;
     private javax.swing.JTextField jTextTelefon;
+    private javax.swing.JLabel prisJL;
     // End of variables declaration//GEN-END:variables
 }

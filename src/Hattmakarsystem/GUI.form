@@ -1158,7 +1158,26 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jScrollPane6" min="-2" pref="397" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane6" min="-2" pref="397" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="datumJL" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DatumJL" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                                              <Component id="PrisJL" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                                              <Component id="prisJL" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -1174,9 +1193,25 @@
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="182" max="32767" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="311" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="jButton9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="datumJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="prisJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="DatumJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="PrisJL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1223,6 +1258,26 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="1111111"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DatumJL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="1000-10-10"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="PrisJL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="1kr"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="prisJL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tot pris"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="datumJL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Datum"/>
               </Properties>
             </Component>
           </SubComponents>

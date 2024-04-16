@@ -20,7 +20,7 @@ import oru.inf.InfException;
 public class OrdrarHattar {
     
     
-    public static void fyllOrderLista(JList hattar,JLabel ordernummer)
+    public static void fyllOrderLista(JList hattar,JLabel ordernummer,JLabel pris,JLabel datum)
     {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         Databaskoppling.koppling();
@@ -33,20 +33,23 @@ public class OrdrarHattar {
             listModel.addElement("Special Orderar:");
             for (HashMap<String, String> specialOrder : hattarspec) {
                 
-                    listModel.addElement("antal" + ": " + specialOrder.get("antal")+" storlek" + ": " + specialOrder.get("storlek")+" pris" + ": " + specialOrder.get("pris")+" dekoration" + ": " + specialOrder.get("dekoration")+" namn" + ": " + specialOrder.get("namn")+" beskrivning" + ": " + specialOrder.get("beskrivning"));
+                    listModel.addElement("antal" + ": " + specialOrder.get("antal")+" storlek" + ": " + specialOrder.get("storlek")+" pris" + ": " + specialOrder.get("pris")+" dekoration" + ": " + specialOrder.get("dekoration")+" namn" + ": " + specialOrder.get("namn")+" beskrivning" + ": " + specialOrder.get("beskrivning")+" ID" + ": " + specialOrder.get("specialID"));
                 
             }
              listModel.addElement("lager Orderar:");
             for (HashMap<String, String> lagerOrder : hattarlagger) {
-            listModel.addElement("antal" + ": " + lagerOrder.get("antal")+" storlek" + ": " + lagerOrder.get("storlek")+" pris" + ": " + lagerOrder.get("pris")+" dekoration" + ": " + lagerOrder.get("dekoration")+" namn" + ": " + lagerOrder.get("namn")+" beskrivning" + ": " + lagerOrder.get("beskrivning"));
+            listModel.addElement("antal" + ": " + lagerOrder.get("antal")+" storlek" + ": " + lagerOrder.get("storlek")+" pris" + ": " + lagerOrder.get("pris")+" dekoration" + ": " + lagerOrder.get("dekoration")+" namn" + ": " + lagerOrder.get("namn")+" beskrivning" + ": " + lagerOrder.get("beskrivning")+" ID" + ": " + lagerOrder.get("lagfordID"));
 
             }
             hattar.setModel(listModel);
+            pris.setText(order.get("totalpris")+" kr");
+            datum.setText(order.get("datum"));
             
            // ArrayList<HashMap<String,String>> hattaranpassade = Databaskoppling.idb.fetchRows("select * from ordrar where orderID = "+ordernummer.getText());
         } catch (InfException ex) {
             Logger.getLogger(OrdrarHattar.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     
