@@ -67,7 +67,7 @@ public class Specbestallning {
         for (int j = 0; j < listModel.getSize(); j++) {
                 material.get(specindex).add(j, listModel.getElementAt(j));
             }
-        orderlista.addElement("Specbeställning" + SpecNamn.getText());
+        orderlista.addElement("Specbeställning " + SpecNamn.getText());
         HashMap<String, String> varden = new HashMap<>();
         varden.put("pris",Pris.getText());
         varden.put("storlek",Storlek.getText());
@@ -75,6 +75,7 @@ public class Specbestallning {
         spechattar.add(varden);
         lista.setModel(orderlista);
         specindex++;
+        listModel.clear();
         
     }
 }
