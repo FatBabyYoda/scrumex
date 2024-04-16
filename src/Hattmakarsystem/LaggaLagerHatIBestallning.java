@@ -21,6 +21,8 @@ import oru.inf.InfException;
  */
 public class LaggaLagerHatIBestallning {
     
+    
+    static HashMap<String, String> hatinfo;
     static ArrayList<HashMap<String,String>> lagerhattar = new ArrayList();
     public static void fyllComboBox(JComboBox combo)
     {
@@ -59,11 +61,11 @@ public class LaggaLagerHatIBestallning {
         Databaskoppling.koppling(); 
         
         try {
-            HashMap<String, String> hat = Databaskoppling.idb.fetchRow("select * from lagerforda where namn = '"+combo.getSelectedItem().toString()+"'");
-            pris.setText(hat.get("pris"));
+            hatinfo = Databaskoppling.idb.fetchRow("select * from lagerforda where namn = '"+combo.getSelectedItem().toString()+"'");
+            pris.setText(hatinfo.get("pris"));
 
-            dekoration.setText(hat.get("dekoration"));
-            beskrivning.setText(hat.get("beskrivning"));
+            dekoration.setText(hatinfo.get("dekoration"));
+            beskrivning.setText(hatinfo.get("beskrivning"));
             
         } catch (InfException ex) {
             Logger.getLogger(LaggaLagerHatIBestallning.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,6 +76,7 @@ public class LaggaLagerHatIBestallning {
         orderlista.addElement(combo.getSelectedItem().toString());
         HashMap<String, String> varden = new HashMap<>();
         varden.put("namn", combo.getSelectedItem().toString());
+        varden.put("id", hatinfo.get("lagfordID"));
         varden.put("pris",pris.getText());
         varden.put("storlek",storlek.getText());
         varden.put("dekoration",dekoration.getText());
