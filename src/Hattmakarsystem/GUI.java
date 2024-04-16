@@ -210,11 +210,6 @@ public class GUI extends javax.swing.JFrame {
 
         jButton3.setText("Ändra kunduppgifter och gå vidare");
 
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout KundjPLayout = new javax.swing.GroupLayout(KundjP);
@@ -328,12 +323,6 @@ public class GUI extends javax.swing.JFrame {
 
         EmailLabel.setText("Namn");
 
-        SpecNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SpecNamnActionPerformed(evt);
-            }
-        });
-
         PrisLabel.setText("Pris");
 
         jLabel11.setText("Färg");
@@ -343,11 +332,6 @@ public class GUI extends javax.swing.JFrame {
         Mangdlabel.setText("Mängd");
 
         Enhet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cm²", "cm", "m", "m²" }));
-        Enhet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnhetActionPerformed(evt);
-            }
-        });
 
         jScrollPane5.setViewportView(MaterialList);
 
@@ -849,14 +833,6 @@ public class GUI extends javax.swing.JFrame {
         jList1.setModel(listModel);
     }//GEN-LAST:event_jTextField1KeyReleased
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        
-    }//GEN-LAST:event_jList1MouseClicked
-
-    private void EnhetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnhetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnhetActionPerformed
-
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
                    HuvudPanel.setSelectedIndex(4);
@@ -911,10 +887,6 @@ public class GUI extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
        Specbestallning.laggtillspecorder(jList2, Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet, orderlista, AntalTB, StorlekTB, PrisTB,SpecNamn);
     }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void SpecNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpecNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SpecNamnActionPerformed
 
     /**
      * @param args the command line arguments
