@@ -112,6 +112,7 @@ public class Specbestallning {
             for (int i = 0; i < lagerhattar.size(); i++) {
                 totpris +=parseDouble(lagerhattar.get(i).get("pris")) ;
             }
+            totpris *= 1.25;
             
             Databaskoppling.idb.insert("INSERT INTO ordrar VALUES("+orderid+",0,'"+datum+"',"+totpris+",NULL,1);");
             
