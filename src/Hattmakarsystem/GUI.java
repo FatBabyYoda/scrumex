@@ -71,7 +71,7 @@ public class GUI extends javax.swing.JFrame {
         StorlekTB = new javax.swing.JTextField();
         StorlekLabel = new javax.swing.JLabel();
         EmailLabel = new javax.swing.JLabel();
-        EmailTB = new javax.swing.JTextField();
+        SpecNamn = new javax.swing.JTextField();
         PrisLabel = new javax.swing.JLabel();
         PrisTB = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -326,7 +326,13 @@ public class GUI extends javax.swing.JFrame {
 
         StorlekLabel.setText("Storlek");
 
-        EmailLabel.setText("Kund Email");
+        EmailLabel.setText("Namn");
+
+        SpecNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SpecNamnActionPerformed(evt);
+            }
+        });
 
         PrisLabel.setText("Pris");
 
@@ -382,7 +388,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(AntalTB)
                             .addComponent(EmailLabel)
-                            .addComponent(EmailTB)
+                            .addComponent(SpecNamn)
                             .addComponent(StorlekTB, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +442,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(EmailLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EmailTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpecNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(PrisLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -902,8 +908,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-       Specbestallning.laggtillspecorder(jList2, Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet, orderlista, AntalTB, StorlekTB, PrisTB);
+       Specbestallning.laggtillspecorder(jList2, Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet, orderlista, AntalTB, StorlekTB, PrisTB,SpecNamn);
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void SpecNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpecNamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SpecNamnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1004,7 +1014,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox AnpassadCB;
     private javax.swing.JTextField AntalTB;
     private javax.swing.JLabel EmailLabel;
-    private javax.swing.JTextField EmailTB;
     private javax.swing.JComboBox<String> Enhet;
     private javax.swing.JTextField FargTB;
     private javax.swing.JPanel FraktsedeljP;
@@ -1022,6 +1031,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel PrisLabel;
     private javax.swing.JTextField PrisTB;
     private javax.swing.JLabel RitningIcon;
+    private javax.swing.JTextField SpecNamn;
     private javax.swing.JLabel StorlekLabel;
     private javax.swing.JTextField StorlekTB;
     private java.awt.Button button1;

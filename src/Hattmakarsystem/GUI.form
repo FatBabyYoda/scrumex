@@ -504,7 +504,7 @@
                                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="AntalTB" alignment="0" max="32767" attributes="0"/>
                                           <Component id="EmailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="EmailTB" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="SpecNamn" alignment="0" max="32767" attributes="0"/>
                                           <Component id="StorlekTB" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -577,7 +577,7 @@
                                       <EmptySpace pref="77" max="32767" attributes="0"/>
                                       <Component id="EmailLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="EmailTB" min="-2" max="-2" attributes="0"/>
+                                      <Component id="SpecNamn" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                       <Component id="PrisLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -638,10 +638,13 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="EmailLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Kund Email"/>
+                        <Property name="text" type="java.lang.String" value="Namn"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="EmailTB">
+                    <Component class="javax.swing.JTextField" name="SpecNamn">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SpecNamnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="PrisLabel">
                       <Properties>
