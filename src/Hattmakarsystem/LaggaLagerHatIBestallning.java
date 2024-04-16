@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JTextField;
 import oru.inf.InfException;
 
@@ -19,7 +21,7 @@ import oru.inf.InfException;
  */
 public class LaggaLagerHatIBestallning {
     
-    static ArrayList<HashMap<String,String>> lagerhattar;
+    static ArrayList<HashMap<String,String>> lagerhattar = new ArrayList();
     public static void fyllComboBox(JComboBox combo)
     {
         
@@ -67,8 +69,16 @@ public class LaggaLagerHatIBestallning {
             Logger.getLogger(LaggaLagerHatIBestallning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void regglageranpassade()
+    public static void regglageranpassade(JComboBox combo,DefaultListModel<String> orderlista,JList lista,JTextField pris,JTextField storlek,JTextField dekoration,JTextField beskrivning)
     {
+        orderlista.addElement(combo.getSelectedItem().toString());
+        HashMap<String, String> varden = new HashMap<>();
+        varden.put("pris",pris.getText());
+        varden.put("storlek",storlek.getText());
+        varden.put("dekoration",dekoration.getText());
+        varden.put("beskrivning",beskrivning.getText());
+        lagerhattar.add(varden);
+        lista.setModel(orderlista);
         
     }
     
