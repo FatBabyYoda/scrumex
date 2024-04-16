@@ -81,6 +81,10 @@ public class LaggaLagerHatIBestallning {
         lista.setModel(orderlista);
         
     }
+    public static ArrayList<HashMap<String,String>> getHattArray()
+    {  
+        return lagerhattar;
+    }
     
     
 }
