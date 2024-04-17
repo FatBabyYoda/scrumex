@@ -20,6 +20,7 @@ public class Laggtillkund2 extends javax.swing.JFrame {
     /**
      * Creates new form Laggtillkund2
      */
+    
     public Laggtillkund2() {
         initComponents();
           koppling();

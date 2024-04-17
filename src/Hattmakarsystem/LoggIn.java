@@ -143,7 +143,7 @@ dispose();        // TODO add your handling code here:
         
         try {
         // En SQL-fråga skapas för att hämta ut information om en alien baserat på det angivna användarnamnet från textfältet jUser
-     String query = String.format("SELECT email, losenord FROM anvandare WHERE email = \"%s\"", jEmail.getText());
+     String query = String.format("SELECT namn, losenord FROM anvandare WHERE namn = \"%s\"", jEmail.getText());
         System.out.println(query);
         HashMap<String, String> rad = Databaskoppling.idb.fetchRow(query);
         //Epost matcher ett lösenord så ska användaren kunna Logga in
@@ -163,7 +163,7 @@ dispose();        // TODO add your handling code here:
             throw new Exception();
         }
     } catch (Exception e) {
-      JOptionPane.showMessageDialog(null, "kontrollera epost eller lösenord");
+      JOptionPane.showMessageDialog(null, "kontrollera namn eller lösenord");
       System.out.println("Internt felmeddelande: " + e.getMessage());
     }
         
