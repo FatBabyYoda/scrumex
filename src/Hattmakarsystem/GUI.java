@@ -5,8 +5,10 @@
 package Hattmakarsystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import oru.inf.InfException;
 /**
  *
  * @author Lucas
@@ -200,6 +202,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel1.setText("Sök efter kund epost");
 
         button1.setLabel("Sök");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Namn");
 
@@ -212,9 +219,24 @@ public class GUI extends javax.swing.JFrame {
         jButton1.setText("Gå vidare med vald kund");
 
         jButton2.setText("Lägg till ny kund och gå vidare");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Ändra kunduppgifter och gå vidare");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout KundjPLayout = new javax.swing.GroupLayout(KundjP);
@@ -337,24 +359,15 @@ public class GUI extends javax.swing.JFrame {
         jPanel1.add(StorlekLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 88, -1, -1));
 
         EmailLabel.setText("Namn");
-        jPanel1.add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        jPanel1.add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
         SpecNamn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        SpecNamn.setText("Namn");
-        SpecNamn.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                SpecNamnFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                SpecNamnFocusLost(evt);
-            }
-        });
         SpecNamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SpecNamnActionPerformed(evt);
             }
         });
-        jPanel1.add(SpecNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 90, 30));
+        jPanel1.add(SpecNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 80, 20));
 
         PrisLabel.setText("Pris");
         jPanel1.add(PrisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 306, -1, -1));
@@ -807,7 +820,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-        DefaultListModel<String> listModel = Sok.sok(jTextField1.getText(), "kund", "email");
+       DefaultListModel<String> listModel = Sok.sok(jTextField1.getText(), "kund", "email");
         jList1.setModel(listModel);
     }//GEN-LAST:event_jTextField1KeyReleased
 
@@ -880,27 +893,111 @@ public class GUI extends javax.swing.JFrame {
         Specbestallning.registreraorder(jButton8);
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void SpecNamnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SpecNamnFocusGained
-    SpecNamn.setHorizontalAlignment(JLabel.LEFT);
-        if (SpecNamn.getText().equals("Namn")) {
-            SpecNamn.setText("");
-        }
-   
-    
-    EmailLabel.setVisible(false); 
-    // TODO add your handling code here:
-    }//GEN-LAST:event_SpecNamnFocusGained
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (!Valideringsklass.emptyTextFields(jTextNamn) && !Valideringsklass.emptyTextFields(jTextEmail)
+        && !Valideringsklass.emptyTextFields(jTextTelefon) && !Valideringsklass.emptyTextFields(jTextAdress)
+        ) {
 
-    private void SpecNamnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SpecNamnFocusLost
-        // TODO add your handling code here:'EmailLabel.setVisible(false);  
-        if (SpecNamn.getText().length() == 0) {
-            EmailLabel.setVisible(true); 
-            SpecNamn.setHorizontalAlignment(JLabel.CENTER);
-        SpecNamn.setText("Namn");
-        }
+    try {
+        // Vi skapade variabler för att underlätta för oss själva och läsaren
+        String nextID = Databaskoppling.idb.getAutoIncrement("kund", "kundid");
         
-         
-    }//GEN-LAST:event_SpecNamnFocusLost
+       
+        String Epost = jTextEmail.getText();
+        String telefon = jTextTelefon.getText();
+        String namn = jTextNamn.getText();
+        String Adress = jTextAdress.getText();
+       
+
+        
+       // int KundID = Integer.parseInt(nextID);
+       
+        ArrayList<String> NamnPaKund;
+        NamnPaKund = Databaskoppling.idb.fetchColumn("select namn from kund");
+        boolean finns = false;
+        for (String enKund : NamnPaKund) {
+            if (namn.equals(enKund)) {
+                finns = true;
+                break; // Sluta söka när vi har hittat det önskade resultatet
+            }
+        }
+
+        if (!finns) {
+            String SQLFRAGA = "INSERT INTO kund (kundid, address, email, namn, telf) VALUES ('" + nextID + "', '" + Adress + "','" + Epost + "','" + namn + "','" + telefon + "')";
+
+
+
+            Databaskoppling.idb.insert(SQLFRAGA);
+        } else {
+            // Talar om att det sökta namnet redan finns och inte går att använda
+            JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
+        }
+         JOptionPane.showMessageDialog(null, "Registrering slutförd!");
+
+                                             
+      
+
+    } catch (InfException exc) {
+        JOptionPane.showMessageDialog(null, "FEL " + exc.getMessage()); 
+    }
+
+} else {
+    JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
+}   
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+try {
+    // Konstruera SQL-frågan för att uppdatera kunduppgifter
+    String fragaTillDatabas = String.format("UPDATE kund " +
+            "SET Namn = '%s', " +
+            "Telf = '%s', " +
+            "Address = '%s' " + // Lägg till ytterligare fält efter behov
+            "WHERE Email = '%s'",
+            jTextNamn.getText(), // Hämta det nya värdet från  GUI-komponent
+            jTextTelefon.getText(),
+            jTextAdress.getText(), // Lägg till motsvarande fält från  GUI
+            jTextEmail.getText()); // Använd e-postadressen för att identifiera kunden att uppdatera
+
+    // Utför SQL UPDATE-operationen genom att skicka frågan till databasen
+   Databaskoppling.idb.update(fragaTillDatabas);
+
+    // Visar en bekräftelse att kundens information har uppdaterats
+    JOptionPane.showMessageDialog(null, "Kundens uppgifter är uppdaterade");
+
+} catch (InfException e) {
+    // Hanterar eventuella databasfel genom att skriva ut felmeddelandet
+    System.out.println(e.getMessage());
+    JOptionPane.showMessageDialog(null, e.getMessage());
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+  int selectedIndex = jList1.getSelectedIndex();
+    if (selectedIndex != -1) { // Kolla om en rad är vald
+        String clickedLine = (String) jList1.getModel().getElementAt(selectedIndex);
+        jTextField1.setText(clickedLine);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    try{
+            String kundEmail=jTextField1.getText();
+            String hamtakund1 = "SELECT * FROM kund WHERE email = '" + kundEmail + "'";
+       var hamtaKund=Databaskoppling.idb.fetchRow(hamtakund1)  ;
+       
+        jTextEmail.setText(hamtaKund.get("email"));
+        
+        jTextTelefon.setText(hamtaKund.get("telf"));
+       jTextNamn.setText(hamtaKund.get("namn"));
+        jTextAdress.setText(hamtaKund.get("address"));
+          
+        }
+catch (InfException exc) {
+    JOptionPane.showMessageDialog(null, "FEL " + exc.getMessage());
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
 
 
     /**
