@@ -217,6 +217,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel5.setText("Adress");
 
         jButton1.setText("Gå vidare med vald kund");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Lägg till ny kund och gå vidare");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -934,7 +939,7 @@ public class GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
         }
          JOptionPane.showMessageDialog(null, "Registrering slutförd!");
-
+         HuvudPanel.setSelectedIndex(1); 
                                              
       
 
@@ -998,6 +1003,10 @@ catch (InfException exc) {
     JOptionPane.showMessageDialog(null, "FEL " + exc.getMessage());
 }        // TODO add your handling code here:
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+              HuvudPanel.setSelectedIndex(1);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     /**

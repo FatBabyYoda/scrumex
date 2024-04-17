@@ -57,7 +57,7 @@ public class LoggIn extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Email");
+        jLabel2.setText("Namn");
 
         jLabel3.setText("Lösenord");
 
