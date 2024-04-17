@@ -924,7 +924,7 @@ public class GUI extends javax.swing.JFrame {
         }
 
         if (!finns) {
-            String SQLFRAGA = "INSERT INTO kund (kundid, address, email, namn, telf) VALUES ('" + nextID + "', '" + Adress + "','" + Epost + "','" + namn + "','" + telefon + "')";
+            String SQLFRAGA = "INSERT INTO kund (kundid, adress, email, namn, telefon) VALUES ('" + nextID + "', '" + Adress + "','" + Epost + "','" + namn + "','" + telefon + "')";
 
 
 
@@ -952,8 +952,8 @@ try {
     // Konstruera SQL-frågan för att uppdatera kunduppgifter
     String fragaTillDatabas = String.format("UPDATE kund " +
             "SET Namn = '%s', " +
-            "Telf = '%s', " +
-            "Address = '%s' " + // Lägg till ytterligare fält efter behov
+            "telefon = '%s', " +
+            "Adress = '%s' " + // Lägg till ytterligare fält efter behov
             "WHERE Email = '%s'",
             jTextNamn.getText(), // Hämta det nya värdet från  GUI-komponent
             jTextTelefon.getText(),
@@ -989,9 +989,9 @@ try {
        
         jTextEmail.setText(hamtaKund.get("email"));
         
-        jTextTelefon.setText(hamtaKund.get("telf"));
+        jTextTelefon.setText(hamtaKund.get("telefon"));
        jTextNamn.setText(hamtaKund.get("namn"));
-        jTextAdress.setText(hamtaKund.get("address"));
+        jTextAdress.setText(hamtaKund.get("adress"));
           
         }
 catch (InfException exc) {
