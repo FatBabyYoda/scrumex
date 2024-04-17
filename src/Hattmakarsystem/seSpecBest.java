@@ -19,7 +19,7 @@ public class seSpecBest {
     public void seSpecBestallningar(JTextArea textArea){
         try{
         Databaskoppling.koppling();
-        String fraga = "SELECT * FROM ordrar WHERE typ = 'Special'";
+        String fraga = "SELECT * FROM special";
         ArrayList<HashMap<String, String>> resultat = Databaskoppling.idb.fetchRows(fraga);
         
         textArea.setText("");
