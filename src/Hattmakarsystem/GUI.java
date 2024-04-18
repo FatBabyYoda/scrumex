@@ -1026,7 +1026,7 @@ catch (InfException exc) {
     private void knappGenerering()
     {
         
-        int numberoftabs = HuvudPanel.getTabCount();
+        int numberoftabs = HuvudPanel.getTabCount()-2;
         knappar = new JButton[numberoftabs];
         for (int i = 0; i < numberoftabs; i++) {  
         final int index = i;
