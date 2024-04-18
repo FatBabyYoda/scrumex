@@ -48,6 +48,7 @@ public class OrdrarHattar {
                            
                 }
                 listModel.addElement(value);
+                value = "";
             }
             value = "";
             
@@ -61,6 +62,7 @@ public class OrdrarHattar {
                            
                 }
                 listModel.addElement(value);
+                value = "";
             }
 
             /*
