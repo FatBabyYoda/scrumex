@@ -17,7 +17,7 @@ public class laggTillNyLagerford {
     
     
     
-    public void laggTillLagerford(String namn, String pris, String dekoration, String beskrivning){
+    public void laggTillLagerford(String namn, int pris, String dekoration, String beskrivning){
         
         try{
             Databaskoppling.koppling();
@@ -29,6 +29,8 @@ public class laggTillNyLagerford {
             
             String laggTill = "INSERT INTO lagerforda (lagfordId, namn, pris, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + dekoration + "', '" + beskrivning + "')";
             Databaskoppling.idb.insert(laggTill);
+            
+            JOptionPane.showMessageDialog(null, "Ny lagerförd hatt tillagd!");
             
         }catch(InfException e){
             JOptionPane.showMessageDialog(null, "fel i databasen");
