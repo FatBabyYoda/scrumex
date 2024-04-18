@@ -1011,6 +1011,12 @@ catch (InfException exc) {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        try {
+        JOptionPane.showMessageDialog(null, "Utskrift bekräftad!", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Ett fel uppstod.", "Fel", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
