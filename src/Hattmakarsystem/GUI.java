@@ -454,19 +454,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pris");
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Namn");
 
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Beskrivning");
 
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Dekoration");
 
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Storlek");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -657,6 +652,11 @@ public class GUI extends javax.swing.JFrame {
         FraktsedeljP.setEnabled(false);
 
         jButton4.setText("Skriv ut");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jKundTabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -840,6 +840,7 @@ public class GUI extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
       HuvudPanel.setSelectedIndex(3); 
       String[] hej1 = getSelectedGUIOrder();
+      Fraktsedel.kundInformation(hej1, jKundTabell);
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -1007,6 +1008,10 @@ catch (InfException exc) {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
               HuvudPanel.setSelectedIndex(1);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     /**
