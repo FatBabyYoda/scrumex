@@ -65,7 +65,6 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jButton8 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -344,8 +343,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("Lägg till i order");
-
         jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane2StateChanged(evt);
@@ -400,7 +397,7 @@ public class GUI extends javax.swing.JFrame {
         RitningIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(RitningIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 6, 215, 130));
 
-        jButton12.setText("jButton12");
+        jButton12.setText("Lägg till material");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -408,7 +405,7 @@ public class GUI extends javax.swing.JFrame {
         });
         jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 327, -1, -1));
 
-        jButton13.setText("jButton13");
+        jButton13.setText("Lägg till i order");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -416,7 +413,7 @@ public class GUI extends javax.swing.JFrame {
         });
         jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 6, -1, -1));
 
-        jButton14.setText("jButton14");
+        jButton14.setText("Välj ritning");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -549,7 +546,7 @@ public class GUI extends javax.swing.JFrame {
         OrderjPLayout.setHorizontalGroup(
             OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderjPLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(149, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addComponent(jButton8)
@@ -558,10 +555,6 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
-            .addGroup(OrderjPLayout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(jButton11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         OrderjPLayout.setVerticalGroup(
             OrderjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,9 +566,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(OrderjPLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(53, 53, 53)
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
@@ -1145,7 +1136,6 @@ catch (InfException exc) {
     private javax.swing.JLabel datumJL;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
