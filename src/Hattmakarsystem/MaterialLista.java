@@ -10,6 +10,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
@@ -28,9 +29,24 @@ public class MaterialLista extends javax.swing.JFrame {
     public MaterialLista() {
         initComponents();
         koppling();
-        typVal();
+//        typVal();
     }
 
+    //    public void typVal(){
+//        String sql = "";
+//        ArrayList<String> lista2;
+//        
+//        try{
+//            lista2 = Databaskoppling.idb.fetchColumn(sql);
+//            for(String namn : lista2){
+//                jComboBox1.addItem(namn);
+//            }
+//        }catch(InfException e){
+//            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
+//            System.out.println("Internt felmeddelande: " + e.getMessage());
+//        }
+//    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,73 +57,31 @@ public class MaterialLista extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jNameArea = new javax.swing.JTextArea();
+        jNamnLista = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jMatArea = new javax.swing.JTextArea();
+        jMaterialLista = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jTillbakaKnapp = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jHattyp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jNameArea.setEditable(false);
-        jNameArea.setColumns(20);
-        jNameArea.setRows(5);
-        jNameArea.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(jNameArea);
+        jNamnLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jNamnListaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jNamnLista);
 
-        jMatArea.setEditable(false);
-        jMatArea.setColumns(20);
-        jMatArea.setRows(5);
-        jMatArea.setRequestFocusEnabled(false);
-        jScrollPane2.setViewportView(jMatArea);
+        jScrollPane2.setViewportView(jMaterialLista);
 
         jLabel1.setText("Namn");
 
         jLabel2.setText("Material");
 
-        jRadioButton1.setText("Lagerförda");
-        jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jRadioButton1StateChanged(evt);
-            }
-        });
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        jHattyp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton2.setText("Anpassade");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton3.setText("Special");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Visa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTillbakaKnapp.setText("Tillbaka");
-        jTillbakaKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTillbakaKnappActionPerformed(evt);
+                jHattypActionPerformed(evt);
             }
         });
 
@@ -116,152 +90,62 @@ public class MaterialLista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTillbakaKnapp)
-                .addGap(57, 57, 57)
-                .addComponent(jButton1)
-                .addContainerGap())
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(124, 124, 124))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jTillbakaKnapp});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jTillbakaKnapp))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(134, 134, 134))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jTillbakaKnapp});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void typVal(){
-        String sql = "SELECT namn FROM hattyp";
-        ArrayList<String> lista2;
+    private void jHattypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHattypActionPerformed
+        //Sökning efter specifik hatt
         
-        try{
-            lista2 = Databaskoppling.idb.fetchColumn(sql);
-            for(String namn : lista2){
-                jComboBox1.addItem(namn);
-            }
-        }catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
-            System.out.println("Internt felmeddelande: " + e.getMessage());
-        }
-    }
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  //      Visa-knappen
+        DefaultListModel<String> lista = Sok.sok(jHattyp.getText(), "lagerforda", "namn");
+        jNamnLista.setModel(lista);
         
-        ArrayList<HashMap<String, String>> Lista;
+    }//GEN-LAST:event_jHattypActionPerformed
 
-    try { 
-            String TypVal = jComboBox1.getSelectedItem().toString();
-    
-     // En SQL-fråga utförs som ansluter Alien- och Plats-tabellerna för att hämta Alien-namn där platsens benämning matchar det valda området och platsen
-     // Namn på aliens visas i resultatområdet
-    String sqlFraga = "SELECT id FROM hattyp WHERE namn = '" + TypVal + "'";
-    
-    Lista = Databaskoppling.idb.fetchRows(sqlFraga);
-    
-    for (HashMap<String, String> lista : Lista) {
-        jNameArea.append(lista.get("namn") + "\n");
+    private void jNamnListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNamnListaMouseClicked
+        //Klicka på hatt för att få upp material om den valda hatten
+
+    int selectedIndex = jNamnLista.getSelectedIndex();
+    if (selectedIndex != -1) { // Kontrollerar om en rad är vald
+        String valtHattNamn = jNamnLista.getModel().getElementAt(selectedIndex); // Hämta det valda hatt-namnet
+        DefaultListModel<String> materialLista = Sok.sok(valtHattNamn, "material", "namn"); // Använd det valda hatt-namnet för att hämta material
+        jMaterialLista.setModel(materialLista); // Sätt modellen med de hämtade materialen
     }
-    // Databasoperationer som har eventuella fel hanteras och visar felmeddelande i en dialogruta samt skriver ut ett felmeddelande
-} catch (InfException ettUndantag) {
-    JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
-    System.out.println("Internt felmeddelande: " + ettUndantag.getMessage());   
-}
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    }//GEN-LAST:event_jNamnListaMouseClicked
 
-    private void jTillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTillbakaKnappActionPerformed
- Huvudmeny tillbakaMeny = new Huvudmeny();
-        tillbakaMeny.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jTillbakaKnappActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-    //Lagerförda ticked
-    jRadioButton1.addItemListener(new ItemListener() {
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-    if (e.getStateChange() == ItemEvent.SELECTED) {    
-        try {
-            //Hämta namnen från hattyp
-            ArrayList<String> names = Databaskoppling.idb.fetchColumn("SELECT namn FROM hattyp");
-            
-            //en liten StringBuilder för att lagra skit B)
-            StringBuilder namesText = new StringBuilder();
-            
-            //loopa genom alla namn o adda i strängen
-            for (String name : names) {
-                namesText.append(name).append("\n");
-            }
-            
-            jNameArea.setText(namesText.toString());
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel");
-            System.err.println("Internt felmeddelande: " + ex.getMessage());
-        }
-    } else {
-           //ghetto clear så länge XD
-           jNameArea.setText("");
-       }
-    }
-});
-       
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-       //Anpassade ticked:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-       //Special ticked:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jRadioButton1StateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1StateChanged
-
-   
+   //      String clickedLine = (String) jNamnLista.getModel().getElementAt(selectedIndex);
+//      jHattyp.setText(clickedLine);
     
     
     /**
@@ -301,17 +185,12 @@ public class MaterialLista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField jHattyp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextArea jMatArea;
-    private javax.swing.JTextArea jNameArea;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JList<String> jMaterialLista;
+    private javax.swing.JList<String> jNamnLista;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jTillbakaKnapp;
     // End of variables declaration//GEN-END:variables
 }
