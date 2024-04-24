@@ -223,8 +223,6 @@ if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTex
     try {
         // Vi skapade variabler för att underlätta för oss själva och läsaren
         String nextID = Databaskoppling.idb.getAutoIncrement("anvandare", "anvandareID");
-        
-       
         String namn = jTextField2.getText();
         String losenord = jTextField3.getText();
        
@@ -237,11 +235,8 @@ if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTex
                 break; // Sluta söka när vi har hittat det önskade resultatet
             }
         }
-
         if (!finns) {
             String SQLFRAGA = "INSERT INTO anvandare (anvandareID, namn, losenord) VALUES ('" + nextID + "', '" + namn + "','" + losenord + "')";
-
-
 
             Databaskoppling.idb.insert(SQLFRAGA);
         } else {
@@ -249,9 +244,6 @@ if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTex
             JOptionPane.showMessageDialog(null, "Registreringen gick inte igenom, försök igen!");
         }
          JOptionPane.showMessageDialog(null, "Registrering slutförd!");
-
-                                             
-      
 
     } catch (InfException exc) {
         JOptionPane.showMessageDialog(null, "FEL " + exc.getMessage()); 
@@ -285,8 +277,8 @@ if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTex
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        try {
     // Skapar en SQL-fråga för att uppdatera information i databasen
-    String fragaTillDatabas = String.format("UPDATE anvandare " + " SET namn = '%s'," 
-        + " losenord = '%s'", txtnamn.getText(), txtlösenord.getText());
+String fragaTillDatabas = String.format("UPDATE anvandare SET namn = '%s', losenord = '%s' WHERE anvandareID = '%s'", txtnamn.getText(), txtlösenord.getText(), txtID.getText());
+;
  // Utför SQL UPDATE-operationen genom att skicka frågan till databasen
   Databaskoppling.idb.update(fragaTillDatabas);
     // Visar en bekräftelse att användarens information har uppdaterats
@@ -301,13 +293,18 @@ if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTex
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 try {
-    String ID = Databaskoppling.idb.fetchSingle("SELECT anvandareID FROM anvandare WHERE anvandareID = '" + txtID.getText() + "'");
-    String q1 = "DELETE FROM anvandare WHERE anvandareID = " + ID;
-    String q2 = "DELETE FROM ordrar WHERE anvandare = " + ID;
+    
+     String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM ordrar WHERE anvandare = '" + txtID.getText() + "'");
+     String q2 = "UPDATE ordrar SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
+    Databaskoppling.idb.update(q2);
+    
+   String ID = Databaskoppling.idb.fetchSingle("SELECT anvandareID FROM anvandare WHERE anvandareID = '" + txtID.getText() + "'");
+   String q1 = "DELETE FROM anvandare WHERE anvandareID = " + ID;
+    //String q2 = "DELETE FROM ordrar WHERE  COLUMN  anvandare = " + ID;
     Databaskoppling.idb.delete(q1);
-    Databaskoppling.idb.delete(q2);
+    
+    
     JOptionPane.showMessageDialog(null, " Användaren är raderad");
-    dispose();
 
 } catch (InfException e) {
     // Hantera eventuella undantag, till exempel visa ett felmeddelande.
