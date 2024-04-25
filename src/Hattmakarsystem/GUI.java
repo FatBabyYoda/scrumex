@@ -6,6 +6,8 @@ package Hattmakarsystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import oru.inf.InfException;
@@ -48,7 +50,6 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         HuvudPanel = new javax.swing.JTabbedPane();
         KundjP = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -94,11 +95,6 @@ public class GUI extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jList7 = new javax.swing.JList<>();
-        jLabel25 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         AnpassadCB = new javax.swing.JCheckBox();
         jTextField6 = new javax.swing.JTextField();
@@ -205,13 +201,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("jButton6");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout OrderValjPLayout = new javax.swing.GroupLayout(OrderValjP);
         OrderValjP.setLayout(OrderValjPLayout);
         OrderValjPLayout.setHorizontalGroup(
@@ -219,7 +208,6 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(OrderValjPLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(OrderValjPLayout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,8 +221,6 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -473,23 +459,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 99, -1, -1));
-
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
-            }
-        });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 80, -1));
-
-        jScrollPane9.setViewportView(jList7);
-
-        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 80, 70));
-
-        jLabel25.setText("Sök");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 30, -1));
-
-        jButton11.setText("Lägg till i material");
-        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         jTabbedPane2.addTab("Special hattar", jPanel1);
 
@@ -1035,9 +1004,11 @@ public class GUI extends javax.swing.JFrame {
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
                    int index = jList3.getSelectedIndex();
+                   char id;
                    HuvudPanel.setSelectedIndex(3);
                    if (jList3.getSelectedValue().charAt(0) == '-') {
                        
+                               
                        while(jList3.getModel().getElementAt(index).charAt(0) == '-'){
                            index--;
                        }
@@ -1335,19 +1306,29 @@ public class GUI extends javax.swing.JFrame {
         jList5.setModel(listModel);
     }//GEN-LAST:event_jTextField2KeyReleased
 
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
-        // TODO add your handling code here:
-        DefaultListModel<String> listModel = Sok.sok(jTextField3.getText(), "material", "namn");
-        jList7.setModel(listModel);
-    }//GEN-LAST:event_jTextField3KeyReleased
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+        
+            try {
+            char fourthChar = jList3.getSelectedValue().charAt(3);
+            char id = jList3.getSelectedValue().charAt(1);
+            
+            if (fourthChar == 'L') {
+                Databaskoppling.idb.update("UPDATE LagerOrderKoppling SET anvandare = " + LoggIn.anvanderid + " WHERE orderID = " + id + ";");
+            } else if (fourthChar == 'S') {
+                Databaskoppling.idb.update("UPDATE SpecialOrderKoppling SET anvandare = " + LoggIn.anvanderid + " WHERE orderID = " + id + ";");
+            } else if (fourthChar == 'A') {
+                Databaskoppling.idb.update("UPDATE AnpassadOrderKoppling SET anvandare = " + LoggIn.anvanderid + " WHERE orderID = " + id + ";");
+            }
+                
+            } catch (InfException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            LaddaOrdrar.Allaordrar(jList3,LoggIn.anvanderid);
+            
+                       
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
       laggTillNyLagerford.laggTillLagerford(namnTF.getText(),PrisTF.getText(),decTF.getText(),beskTF.getText());
@@ -1484,7 +1465,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField decTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1496,7 +1476,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -1518,7 +1497,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1532,7 +1510,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
     private javax.swing.JList<String> jList6;
-    private javax.swing.JList<String> jList7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1548,7 +1525,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextAdress;
@@ -1557,7 +1533,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;

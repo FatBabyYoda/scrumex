@@ -22,9 +22,9 @@ public class laggTillNyLagerford {
         try{
             Databaskoppling.koppling();
             
-            String fraga = "SELECT MAX(orderid) AS senaste_order_id FROM ordrar";
+            String fraga = "SELECT MAX(lagfordID) AS senaste_modell_id FROM lagerforda";
             String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
-            int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) : 1;
+            int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) + 1 : 1;
           
             
             String laggTill = "INSERT INTO lagerforda (lagfordId, namn, pris, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + dekoration + "', '" + beskrivning + "')";

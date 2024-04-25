@@ -50,27 +50,30 @@ static DefaultListModel<String> ordrar = new DefaultListModel<>();
                 
                     String value = "-";
                     for (HashMap<String, String> stockedOrder : hattarlagger) {
-                        for (String key : stockedOrder.keySet()) {
-                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
-                                value += stockedOrder.get(key) + " ";
-                       
-                            }
-                           
-                        }
+                        value += stockedOrder.get("lagfordID") + " Lager ";
+                        value += stockedOrder.get("namn") + " ";
+                        if(Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN lagerorderkoppling ON anvandare = anvandareID WHERE orderID ="+i) != null){
+                            value +="-"+ Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN lagerorderkoppling ON anvandare = anvandareID WHERE orderID ="+i);
+                        } else value += "-ej tagen";
+                        
                     ordrar.addElement(value);
                     value = "-";
                     
                     
                     }
                     
+                    
+                    
                     for (HashMap<String, String> stockedOrder : hattarspec) {
-                        for (String key : stockedOrder.keySet()) {
-                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
-                                value += stockedOrder.get(key) + " ";
-                       
-                            }
+                        
+                        value += stockedOrder.get("specialID") + " Special ";
+                        value += stockedOrder.get("namn") + " ";
+                        if(Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN specialorderkoppling ON anvandare = anvandareID WHERE orderID ="+i) != null){
+                            value +="-"+ Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN specialorderkoppling ON anvandare = anvandareID WHERE orderID ="+i);
+                        } else value += "-ej tagen";
+                            
                            
-                        }
+                        
                     ordrar.addElement(value);
                     value = "-";
                     
@@ -78,13 +81,12 @@ static DefaultListModel<String> ordrar = new DefaultListModel<>();
                     }
                     
                     for (HashMap<String, String> stockedOrder : hattaranpassad) {
-                        for (String key : stockedOrder.keySet()) {
-                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
-                                value += stockedOrder.get(key) + " ";
-                       
-                            }
-                           
-                        }
+                        value += stockedOrder.get("anpassadID") + " Anpassad ";
+                        value += stockedOrder.get("namn") + " ";
+                        if(Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN anpassadorderkoppling ON anvandare = anvandareID WHERE orderID ="+i) != null){
+                            value +="-"+ Databaskoppling.idb.fetchSingle("SELECT namn FROM anvandare JOIN anpassadorderkoppling ON anvandare = anvandareID WHERE orderID ="+i);
+                        } else value += "-ej tagen";
+                        
                     ordrar.addElement(value);
                     value = "-";
                     

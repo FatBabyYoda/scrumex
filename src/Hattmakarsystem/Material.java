@@ -4,6 +4,7 @@
  */
 package Hattmakarsystem;
 
+import static Hattmakarsystem.Databaskoppling.koppling;
 import javax.swing.DefaultListModel;
 
 /**
@@ -17,6 +18,7 @@ public class Material extends javax.swing.JPanel {
      */
     public Material() {
         initComponents();
+        koppling();
     }
 
     /**

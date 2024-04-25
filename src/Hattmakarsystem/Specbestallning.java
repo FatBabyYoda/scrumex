@@ -88,7 +88,7 @@ public class Specbestallning {
         
     }
     
-    public static void registreraorder(JButton regknapp,String kundepost){
+    public static void registreraorder(JButton regknapp,String kundepost,JList jList3){
         lagerhattar = LaggaLagerHatIBestallning.getHattArray();
         
        
@@ -113,7 +113,7 @@ public class Specbestallning {
             for (int i = 0; i < lagerhattar.size(); i++) {
                 totpris +=parseDouble(lagerhattar.get(i).get("pris")) ;
             }
-            totpris *= 1.25;
+            
             
             Databaskoppling.idb.insert("INSERT INTO ordrar VALUES("+orderid+",false,'"+datum+"',"+totpris+","+kundid+",false);");
             
@@ -133,7 +133,7 @@ public class Specbestallning {
                 }
                 
                 Databaskoppling.idb.insert("INSERT INTO special VALUES("+specid+", '"+ spechattar.get(i).get("namn")+"', "+spechattar.get(i).get("pris")+", "+spechattar.get(i).get("storlek")+", 'output"+specid+".jpg');");
-                Databaskoppling.idb.insert("INSERT INTO specialorderkoppling VALUES("+specid+", "+orderid+", "+spechattar.get(i).get("antal")+");");
+                Databaskoppling.idb.insert("INSERT INTO specialorderkoppling VALUES("+specid+", "+orderid+", "+spechattar.get(i).get("antal")+", NULL);");
                 
                 for (int j = 0; j < material.get(i).size(); j++) {
                     
@@ -153,6 +153,7 @@ public class Specbestallning {
                 Databaskoppling.idb.insert("INSERT INTO lagerorderkoppling VALUES ("+lagerhattar.get(i).get("id")+","+orderid+",NULL,"+lagerhattar.get(i).get("storlek")+",NULL);");
             }
             eSender.sendComfirmation(kundepost);
+            LaddaOrdrar.Allaordrar(jList3,LoggIn.anvanderid);
         
         } catch (Exception ex) {
             Logger.getLogger(Specbestallning.class.getName()).log(Level.SEVERE, null, ex);
