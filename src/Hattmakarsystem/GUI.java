@@ -970,14 +970,14 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        if (!Valideringsklass.emptyTextFields(jTextField2) && !Valideringsklass.emptyTextFields(jTextField3)
+        if (!Valideringsklass.emptyTextFields(jTextField5) && !Valideringsklass.emptyTextFields(jTextField10)
         ) {
 
             try {
                 // Vi skapade variabler för att underlätta för oss själva och läsaren
                 String nextID = Databaskoppling.idb.getAutoIncrement("anvandare", "anvandareID");
-                String namn = jTextField2.getText();
-                String losenord = jTextField3.getText();
+                String namn = jTextField5.getText();
+                String losenord = jTextField10.getText();
 
                 ArrayList<String> NamnPaAnvandare;
                 NamnPaAnvandare = Databaskoppling.idb.fetchColumn("select namn from anvandare");
