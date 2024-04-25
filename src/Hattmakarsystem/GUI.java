@@ -97,6 +97,8 @@ public class GUI extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         jList7 = new javax.swing.JList<>();
+        jLabel25 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         AnpassadCB = new javax.swing.JCheckBox();
         jTextField6 = new javax.swing.JTextField();
@@ -482,6 +484,12 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane9.setViewportView(jList7);
 
         jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 80, 70));
+
+        jLabel25.setText("Sök");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 30, -1));
+
+        jButton11.setText("Lägg till i material");
+        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         jTabbedPane2.addTab("Special hattar", jPanel1);
 
@@ -1476,6 +1484,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField decTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1509,6 +1518,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
