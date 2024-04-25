@@ -14,17 +14,17 @@ import oru.inf.InfException;
  */
 public class LaggTillAnpassade {
     
-    public void laggTillAnpassade(String namn, int pris, String dekoration, String beskrivning, JCheckBox jCheckBox){
+    public void laggTillAnpassade(String namn, int pris, String dekoration, String beskrivning, int storlek, JCheckBox jCheckBox){
         
         try{
          Databaskoppling.koppling();
          
          if(jCheckBox.isSelected()){
-         String fraga = "SELECT MAX(orderid) AS senaste_order_id FROM ordrar";
+         String fraga = "SELECT MAX(anpassadID) AS senaste_anpassad_id FROM anpassade";
          String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
-         int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) : 1;   
+         int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) + 1 : 1;   
             
-         String laggTill = "INSERT INTO anpassade (anpassadId, namn, pris, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + dekoration + "', '" + beskrivning + "')";
+         String laggTill = "INSERT INTO anpassade (anpassadId, namn, pris, storlek, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + storlek + "', '" + dekoration + "', '" + beskrivning + "')";
          Databaskoppling.idb.insert(laggTill);
             
          JOptionPane.showMessageDialog(null, "Ny anpassad hatt tillagd!");
