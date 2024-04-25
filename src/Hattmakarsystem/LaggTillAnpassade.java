@@ -4,6 +4,8 @@
  */
 package Hattmakarsystem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
@@ -35,9 +37,14 @@ public class LaggTillAnpassade {
         }
     }
 
-    public void laggTillAnpassadOrder(int totalpris, String epost, String datum) {
+    public void laggTillAnpassadOrder(int totalpris, String epost) {
 
         try {
+        Date dagensDatum = new Date();
+         //skapar fromat för datumet
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //fromaterar datumet
+        String datum = format.format(dagensDatum);
             String fraga2 = "SELECT MAX(orderID) AS senaste_order_id FROM order";
             String senasteIdStr2 = Databaskoppling.idb.fetchSingle(fraga2);
             int senasteId2 = senasteIdStr2 != null ? Integer.parseInt(senasteIdStr2) + 1 : 1;

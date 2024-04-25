@@ -904,7 +904,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
-                   HuvudPanel.setSelectedIndex(4);
+                   HuvudPanel.setSelectedIndex(3);
                    jLabel9.setText(jList3.getSelectedValue().trim().split("-")[0]);
                    OrdrarHattar.fyllOrderLista(jList4,jLabel9,PrisJL,DatumJL);
 
@@ -1035,7 +1035,25 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        LaggaLagerHatIBestallning.regglageranpassade(jComboBox3,orderlista,jList2 ,jTextField6,jTextField7,jTextField8,jTextField9);
+        
+        if(AnpassadCB.isSelected()){
+            String namn = jComboBox3.getSelectedItem().toString();
+            String prisStr = jTextField6.getText();
+            int pris = Integer.parseInt(prisStr);
+            String beskrivning = jTextField9.getText();
+            String dekoration = jTextField8.getText();
+            String storlekStr = jTextField7.getText();
+            int storlek = Integer.parseInt(storlekStr);
+            
+            LaggTillAnpassade regAnpassad = new LaggTillAnpassade();
+            regAnpassad.laggTillAnpassade(namn, pris, dekoration, beskrivning, storlek, AnpassadCB);
+            
+            regAnpassad.laggTillAnpassadOrder(pris, Epost);
+        }
+        else{
+            LaggaLagerHatIBestallning.regglageranpassade(jComboBox3,orderlista,jList2 ,jTextField6,jTextField7,jTextField8,jTextField9);
+        }
+       
 
         // TODO add your handling code here:fyllComboBox(JComboBox combo)
 
@@ -1156,6 +1174,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HuvudPanel.setSelectedIndex(1);        // TODO add your handling code here:
+        Epost = jList1.getSelectedValue();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
