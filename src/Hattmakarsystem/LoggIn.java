@@ -5,6 +5,7 @@
 package Hattmakarsystem;
 
 import static Hattmakarsystem.Databaskoppling.koppling;
+import static java.lang.Integer.parseInt;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ public class LoggIn extends javax.swing.JFrame {
     /**
      * Creates new form LoggIn
      */
-    String anvanderid;
+    static int anvanderid;
     public LoggIn() {
         initComponents();
           koppling();
@@ -158,7 +159,7 @@ dispose();        // TODO add your handling code here:
         if(jPassword.getText().equals(lösenord)) {
             GUI info = new GUI();
         info.setVisible(true);
-        anvanderid = Databaskoppling.idb.fetchSingle("SELECT anvandareID from anvandare where namn = '"+rad.get("namn")+"'");
+        anvanderid = parseInt(Databaskoppling.idb.fetchSingle("SELECT anvandareID from anvandare where namn = '"+rad.get("namn")+"'"));
         dispose();
         }
         else {

@@ -28,7 +28,7 @@ public class GUI extends javax.swing.JFrame {
         knappVisning1();
         DisableTabs();
         gomtabs();
-        LaddaOrdrar.Allaordrar(jList3, jComboBox2.getSelectedIndex(),1);
+        LaddaOrdrar.Allaordrar(jList3,LoggIn.anvanderid);
     }
 
     /**
@@ -46,7 +46,6 @@ public class GUI extends javax.swing.JFrame {
         OrderValjP = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         HuvudPanel = new javax.swing.JTabbedPane();
@@ -183,13 +182,6 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jList3);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla ordrar", "Mina påbörjade ordrar", "Ej påbörjade ordrar" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
         jButton5.setText("jButton5");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,23 +203,19 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(OrderValjPLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(OrderValjPLayout.createSequentialGroup()
-                            .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(1, 1, 1))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         OrderValjPLayout.setVerticalGroup(
             OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderValjPLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -974,15 +962,19 @@ public class GUI extends javax.swing.JFrame {
 
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
                // TODO add your handling code here:
+                   int index = jList3.getSelectedIndex();
                    HuvudPanel.setSelectedIndex(3);
-                   jLabel9.setText(jList3.getSelectedValue().trim().split("-")[0]);
+                   if (jList3.getSelectedValue().charAt(0) == '-') {
+                       
+                       while(jList3.getModel().getElementAt(index).charAt(0) == '-'){
+                           index--;
+                       }
+                       
+                   }
+                   jLabel9.setText(jList3.getModel().getElementAt(index));
                    OrdrarHattar.fyllOrderLista(jList4,jLabel9,PrisJL,DatumJL);
-
+                   
     }//GEN-LAST:event_jList3MouseReleased
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        LaddaOrdrar.Allaordrar(jList3, jComboBox2.getSelectedIndex(),1);
-    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
 
@@ -1426,7 +1418,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
