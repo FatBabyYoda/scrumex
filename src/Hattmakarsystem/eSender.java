@@ -55,7 +55,7 @@ public class eSender {
     private MimeMessage draftEmail(String epostKonto ) throws AddressException, MessagingException {
         
        String eSubject = "Bekräftelse på order";
-       String eBody = "Tack för din beställningtesttttt";
+       String eBody = "Tack för din beställning från hatt makarna";
        mimeMessage = new MimeMessage(newSession);
        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(epostKonto));
        mimeMessage.setSubject(eSubject);
