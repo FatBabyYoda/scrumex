@@ -22,9 +22,15 @@ public class LaggTillAnpassade {
             Databaskoppling.koppling();
 
             if (jCheckBox.isSelected()) {
-                String fraga = "SELECT MAX(anpassadID) AS senaste_anpassad_id FROM anpassade";
-                String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
-                int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) + 1 : 1;
+                String fraga = "SELECT MAX(lagfordID) AS senaste_lagford_id FROM lagerforda";
+            String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
+            
+            int senasteId;
+            if (senasteIdStr != null) {
+                senasteId = Integer.parseInt(senasteIdStr) + 1;
+            } else {
+                senasteId = 1; // Om det inte finns några rader i lagerforda, sätt senasteId till 1
+            }
                 String laggTill = "INSERT INTO anpassade (anpassadId, namn, pris, storlek, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + storlek + "', '" + dekoration + "', '" + beskrivning + "')";
                 Databaskoppling.idb.insert(laggTill);
 
