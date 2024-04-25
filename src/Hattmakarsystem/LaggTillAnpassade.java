@@ -22,15 +22,9 @@ public class LaggTillAnpassade {
             Databaskoppling.koppling();
 
             if (jCheckBox.isSelected()) {
-                String fraga = "SELECT MAX(lagfordID) AS senaste_lagford_id FROM lagerforda";
-            String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
-            
-            int senasteId;
-            if (senasteIdStr != null) {
-                senasteId = Integer.parseInt(senasteIdStr) + 1;
-            } else {
-                senasteId = 1; // Om det inte finns några rader i lagerforda, sätt senasteId till 1
-            }
+             String fraga = "SELECT MAX(anpassadID) AS senaste_anpassad_id FROM anpassade";
+                String senasteIdStr = Databaskoppling.idb.fetchSingle(fraga);
+                int senasteId = senasteIdStr != null ? Integer.parseInt(senasteIdStr) + 1 : 1;
                 String laggTill = "INSERT INTO anpassade (anpassadId, namn, pris, storlek, dekoration, beskrivning) VALUES ('" + senasteId + "', '" + namn + "', '" + pris + "', '" + storlek + "', '" + dekoration + "', '" + beskrivning + "')";
                 Databaskoppling.idb.insert(laggTill);
 
@@ -43,7 +37,7 @@ public class LaggTillAnpassade {
         }
     }
 
-    public void laggTillAnpassadOrder(int totalpris, String epost) {
+    public void laggTillAnpassadOrder(int totalpris, String Epost) {
 
         try {
         Date dagensDatum = new Date();
@@ -51,12 +45,13 @@ public class LaggTillAnpassade {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //fromaterar datumet
         String datum = format.format(dagensDatum);
-            String fraga2 = "SELECT MAX(orderID) AS senaste_order_id FROM order";
+            String fraga2 = "SELECT MAX(orderID) AS senaste_order_id FROM ordrar";
             String senasteIdStr2 = Databaskoppling.idb.fetchSingle(fraga2);
             int senasteId2 = senasteIdStr2 != null ? Integer.parseInt(senasteIdStr2) + 1 : 1;
-            String kund = "SELECT kundID from kund where email = '" + epost + "'";
-            Databaskoppling.idb.fetchColumn(kund);
-            String laggTill2 = "INSERT INTO order (orderID, status, datum, totalpris, anvandare, kund) VALUES ('" + senasteId2 + "', '" + '0' + "', '" + datum + "', NULL, '" + kund + "')";
+            String kund = "SELECT kundID from kund where email = '" + Epost + "'";
+            String kundID = Databaskoppling.idb.fetchSingle(kund);
+
+            String laggTill2 = "INSERT INTO ordrar(orderID, status, datum, totalpris, kund, prio) VALUES ('" + senasteId2 + "', '" + '0' + "', '" + datum + "', '" + totalpris + "', '" + kundID + "', '" + '0' + "')";
             Databaskoppling.idb.insert(laggTill2);
             
             JOptionPane.showMessageDialog(null, "Order tillagd!");
