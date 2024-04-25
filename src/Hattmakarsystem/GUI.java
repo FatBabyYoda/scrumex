@@ -1061,20 +1061,25 @@ public class GUI extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         try {
 
-            String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM ordrar WHERE anvandare = '" + txtID.getText() + "'");
-            String q2 = "UPDATE ordrar SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
-            Databaskoppling.idb.update(q2);
-
+      String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM lagerorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+    String ID3 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM specialorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+    
+    String combinedQuery = "UPDATE lagerorderkoppling AS l " +
+                           "JOIN specialorderkoppling AS s ON l.anvandare = s.anvandare " +
+                           "SET l.anvandare = NULL, s.anvandare = NULL " +
+                           "WHERE l.anvandare = '" + ID2 + "' AND s.anvandare = '" + ID3 + "'";
+                           
+    Databaskoppling.idb.update(combinedQuery);
             String ID = Databaskoppling.idb.fetchSingle("SELECT anvandareID FROM anvandare WHERE anvandareID = '" + txtID.getText() + "'");
             String q1 = "DELETE FROM anvandare WHERE anvandareID = " + ID;
             //String q2 = "DELETE FROM ordrar WHERE  COLUMN  anvandare = " + ID;
             Databaskoppling.idb.delete(q1);
-
             JOptionPane.showMessageDialog(null, " Användaren är raderad");
-
-        } catch (InfException e) {
+     
+        } 
+        catch (InfException e) {
             // Hantera eventuella undantag, till exempel visa ett felmeddelande.
-            JOptionPane.showMessageDialog(null, "radering misslyckades.");
+            JOptionPane.showMessageDialog(null, "Radering misslyckades.");
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
