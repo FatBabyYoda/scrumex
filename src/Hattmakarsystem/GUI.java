@@ -1133,7 +1133,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        HuvudPanel.setSelectedIndex(3);
+        HuvudPanel.setSelectedIndex(2);
         String[] hej1 = getSelectedGUIOrder();
         Fraktsedel.kundInformation(hej1, jKundTabell);
 
