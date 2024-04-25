@@ -18,6 +18,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    String Epost;
     DefaultListModel<String> orderlista = new DefaultListModel();
     private JButton[] knappar;
     public GUI() {
@@ -1116,7 +1117,7 @@ public class GUI extends javax.swing.JFrame {
                 // Vi skapade variabler för att underlätta för oss själva och läsaren
                 String nextID = Databaskoppling.idb.getAutoIncrement("kund", "kundid");
 
-                String Epost = jTextEmail.getText();
+                Epost = jTextEmail.getText();
                 String telefon = jTextTelefon.getText();
                 String namn = jTextNamn.getText();
                 String Adress = jTextAdress.getText();
