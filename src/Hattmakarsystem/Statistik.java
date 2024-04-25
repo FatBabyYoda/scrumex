@@ -17,7 +17,7 @@ import oru.inf.InfException;
 public class Statistik {
     
     
-public void seStatistik(JTextArea textArea){ 
+static public void seStatistik(JTextArea textArea){ 
     
 Databaskoppling.koppling();
 

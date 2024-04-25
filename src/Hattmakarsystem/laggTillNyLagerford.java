@@ -17,7 +17,7 @@ public class laggTillNyLagerford {
     
     
     
-    public void laggTillLagerford(String namn, int pris, String dekoration, String beskrivning){
+    static public void laggTillLagerford(String namn, String pris, String dekoration, String beskrivning){
         
         try{
             Databaskoppling.koppling();
