@@ -88,13 +88,14 @@ public class Specbestallning {
         
     }
     
-    public static void registreraorder(JButton regknapp){
+    public static void registreraorder(JButton regknapp,String kundepost){
         lagerhattar = LaggaLagerHatIBestallning.getHattArray();
         
-        
+       
         
         try {
             
+            String kundid = Databaskoppling.idb.fetchSingle("SELECT KundID from kund WHERE email = '" + kundepost+"'");
             orderid = Databaskoppling.idb.getAutoIncrement("ordrar", "orderID");
             
             Date dagensDatum = new Date();
@@ -114,7 +115,7 @@ public class Specbestallning {
             }
             totpris *= 1.25;
             
-            Databaskoppling.idb.insert("INSERT INTO ordrar VALUES("+orderid+",0,'"+datum+"',"+totpris+",NULL,1);");
+            Databaskoppling.idb.insert("INSERT INTO ordrar VALUES("+orderid+","+kundid+",'"+datum+"',"+totpris+",NULL,1);");
             
             for (int i = 0; i < spechattar.size(); i++) {
                 
@@ -151,7 +152,7 @@ public class Specbestallning {
             for (int i = 0; i < lagerhattar.size(); i++) {
                 Databaskoppling.idb.insert("INSERT INTO lagerorderkoppling VALUES ("+lagerhattar.get(i).get("id")+","+orderid+",NULL,"+lagerhattar.get(i).get("storlek")+");");
             }
-            eSender.sendComfirmation("gttgeded@gmail.com");
+            eSender.sendComfirmation(kundepost);
         
         } catch (Exception ex) {
             Logger.getLogger(Specbestallning.class.getName()).log(Level.SEVERE, null, ex);
