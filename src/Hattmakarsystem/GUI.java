@@ -329,11 +329,10 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(272, 272, 272)
                         .addComponent(jLabel1))
                     .addGroup(KundjPLayout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jButton2))
-                    .addGroup(KundjPLayout.createSequentialGroup()
                         .addGap(221, 221, 221)
-                        .addComponent(jButton3)))
+                        .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         KundjPLayout.setVerticalGroup(
@@ -368,7 +367,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29))
         );
