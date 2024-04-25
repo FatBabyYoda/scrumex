@@ -17,6 +17,7 @@ public class LoggIn extends javax.swing.JFrame {
     /**
      * Creates new form LoggIn
      */
+    String anvanderid;
     public LoggIn() {
         initComponents();
           koppling();
@@ -147,7 +148,7 @@ dispose();        // TODO add your handling code here:
         System.out.println(query);
         HashMap<String, String> rad = Databaskoppling.idb.fetchRow(query);
         //Epost matcher ett lösenord så ska användaren kunna Logga in
-
+        
    
 
         String lösenord = rad.get("losenord");
@@ -157,6 +158,7 @@ dispose();        // TODO add your handling code here:
         if(jPassword.getText().equals(lösenord)) {
             GUI info = new GUI();
         info.setVisible(true);
+        anvanderid = Databaskoppling.idb.fetchSingle("SELECT anvandareID from anvandare where namn = '"+rad.get("namn")+"'");
         dispose();
         }
         else {
