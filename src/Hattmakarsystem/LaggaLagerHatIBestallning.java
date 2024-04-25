@@ -56,12 +56,12 @@ public class LaggaLagerHatIBestallning {
         }
     }
     
-    public static void fyllText(JComboBox combo,JTextField pris,JTextField dekoration,JTextField beskrivning)
+    public static void fyllText(JList combo,JTextField pris,JTextField dekoration,JTextField beskrivning)
     {
         Databaskoppling.koppling(); 
         
         try {
-            hatinfo = Databaskoppling.idb.fetchRow("select * from lagerforda where namn = '"+combo.getSelectedItem().toString()+"'");
+            hatinfo = Databaskoppling.idb.fetchRow("select * from lagerforda where namn = '"+combo.getSelectedValue().toString()+"'");
             pris.setText(hatinfo.get("pris"));
 
             dekoration.setText(hatinfo.get("dekoration"));
@@ -71,11 +71,11 @@ public class LaggaLagerHatIBestallning {
             Logger.getLogger(LaggaLagerHatIBestallning.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void regglageranpassade(JComboBox combo,DefaultListModel<String> orderlista,JList lista,JTextField pris,JTextField storlek,JTextField dekoration,JTextField beskrivning)
+    public static void regglageranpassade(JList combo,DefaultListModel<String> orderlista,JList lista,JTextField pris,JTextField storlek,JTextField dekoration,JTextField beskrivning)
     {
-        orderlista.addElement(combo.getSelectedItem().toString());
+        orderlista.addElement(combo.getSelectedValue().toString());
         HashMap<String, String> varden = new HashMap<>();
-        varden.put("namn", combo.getSelectedItem().toString());
+        varden.put("namn", combo.getSelectedValue().toString());
         varden.put("id", hatinfo.get("lagfordID"));
         varden.put("pris",pris.getText());
         varden.put("storlek",storlek.getText());
