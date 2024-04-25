@@ -149,6 +149,15 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
+        PrisTF = new javax.swing.JTextField();
+        decTF = new javax.swing.JTextField();
+        namnTF = new javax.swing.JTextField();
+        beskTF = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
 
         jList6.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -958,16 +967,31 @@ public class GUI extends javax.swing.JFrame {
 
         HuvudPanel.addTab("Statistik", jPanel5);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
-        );
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.add(PrisTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 80, -1));
+        jPanel6.add(decTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 253, 80, -1));
+        jPanel6.add(namnTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 80, -1));
+        jPanel6.add(beskTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 175, 162));
+
+        jButton7.setText("Spara");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+
+        jLabel6.setText("Pris");
+        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+
+        jLabel7.setText("Dekoration");
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+
+        jLabel17.setText("Namn");
+        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+
+        jLabel24.setText("Beskrivning");
+        jPanel6.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 149, -1, -1));
 
         HuvudPanel.addTab("Lägg till ny hatt", jPanel6);
 
@@ -1317,6 +1341,11 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+      laggTillNyLagerford.laggTillLagerford(namnTF.getText(),PrisTF.getText(),decTF.getText(),beskTF.getText());
+      
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
 
     /**
@@ -1436,12 +1465,15 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel PrisJL;
     private javax.swing.JLabel PrisLabel;
     private javax.swing.JTextField PrisTB;
+    private javax.swing.JTextField PrisTF;
     private javax.swing.JLabel RitningIcon;
     private javax.swing.JTextField SpecNamn;
     private javax.swing.JLabel StorlekLabel;
     private javax.swing.JTextField StorlekTB;
+    private javax.swing.JTextField beskTF;
     private java.awt.Button button1;
     private javax.swing.JLabel datumJL;
+    private javax.swing.JTextField decTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton12;
@@ -1456,6 +1488,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JTable jKundTabell;
@@ -1467,6 +1500,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1474,9 +1508,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
@@ -1519,6 +1556,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNamn;
     private javax.swing.JTextField jTextTelefon;
+    private javax.swing.JTextField namnTF;
     private javax.swing.JLabel prisJL;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtlösenord;
