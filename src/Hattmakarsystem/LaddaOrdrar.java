@@ -19,7 +19,9 @@ import oru.inf.InfException;
  * @author lokef
  */
 public class LaddaOrdrar {
-
+static ArrayList<HashMap<String,String>> hattarspec;
+static ArrayList<HashMap<String,String>> hattarlagger;
+static ArrayList<HashMap<String,String>> hattaranpassad;
 static DefaultListModel<String> ordrar = new DefaultListModel<>();
 
     public static void main(String[] args){
@@ -40,10 +42,56 @@ static DefaultListModel<String> ordrar = new DefaultListModel<>();
                 
                 if(!(Databaskoppling.idb.fetchSingle("SELECT orderid FROM ordrar WHERE orderid = "+i) == null)){
                     ordrar.addElement(Databaskoppling.idb.fetchSingle("SELECT orderid FROM ordrar WHERE orderID = "+i+""));
-                    ordrar.addElement(Databaskoppling.idb.fetchSingle("select CONCAT('-',specialorderkoppling.specialID,' ',namn) from specialorderkoppling join special on specialorderkoppling.specialID = special.specialID where orderID = "+i));
-                    ordrar.addElement(Databaskoppling.idb.fetchSingle("select CONCAT('-',lagerorderkoppling.lagfordID,' ',namn) from lagerorderkoppling join lagerforda on lagerorderkoppling.lagfordID = lagerforda.lagfordID where orderID = "+i));
-                    ordrar.addElement(Databaskoppling.idb.fetchSingle("select CONCAT('-',anpassade.anpassadID,' ',namn) from anpassadorderkoppling join anpassade on anpassade.anpassadID = anpassadorderkoppling.anpassadID where orderID = "+i));
+                    
+                    hattarspec = Databaskoppling.idb.fetchRows("select special.specialID,namn from specialorderkoppling join special on special.specialID = specialorderkoppling.specialID where orderID = "+i);
+                    hattaranpassad = Databaskoppling.idb.fetchRows("select anpassade.anpassadID,namn from anpassadorderkoppling join anpassade on anpassade.anpassadID = anpassadorderkoppling.anpassadID where orderID = "+i);
+                    hattarlagger = Databaskoppling.idb.fetchRows("select lagerforda.lagfordID,namn from lagerorderkoppling join lagerforda on lagerforda.lagfordID = lagerorderkoppling.lagfordID where orderID = "+i);
+                    
                 
+                    String value = "-";
+                    for (HashMap<String, String> stockedOrder : hattarlagger) {
+                        for (String key : stockedOrder.keySet()) {
+                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
+                                value += stockedOrder.get(key) + " ";
+                       
+                            }
+                           
+                        }
+                    ordrar.addElement(value);
+                    value = "-";
+                    
+                    
+                    }
+                    
+                    for (HashMap<String, String> stockedOrder : hattarspec) {
+                        for (String key : stockedOrder.keySet()) {
+                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
+                                value += stockedOrder.get(key) + " ";
+                       
+                            }
+                           
+                        }
+                    ordrar.addElement(value);
+                    value = "-";
+                    
+                    
+                    }
+                    
+                    for (HashMap<String, String> stockedOrder : hattaranpassad) {
+                        for (String key : stockedOrder.keySet()) {
+                            if (stockedOrder.get(key) != null && !key.equals("orderID")) {
+                                value += stockedOrder.get(key) + " ";
+                       
+                            }
+                           
+                        }
+                    ordrar.addElement(value);
+                    value = "-";
+                    
+                    
+                    }
+                    
+                    
                 }
                 
                     
