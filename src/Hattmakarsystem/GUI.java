@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
+import static Hattmakarsystem.OrdrarHattar.order;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -124,6 +125,8 @@ public class GUI extends javax.swing.JFrame {
         PrisJL = new javax.swing.JLabel();
         prisJL = new javax.swing.JLabel();
         datumJL = new javax.swing.JLabel();
+        jKonvertera = new javax.swing.JButton();
+        jValutaVal = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         HanteraKontojP1 = new javax.swing.JPanel();
         jTextField5 = new javax.swing.JTextField();
@@ -206,13 +209,14 @@ public class GUI extends javax.swing.JFrame {
         OrderValjPLayout.setHorizontalGroup(
             OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderValjPLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(OrderValjPLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(OrderValjPLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         OrderValjPLayout.setVerticalGroup(
             OrderValjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,18 +715,27 @@ public class GUI extends javax.swing.JFrame {
 
         DatumJL.setText("1000-10-10");
 
-        PrisJL.setText("1kr");
+        PrisJL.setText("0,00 SEK");
 
         prisJL.setText("Tot pris");
 
         datumJL.setText("Datum");
+
+        jKonvertera.setText("Konvertera");
+        jKonvertera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jKonverteraActionPerformed(evt);
+            }
+        });
+
+        jValutaVal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SEK", "USD", "EUR", "IRR" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(579, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addGap(41, 41, 41))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -733,22 +746,20 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(datumJL)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DatumJL)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(datumJL)
-                                    .addComponent(DatumJL))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(226, 226, 226)
-                                        .addComponent(PrisJL))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addGap(230, 230, 230)
-                                        .addComponent(prisJL)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(PrisJL)
+                                    .addComponent(prisJL))
+                                .addGap(91, 91, 91)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jKonvertera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jValutaVal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -757,21 +768,29 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                         .addComponent(jButton9))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(datumJL)
-                            .addComponent(prisJL))
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(datumJL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DatumJL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DatumJL)
-                            .addComponent(PrisJL))))
+                            .addComponent(prisJL)
+                            .addComponent(jKonvertera))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PrisJL))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jValutaVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)))
                 .addGap(67, 67, 67))
         );
 
@@ -1183,7 +1202,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SpecNamnActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Specbestallning.registreraorder(jButton8,Epost);
+        Specbestallning.registreraorder(jButton8,Epost,jList3);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
@@ -1335,6 +1354,40 @@ public class GUI extends javax.swing.JFrame {
       
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jKonverteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKonverteraActionPerformed
+        // Konverterar-knapp
+           
+        try {
+        if (order == null) {
+            JOptionPane.showMessageDialog(null, "Ingen order har valts eller orderdatan är inte tillgänglig");
+            return;
+        }
+
+        double summa = Double.parseDouble(order.get("totalpris"));
+        String valdValuta = (String) jValutaVal.getSelectedItem();
+        double resultat = 0.0;
+
+        switch (valdValuta) {
+            case "SEK":
+                resultat = summa;
+                break;
+            case "EUR":
+                resultat = summa / 11.21;
+                break;
+            case "USD":
+                resultat = summa / 10.36;
+                break;
+            case "IRR":
+                resultat = summa / 0.00026;
+                break;
+        }
+        PrisJL.setText(String.format("%.2f %s", resultat, valdValuta.split(" ")[0]));
+    } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel ");
+            System.out.println("Internt felmeddelande: " + ex);
+        }
+    }//GEN-LAST:event_jKonverteraActionPerformed
+
 
 
     /**
@@ -1479,6 +1532,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jKonvertera;
     private javax.swing.JTable jKundTabell;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1541,6 +1595,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNamn;
     private javax.swing.JTextField jTextTelefon;
+    private javax.swing.JComboBox<String> jValutaVal;
     private javax.swing.JTextField namnTF;
     private javax.swing.JLabel prisJL;
     private javax.swing.JTextField txtID;

@@ -26,7 +26,7 @@ public class OrdrarHattar {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         Databaskoppling.koppling();
         try {
-            order = Databaskoppling.idb.fetchRow("select * from ordrar where orderID = "+ordernummer.getText());           
+            order = Databaskoppling.idb.fetchRow("select * from ordrar where orderID = "+ ordernummer.getText());           
             hattarspec = Databaskoppling.idb.fetchRows("select * from specialorderkoppling join special on specialorderkoppling.specialID = special.specialID where orderID = "+ordernummer.getText());
             hattarlagger = Databaskoppling.idb.fetchRows("select * from lagerorderkoppling join lagerforda on lagerorderkoppling.lagfordID = lagerforda.lagfordID where orderID = "+ordernummer.getText());
            /*
@@ -73,7 +73,7 @@ public class OrdrarHattar {
             }
             */
             hattar.setModel(listModel);
-            pris.setText(order.get("totalpris")+" kr");
+            pris.setText(order.get("totalpris")+" SEK");
             datum.setText(order.get("datum"));
             
            // ArrayList<HashMap<String,String>> hattaranpassade = Databaskoppling.idb.fetchRows("select * from ordrar where orderID = "+ordernummer.getText());
