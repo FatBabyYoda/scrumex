@@ -17,6 +17,7 @@ public class LoggIn extends javax.swing.JFrame {
     /**
      * Creates new form LoggIn
      */
+    String anvanderid;
     public LoggIn() {
         initComponents();
           koppling();
@@ -157,6 +158,7 @@ dispose();        // TODO add your handling code here:
         if(jPassword.getText().equals(lösenord)) {
             GUI info = new GUI();
         info.setVisible(true);
+        anvanderid = Databaskoppling.idb.fetchSingle("SELECT anvandareID from anvandare where namn = '"+rad.get("namn")+"'");
         dispose();
         }
         else {
