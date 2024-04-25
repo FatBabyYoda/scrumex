@@ -39,6 +39,8 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jList6 = new javax.swing.JList<>();
         MenyValjP = new javax.swing.JPanel();
         OrderValjP = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -89,6 +91,9 @@ public class GUI extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList7 = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         AnpassadCB = new javax.swing.JCheckBox();
         jTextField6 = new javax.swing.JTextField();
@@ -137,6 +142,13 @@ public class GUI extends javax.swing.JFrame {
         txtlösenord = new javax.swing.JTextField();
         txtID = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
+
+        jList6.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane8.setViewportView(jList6);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -391,17 +403,17 @@ public class GUI extends javax.swing.JFrame {
         jLabel11.setText("Färg");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 142, -1, -1));
         jPanel1.add(FargTB, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 164, 191, -1));
-        jPanel1.add(MaterialTB, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 236, 191, -1));
+        jPanel1.add(MaterialTB, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 191, -1));
 
         MaterialLabel.setText("Material");
-        jPanel1.add(MaterialLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 214, -1, -1));
-        jPanel1.add(Mangdtextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 327, 119, -1));
+        jPanel1.add(MaterialLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
+        jPanel1.add(Mangdtextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 119, -1));
 
         Mangdlabel.setText("Mängd");
-        jPanel1.add(Mangdlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 305, -1, -1));
+        jPanel1.add(Mangdlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         Enhet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cm²", "cm", "m", "m²" }));
-        jPanel1.add(Enhet, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 327, -1, -1));
+        jPanel1.add(Enhet, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
 
         jScrollPane5.setViewportView(MaterialList);
 
@@ -433,6 +445,17 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 99, -1, -1));
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 80, -1));
+
+        jScrollPane9.setViewportView(jList7);
+
+        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 80, 70));
 
         jTabbedPane2.addTab("Special hattar", jPanel1);
 
@@ -501,7 +524,7 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(331, Short.MAX_VALUE))
+                        .addContainerGap(332, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1223,6 +1246,12 @@ public class GUI extends javax.swing.JFrame {
         jList5.setModel(listModel);
     }//GEN-LAST:event_jTextField2KeyReleased
 
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+        DefaultListModel<String> listModel = Sok.sok(jTextField3.getText(), "material", "namn");
+        jList7.setModel(listModel);
+    }//GEN-LAST:event_jTextField3KeyReleased
+
 
 
     /**
@@ -1389,6 +1418,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
+    private javax.swing.JList<String> jList6;
+    private javax.swing.JList<String> jList7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1400,6 +1431,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextAdress;
@@ -1407,6 +1440,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
