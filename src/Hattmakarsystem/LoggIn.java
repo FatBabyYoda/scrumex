@@ -5,6 +5,7 @@
 package Hattmakarsystem;
 
 import static Hattmakarsystem.Databaskoppling.koppling;
+import static java.lang.Integer.parseInt;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -17,6 +18,7 @@ public class LoggIn extends javax.swing.JFrame {
     /**
      * Creates new form LoggIn
      */
+    static int anvanderid;
     public LoggIn() {
         initComponents();
           koppling();
@@ -143,11 +145,11 @@ dispose();        // TODO add your handling code here:
         
         try {
         // En SQL-fråga skapas för att hämta ut information om en alien baserat på det angivna användarnamnet från textfältet jUser
-     String query = String.format("SELECT namn, losenord FROM anvandare WHERE namn = \"%s\"", jEmail.getText());
+        String query = String.format("SELECT namn, losenord FROM anvandare WHERE namn = \"%s\"", jEmail.getText());
         System.out.println(query);
         HashMap<String, String> rad = Databaskoppling.idb.fetchRow(query);
         //Epost matcher ett lösenord så ska användaren kunna Logga in
-
+        
    
 
         String lösenord = rad.get("losenord");
@@ -157,6 +159,7 @@ dispose();        // TODO add your handling code here:
         if(jPassword.getText().equals(lösenord)) {
             GUI info = new GUI();
         info.setVisible(true);
+        anvanderid = parseInt(Databaskoppling.idb.fetchSingle("SELECT anvandareID from anvandare where namn = '"+rad.get("namn")+"'"));
         dispose();
         }
         else {
