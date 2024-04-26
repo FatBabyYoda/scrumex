@@ -40,7 +40,7 @@ public class Kundlista {
                 kundInfo.get("email"),
                 kundInfo.get("telefon"),
                 kundInfo.get("typ"),
-                kundInfo.get("orderdatum"),
+                kundInfo.get("datum"),
                 kundInfo.get("pris"),
                 kundInfo.get("totalpris")
             });

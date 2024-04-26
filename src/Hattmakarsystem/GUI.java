@@ -1147,7 +1147,10 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
- 
+        String selectedOrder = jList3.getSelectedValue().toString();
+        FraktsedelGenerator.createAndShowGui(selectedOrder.toString(), jKundTabell);
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
