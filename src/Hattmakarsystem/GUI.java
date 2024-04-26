@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Hattmakarsystem;
+
 import static Hattmakarsystem.OrdrarHattar.order;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import oru.inf.InfException;
+
 /**
  *
  * @author Lucas
@@ -25,13 +27,14 @@ public class GUI extends javax.swing.JFrame {
     int anvandarid;
     DefaultListModel<String> orderlista = new DefaultListModel();
     private JButton[] knappar;
+
     public GUI() {
         initComponents();
         knappGenerering();
         knappVisning1();
         DisableTabs();
         gomtabs();
-        LaddaOrdrar.Allaordrar(jList3,LoggIn.anvanderid);
+        LaddaOrdrar.Allaordrar(jList3, LoggIn.anvanderid);
         Statistik.seStatistik(jTextArea2);
     }
 
@@ -329,11 +332,10 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(272, 272, 272)
                         .addComponent(jLabel1))
                     .addGroup(KundjPLayout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jButton2))
-                    .addGroup(KundjPLayout.createSequentialGroup()
                         .addGap(221, 221, 221)
-                        .addComponent(jButton3)))
+                        .addGroup(KundjPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         KundjPLayout.setVerticalGroup(
@@ -368,7 +370,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29))
         );
@@ -1021,21 +1023,20 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jList3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList3MouseReleased
-               // TODO add your handling code here:
-                   int index = jList3.getSelectedIndex();
-                   char id;
-                   HuvudPanel.setSelectedIndex(3);
-                   if (jList3.getSelectedValue().charAt(0) == '-') {
-                       
-                               
-                       while(jList3.getModel().getElementAt(index).charAt(0) == '-'){
-                           index--;
-                       }
-                       
-                   }
-                   jLabel9.setText(jList3.getModel().getElementAt(index));
-                   OrdrarHattar.fyllOrderLista(jList4,jLabel9,PrisJL,DatumJL);
-                   
+        // TODO add your handling code here:
+        int index = jList3.getSelectedIndex();
+        char id;
+        HuvudPanel.setSelectedIndex(3);
+        if (jList3.getSelectedValue().charAt(0) == '-') {
+
+            while (jList3.getModel().getElementAt(index).charAt(0) == '-') {
+                index--;
+            }
+
+        }
+        jLabel9.setText(jList3.getModel().getElementAt(index));
+        OrdrarHattar.fyllOrderLista(jList4, jLabel9, PrisJL, DatumJL);
+
     }//GEN-LAST:event_jList3MouseReleased
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -1061,20 +1062,25 @@ public class GUI extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         try {
 
-            String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM ordrar WHERE anvandare = '" + txtID.getText() + "'");
-            String q2 = "UPDATE ordrar SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
-            Databaskoppling.idb.update(q2);
-
+      String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM lagerorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+    String ID3 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM specialorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+    
+    String combinedQuery = "UPDATE lagerorderkoppling AS l " +
+                           "JOIN specialorderkoppling AS s ON l.anvandare = s.anvandare " +
+                           "SET l.anvandare = NULL, s.anvandare = NULL " +
+                           "WHERE l.anvandare = '" + ID2 + "' AND s.anvandare = '" + ID3 + "'";
+                           
+    Databaskoppling.idb.update(combinedQuery);
             String ID = Databaskoppling.idb.fetchSingle("SELECT anvandareID FROM anvandare WHERE anvandareID = '" + txtID.getText() + "'");
             String q1 = "DELETE FROM anvandare WHERE anvandareID = " + ID;
             //String q2 = "DELETE FROM ordrar WHERE  COLUMN  anvandare = " + ID;
             Databaskoppling.idb.delete(q1);
-
             JOptionPane.showMessageDialog(null, " Användaren är raderad");
-
-        } catch (InfException e) {
+     
+        } 
+        catch (InfException e) {
             // Hantera eventuella undantag, till exempel visa ett felmeddelande.
-            JOptionPane.showMessageDialog(null, "radering misslyckades.");
+            JOptionPane.showMessageDialog(null, "Radering misslyckades.");
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
@@ -1095,8 +1101,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        if (!Valideringsklass.emptyTextFields(jTextField5) && !Valideringsklass.emptyTextFields(jTextField10)
-        ) {
+        if (!Valideringsklass.emptyTextFields(jTextField5) && !Valideringsklass.emptyTextFields(jTextField10)) {
 
             try {
                 // Vi skapade variabler för att underlätta för oss själva och läsaren
@@ -1133,47 +1138,41 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        HuvudPanel.setSelectedIndex(3);
-        String[] hej1 = getSelectedGUIOrder();
-        Fraktsedel.kundInformation(hej1, jKundTabell);
+        HuvudPanel.setSelectedIndex(2);
+        Object selectedOrder = jList3.getSelectedValue();
+        Kundlista.fyllKundlista(selectedOrder.toString(), jKundTabell);
 
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        try {
-            JOptionPane.showMessageDialog(null, "Utskrift bekräftad!", "Bekräftelse", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Ett fel uppstod.", "Fel", JOptionPane.ERROR_MESSAGE);
-        }
+        String selectedOrder = jList3.getSelectedValue().toString();
+        FraktsedelGenerator.createAndShowGui(selectedOrder.toString(), jKundTabell);
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
         // TODO add your handling code here:
 
-       
-       
 
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
-        
-            String namn = jList5.getSelectedValue();
-            String prisStr = jTextField6.getText();
-            int pris = Integer.parseInt(prisStr);
-            String beskrivning = jTextField9.getText();
-            String dekoration = jTextField8.getText();
-            String storlekStr = jTextField7.getText();
-            int storlek = Integer.parseInt(storlekStr);
-            
-            LaggTillAnpassade regAnpassad = new LaggTillAnpassade();
-            regAnpassad.laggTillAnpassade(namn, pris, dekoration, beskrivning, storlek, AnpassadCB);
-            
-            regAnpassad.laggTillAnpassadOrder(pris, Epost);
-       
+
+        String namn = jList5.getSelectedValue();
+        String prisStr = jTextField6.getText();
+        int pris = Integer.parseInt(prisStr);
+        String beskrivning = jTextField9.getText();
+        String dekoration = jTextField8.getText();
+        String storlekStr = jTextField7.getText();
+        int storlek = Integer.parseInt(storlekStr);
+
+        LaggTillAnpassade regAnpassad = new LaggTillAnpassade();
+        regAnpassad.laggTillAnpassade(namn, pris, dekoration, beskrivning, storlek, AnpassadCB);
+
+        regAnpassad.laggTillAnpassadOrder(pris, Epost);
 
         // TODO add your handling code here:fyllComboBox(JComboBox combo)
 
@@ -1181,7 +1180,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void AnpassadCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnpassadCBActionPerformed
         // TODO add your handling code here:
-        LaggaLagerHatIBestallning.AktivraAnpassad(AnpassadCB,jTextField6,jTextField7,jTextField8,jTextField9);
+        LaggaLagerHatIBestallning.AktivraAnpassad(AnpassadCB, jTextField6, jTextField7, jTextField8, jTextField9);
 
     }//GEN-LAST:event_AnpassadCBActionPerformed
 
@@ -1190,11 +1189,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Specbestallning.laggtillspecorder(jList2, Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet, orderlista, AntalTB, StorlekTB, PrisTB,SpecNamn);
+        Specbestallning.laggtillspecorder(jList2, Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet, orderlista, AntalTB, StorlekTB, PrisTB, SpecNamn);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        Specbestallning.laggtillmaterial(Mangdtextbox, MaterialTB,FargTB,MaterialList,Enhet);
+        Specbestallning.laggtillmaterial(Mangdtextbox, MaterialTB, FargTB, MaterialList, Enhet);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void SpecNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpecNamnActionPerformed
@@ -1202,7 +1201,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SpecNamnActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Specbestallning.registreraorder(jButton8,Epost,jList3);
+        Specbestallning.registreraorder(jButton8, Epost, jList3);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
@@ -1216,15 +1215,16 @@ public class GUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             // Konstruera SQL-frågan för att uppdatera kunduppgifter
-            String fragaTillDatabas = String.format("UPDATE kund " +
-                "SET Namn = '%s', " +
-                "telefon = '%s', " +
-                "Adress = '%s' " + // Lägg till ytterligare fält efter behov
-                "WHERE Email = '%s'",
-                jTextNamn.getText(), // Hämta det nya värdet från  GUI-komponent
-                jTextTelefon.getText(),
-                jTextAdress.getText(), // Lägg till motsvarande fält från  GUI
-                jTextEmail.getText()); // Använd e-postadressen för att identifiera kunden att uppdatera
+            String fragaTillDatabas = String.format("UPDATE kund "
+                    + "SET Namn = '%s', "
+                    + "telefon = '%s', "
+                    + "Adress = '%s' "
+                    + // Lägg till ytterligare fält efter behov
+                    "WHERE Email = '%s'",
+                    jTextNamn.getText(), // Hämta det nya värdet från  GUI-komponent
+                    jTextTelefon.getText(),
+                    jTextAdress.getText(), // Lägg till motsvarande fält från  GUI
+                    jTextEmail.getText()); // Använd e-postadressen för att identifiera kunden att uppdatera
 
             // Utför SQL UPDATE-operationen genom att skicka frågan till databasen
             Databaskoppling.idb.update(fragaTillDatabas);
@@ -1242,8 +1242,7 @@ public class GUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (!Valideringsklass.emptyTextFields(jTextNamn) && !Valideringsklass.emptyTextFields(jTextEmail)
-            && !Valideringsklass.emptyTextFields(jTextTelefon) && !Valideringsklass.emptyTextFields(jTextAdress)
-        ) {
+                && !Valideringsklass.emptyTextFields(jTextTelefon) && !Valideringsklass.emptyTextFields(jTextAdress)) {
 
             try {
                 // Vi skapade variabler för att underlätta för oss själva och läsaren
@@ -1255,7 +1254,6 @@ public class GUI extends javax.swing.JFrame {
                 String Adress = jTextAdress.getText();
 
                 // int KundID = Integer.parseInt(nextID);
-
                 ArrayList<String> NamnPaKund;
                 NamnPaKund = Databaskoppling.idb.fetchColumn("select namn from kund");
                 boolean finns = false;
@@ -1292,10 +1290,10 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        try{
-            String kundEmail=jTextField1.getText();
+        try {
+            String kundEmail = jTextField1.getText();
             String hamtakund1 = "SELECT * FROM kund WHERE email = '" + kundEmail + "'";
-            var hamtaKund=Databaskoppling.idb.fetchRow(hamtakund1)  ;
+            var hamtaKund = Databaskoppling.idb.fetchRow(hamtakund1);
 
             jTextEmail.setText(hamtaKund.get("email"));
 
@@ -1303,8 +1301,7 @@ public class GUI extends javax.swing.JFrame {
             jTextNamn.setText(hamtaKund.get("namn"));
             jTextAdress.setText(hamtaKund.get("adress"));
 
-        }
-        catch (InfException exc) {
+        } catch (InfException exc) {
             JOptionPane.showMessageDialog(null, "FEL " + exc.getMessage());
         }        // TODO add your handling code here:
     }//GEN-LAST:event_button1ActionPerformed
@@ -1317,22 +1314,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void jList5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList5MouseClicked
         // TODO add your handling code here:
-          LaggaLagerHatIBestallning.fyllText(jList5,jTextField6,jTextField8,jTextField9);
+        LaggaLagerHatIBestallning.fyllText(jList5, jTextField6, jTextField8, jTextField9);
     }//GEN-LAST:event_jList5MouseClicked
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-         DefaultListModel<String> listModel = Sok.sok(jTextField2.getText(), "lagerforda", "namn");
+        DefaultListModel<String> listModel = Sok.sok(jTextField2.getText(), "lagerforda", "namn");
         jList5.setModel(listModel);
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-        
-        
-            try {
+
+        try {
             char fourthChar = jList3.getSelectedValue().charAt(3);
             char id = jList3.getSelectedValue().charAt(1);
-            
+
             if (fourthChar == 'L') {
                 Databaskoppling.idb.update("UPDATE LagerOrderKoppling SET anvandare = " + LoggIn.anvanderid + " WHERE orderID = " + id + ";");
             } else if (fourthChar == 'S') {
@@ -1340,118 +1335,112 @@ public class GUI extends javax.swing.JFrame {
             } else if (fourthChar == 'A') {
                 Databaskoppling.idb.update("UPDATE AnpassadOrderKoppling SET anvandare = " + LoggIn.anvanderid + " WHERE orderID = " + id + ";");
             }
-                
-            } catch (InfException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            LaddaOrdrar.Allaordrar(jList3,LoggIn.anvanderid);
-            
-                       
+
+        } catch (InfException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        LaddaOrdrar.Allaordrar(jList3, LoggIn.anvanderid);
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-      laggTillNyLagerford.laggTillLagerford(namnTF.getText(),PrisTF.getText(),decTF.getText(),beskTF.getText());
-      
+        laggTillNyLagerford.laggTillLagerford(namnTF.getText(), PrisTF.getText(), decTF.getText(), beskTF.getText());
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jKonverteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKonverteraActionPerformed
         // Konverterar-knapp
-           
+
         try {
-        if (order == null) {
-            JOptionPane.showMessageDialog(null, "Ingen order har valts eller orderdatan är inte tillgänglig");
-            return;
-        }
+            if (order == null) {
+                JOptionPane.showMessageDialog(null, "Ingen order har valts eller orderdatan är inte tillgänglig");
+                return;
+            }
 
-        double summa = Double.parseDouble(order.get("totalpris"));
-        String valdValuta = (String) jValutaVal.getSelectedItem();
-        double resultat = 0.0;
+            double summa = Double.parseDouble(order.get("totalpris"));
+            String valdValuta = (String) jValutaVal.getSelectedItem();
+            double resultat = 0.0;
 
-        switch (valdValuta) {
-            case "SEK":
-                resultat = summa;
-                break;
-            case "EUR":
-                resultat = summa / 11.21;
-                break;
-            case "USD":
-                resultat = summa / 10.36;
-                break;
-            case "IRR":
-                resultat = summa / 0.00026;
-                break;
-        }
-        PrisJL.setText(String.format("%.2f %s", resultat, valdValuta.split(" ")[0]));
-    } catch (NumberFormatException ex) {
+            switch (valdValuta) {
+                case "SEK":
+                    resultat = summa;
+                    break;
+                case "EUR":
+                    resultat = summa / 11.21;
+                    break;
+                case "USD":
+                    resultat = summa / 10.36;
+                    break;
+                case "IRR":
+                    resultat = summa / 0.00026;
+                    break;
+            }
+            PrisJL.setText(String.format("%.2f %s", resultat, valdValuta.split(" ")[0]));
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Hoppsan! Något gick fel ");
             System.out.println("Internt felmeddelande: " + ex);
         }
     }//GEN-LAST:event_jKonverteraActionPerformed
 
-
-
     /**
      * @param args the command line arguments
      */
-    private void knappGenerering()
-    {
-        
+    private void knappGenerering() {
+
         int numberoftabs = HuvudPanel.getTabCount();
         knappar = new JButton[numberoftabs];
-        for (int i = 0; i < numberoftabs; i++) {  
-        final int index = i;
-        knappar[i] = new JButton(HuvudPanel.getTitleAt(i));
-        knappar[i].addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-               HuvudPanel.setSelectedIndex(index);
-            }
-        });
-            
-            
+        for (int i = 0; i < numberoftabs; i++) {
+            final int index = i;
+            knappar[i] = new JButton(HuvudPanel.getTitleAt(i));
+            knappar[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    HuvudPanel.setSelectedIndex(index);
+                }
+            });
+
         }
     }
-    
-    private void DisableTabs()
-    {
-        for (int i = 0; i < HuvudPanel.getTabCount(); i++) {  
-        final int index = i;
-        
-               HuvudPanel.setEnabledAt(index, false);
-            
+
+    private void DisableTabs() {
+        for (int i = 0; i < HuvudPanel.getTabCount(); i++) {
+            final int index = i;
+
+            HuvudPanel.setEnabledAt(index, false);
+
+        }
     }
+
+    public String[] getSelectedGUIOrder() {
+
+        return jList3.getSelectedValue().trim().split("-");
     }
-    
-   
-    
-   public String[] getSelectedGUIOrder()
-           {
-               
-               return jList3.getSelectedValue().trim().split("-");
-           }
-    
-    
-    
- private void knappVisning1()
-    {
+
+    private void knappVisning1() {
         int height = MenyValjP.getHeight();
-    int knapparCount = knappar.length;
-    int knappHeight = height / knapparCount;
-    int yPosition = (height / knapparCount)/2-20;
+        int knapparCount = knappar.length;
+        int knappHeight = height / knapparCount;
+        int yPosition = (height / knapparCount) / 2 - 20;
 
-    for (JButton button : knappar) {
-        MenyValjP.add(button);
-        button.setVisible(true);
-        button.setSize(150, 40);
-        button.setLocation(20, yPosition);
+        for (JButton button : knappar) {
+            MenyValjP.add(button);
+            button.setVisible(true);
+            button.setSize(150, 40);
+            button.setLocation(20, yPosition);
 
-        yPosition += knappHeight;
+            yPosition += knappHeight;
+        }
     }
+
+    private void gomtabs() {
+        HuvudPanel.setUI(new BasicTabbedPaneUI() {
+            @Override
+            protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {
+                return 0;
+            }
+        });
     }
-    
-    private void gomtabs()
-    {
-     HuvudPanel.setUI(new BasicTabbedPaneUI() {       @Override       protected int calculateTabAreaHeight(int tab_placement, int run_count, int max_tab_height) {                         return 0;       }   });
-             }   
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1480,7 +1469,7 @@ public class GUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUI().setVisible(true);
-               
+
             }
         });
     }
