@@ -293,22 +293,28 @@ String fragaTillDatabas = String.format("UPDATE anvandare SET namn = '%s', losen
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 try {
-    
-     String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM ordrar WHERE anvandare = '" + txtID.getText() + "'");
-     String q2 = "UPDATE ordrar SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
-    Databaskoppling.idb.update(q2);
+//     String q2 = "UPDATE ordrar SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
+      String ID2 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM lagerorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+    String ID3 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM specialorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+ String ID4 = Databaskoppling.idb.fetchSingle("SELECT anvandare FROM anpassadorderkoppling WHERE anvandare = '" + txtID.getText() + "'");
+String q2 = "UPDATE lagerorderkoppling SET anvandare = NULL WHERE anvandare = '" + ID2 + "'";
+Databaskoppling.idb.update(q2);
+String q3 = "UPDATE specialorderkoppling SET anvandare = NULL WHERE anvandare = '" + ID3 + "'";
+Databaskoppling.idb.update(q3);
+String q4 = "UPDATE anpassadorderkoppling SET anvandare = NULL WHERE anvandare = '" + ID4 + "'";
+Databaskoppling.idb.update(q4);
+
     
    String ID = Databaskoppling.idb.fetchSingle("SELECT anvandareID FROM anvandare WHERE anvandareID = '" + txtID.getText() + "'");
    String q1 = "DELETE FROM anvandare WHERE anvandareID = " + ID;
     //String q2 = "DELETE FROM ordrar WHERE  COLUMN  anvandare = " + ID;
     Databaskoppling.idb.delete(q1);
-    
-    
     JOptionPane.showMessageDialog(null, " Användaren är raderad");
+    
 
 } catch (InfException e) {
     // Hantera eventuella undantag, till exempel visa ett felmeddelande.
-    JOptionPane.showMessageDialog(null, "radering misslyckades.");
+    JOptionPane.showMessageDialog(null, "Radering misslyckades.");
 }       
     }//GEN-LAST:event_jButton7ActionPerformed
 
