@@ -1172,7 +1172,7 @@ public class GUI extends javax.swing.JFrame {
         LaggTillAnpassade regAnpassad = new LaggTillAnpassade();
         regAnpassad.laggTillAnpassade(namn, pris, dekoration, beskrivning, storlek, AnpassadCB);
 
-        regAnpassad.laggTillAnpassadOrder(pris, Epost);
+        regAnpassad.laggTillAnpassadOrder(pris, Epost, storlek);
 
         // TODO add your handling code here:fyllComboBox(JComboBox combo)
 
