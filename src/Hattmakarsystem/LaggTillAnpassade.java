@@ -57,7 +57,7 @@ public class LaggTillAnpassade {
             String laggTill2 = "INSERT INTO ordrar(orderID, status, datum, totalpris, kund, prio) VALUES ('" + senasteId2 + "', '0', '" + datum + "', '" + totalpris + "', '" + kundID + "', 0)";
             Databaskoppling.idb.insert(laggTill2);
             
-            String laggTill3 = "INSERT INTO anpassadorderkoppling(anpassadID, orderID, antal, storlek, anvandare) VALUES('" + senasteId + "', '" + senasteId2 + "', '" + 1 + "', '" + storlek + "', '" + 1 + "')";
+            String laggTill3 = "INSERT INTO anpassadorderkoppling(anpassadID, orderID, antal, storlek, anvandare) VALUES('" + senasteId + "', '" + senasteId2 + "', '" + 1 + "', '" + storlek + "', 'Null')";
             Databaskoppling.idb.insert(laggTill3);
             JOptionPane.showMessageDialog(null, "Order tillagd!");
             
