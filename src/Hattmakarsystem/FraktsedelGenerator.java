@@ -58,17 +58,20 @@ public class FraktsedelGenerator {
 
                     // Rita namn och adress
                     g.setColor(Color.BLACK);
-                    Font font = new Font("Arial", Font.BOLD, 22);
+                    Font font = new Font("Arial", Font.BOLD, 16);
                     g.setFont(font);
+                    
                     drawCenteredString(g, kundInfo[0], new Rectangle(50, 50, getWidth() - 100, 20)); // Namn
                     drawCenteredString(g, kundInfo[1], new Rectangle(50, 80, getWidth() - 100, 20)); // Adress
+                    drawCenteredString(g, kundInfo[2], new Rectangle(50, 110, getWidth() - 100, 20)); // Orderdatum
 
                     // Generera och visa streckkod
                     String fraktsedelNummer = generateRandomFraktsedelNummer();
                     Barcode barcode = BarcodeFactory.createCode128(fraktsedelNummer);
                     BufferedImage image = BarcodeImageHandler.getImage(barcode);
                     int barcodeX = (getWidth() - image.getWidth()) / 2;
-                    g.drawImage(image, barcodeX, 130, null);
+                    int barcodeY = 200;
+                    g.drawImage(image, barcodeX, barcodeY, null);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -110,7 +113,7 @@ public class FraktsedelGenerator {
             String adress = kundInfo.get("adress");
             String orderdatum = kundInfo.get("datum");
 
-            return new String[]{namn, adress};
+            return new String[]{namn, adress, orderdatum};
         } catch (InfException ex) {
             throw new BarcodeException("Kunde inte hämta kundinformation från databasen", ex);
         }
