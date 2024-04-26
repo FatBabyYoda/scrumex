@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import oru.inf.InfException;
 
 /**
  *
  * @author Rikard Söderek; Gustav Alvesvärd
- * @version 0.2 (Rev. 1)
+ * @version 0.4
  */
 public class MaterialLista extends javax.swing.JFrame {
 
@@ -56,93 +58,176 @@ public class MaterialLista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jNamnLista = new javax.swing.JList<>();
+        jColorChooser1 = new javax.swing.JColorChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         jMaterialLista = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jHattarList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jHattyp = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jNamnLista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jNamnListaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jNamnLista);
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         jScrollPane2.setViewportView(jMaterialLista);
 
-        jLabel1.setText("Namn");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 102, 51));
 
-        jLabel2.setText("Material");
+        jHattarList.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jHattarList.setSelectionBackground(new java.awt.Color(153, 255, 153));
+        jHattarList.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jHattarList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jHattarListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jHattarList);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Material:");
+
+        jHattyp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jHattyp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jHattypActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Filtrera träffar:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("- Hitta material för hatt -");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
+        jTextArea1.setSelectionColor(new java.awt.Color(153, 255, 153));
+        jScrollPane4.setViewportView(jTextArea1);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Välj hatt:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(124, 124, 124))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(252, 252, 252))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 22, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(134, 134, 134))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jHattyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 153, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+//    private void visaHattar() {
+//        DefaultListModel<String> lista = Sok.sok(jHattyp.getText(), "lagerforda", "namn");
+//        jHattarList.setModel(lista);
+//    }
+    
     private void jHattypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHattypActionPerformed
         //Sökning efter specifik hatt
         
         DefaultListModel<String> lista = Sok.sok(jHattyp.getText(), "lagerforda", "namn");
-        jNamnLista.setModel(lista);
+        jHattarList.setModel(lista);
         
     }//GEN-LAST:event_jHattypActionPerformed
 
-    private void jNamnListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jNamnListaMouseClicked
+    private void jHattarListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHattarListMouseClicked
         //Klicka på hatt för att få upp material om den valda hatten
 
-    int selectedIndex = jNamnLista.getSelectedIndex();
-    if (selectedIndex != -1) { // Kontrollerar om en rad är vald
-        String valtHattNamn = jNamnLista.getModel().getElementAt(selectedIndex); // Hämta det valda hatt-namnet
-        DefaultListModel<String> materialLista = Sok.sok(valtHattNamn, "material", "namn"); // Använd det valda hatt-namnet för att hämta material
-        jMaterialLista.setModel(materialLista); // Sätt modellen med de hämtade materialen
-    }
+    int selectedIndex = jHattarList.getSelectedIndex();
+   // if (selectedIndex != -1) { // Kontrollerar om en rad är vald
+        String valtHattNamn = jHattarList.getModel().getElementAt(selectedIndex); // Hämta det valda hatt-namnet
+        // HÄR
+        // Här
+        Databaskoppling.koppling();
+ 
+        try {
+        //ArrayList<String> test = Databaskoppling.idb.fetchColumn("select lagfordID from lagerforda where namn like '" + selectedIndex + "'");
+        ArrayList<String> test = Databaskoppling.idb.fetchColumn("select lagfordID from lagerforda where namn like '" + selectedIndex + "'");
+        for (String i :test){
+        jTextArea1.append(i +"\n");
+        }
+        System.out.println(test);
+        } catch (InfException ex) {
+            System.out.println("bruh " + ex);
+        }
+        try {
+        ArrayList<String> materialLista = Databaskoppling.idb.fetchColumn("select mangd from lagerproduktmaterial join lagerforda on lagerproduktmaterial.lagfordID = lagerforda.lagfordID where namn like '" + valtHattNamn + "';"); // Använd det valda hatt-namnet för att hämta material
+        String[] materialArray = materialLista.toArray(String[]::new);
+
+        // Create a JList with the array
+        jMaterialLista = new JList<>(materialArray);
+
+        // Add the JList to the JFrame or any other container
+        add(new JScrollPane(jMaterialLista));
+
+        //jMaterialLista.setModel(materialLista); // Sätt modellen med de hämtade materialen
+        System.out.println(materialLista);
+        
+      StringBuilder sb = new StringBuilder();
+        for (String item : materialArray) {
+            sb.append(item).append("\n");
+        }
+        jTextArea1.setText(sb.toString());
+        
+     } catch (InfException ex) {
+            System.out.println("bruh error oopsie doopsie " + ex);
+        }
     
-    
-    }//GEN-LAST:event_jNamnListaMouseClicked
+    }//GEN-LAST:event_jHattarListMouseClicked
 
    //      String clickedLine = (String) jNamnLista.getModel().getElementAt(selectedIndex);
 //      jHattyp.setText(clickedLine);
@@ -180,17 +265,26 @@ public class MaterialLista extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MaterialLista().setVisible(true);
+                DefaultListModel<String> lista = Sok.sok(jHattyp.getText(), "lagerforda", "namn");
+                jHattarList.setModel(lista);
             }
         });
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jHattyp;
+    private javax.swing.JColorChooser jColorChooser1;
+    private static javax.swing.JList<String> jHattarList;
+    private static javax.swing.JTextField jHattyp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jMaterialLista;
-    private javax.swing.JList<String> jNamnLista;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private static javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
