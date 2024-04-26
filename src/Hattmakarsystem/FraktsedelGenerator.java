@@ -58,12 +58,15 @@ public class FraktsedelGenerator {
 
                     // Rita namn och adress
                     g.setColor(Color.BLACK);
-                    Font font = new Font("Arial", Font.BOLD, 16);
+                    Font font = new Font("Arial", Font.BOLD, 14);
                     g.setFont(font);
+                    int mellanrum = 30;
                     
-                    drawCenteredString(g, kundInfo[0], new Rectangle(50, 50, getWidth() - 100, 20)); // Namn
-                    drawCenteredString(g, kundInfo[1], new Rectangle(50, 80, getWidth() - 100, 20)); // Adress
-                    drawCenteredString(g, kundInfo[2], new Rectangle(50, 110, getWidth() - 100, 20)); // Orderdatum
+                    drawCenteredString(g, "Till: " + kundInfo[0], new Rectangle(50, 50 + mellanrum, getWidth() - 100, 20)); // Namn
+                    drawCenteredString(g, kundInfo[1], new Rectangle(50, 80 + mellanrum, getWidth() - 100, 20)); // Adress
+                    drawCenteredString(g, kundInfo[2], new Rectangle(50, 110 + mellanrum, getWidth() - 100, 20)); // Orderdatum
+                    
+                    g.drawString("Från: Hattmakarkompaniet", 50, 50 + mellanrum);
 
                     // Generera och visa streckkod
                     String fraktsedelNummer = generateRandomFraktsedelNummer();
